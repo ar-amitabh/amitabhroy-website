@@ -36,8 +36,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: 82.25.102.204
-          username: u777250759
+          username: u777250759.amitabhroy.bd
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: ./dist/
-          server-dir: /domains/amitabhroy.bd/public_html/
+          server-dir: ./
