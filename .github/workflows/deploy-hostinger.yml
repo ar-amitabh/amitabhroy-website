@@ -22,7 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -35,13 +35,15 @@ jobs:
           npm run build
           rm -f dist/assets/*.map
 
-      - name: Deploy dist/ to Hostinger via FTP
+      - name: Deploy dist/ to Hostinger via lftp mirror
         if: env.FTP_PASSWORD != ''
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: 82.25.102.204
-          username: u777250759.amitabhroy.bd
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          local-dir: ./dist/
-          server-dir: ./
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y lftp
+          lftp -u "u777250759.amitabhroy.bd,$FTP_PASSWORD" 82.25.102.204 << 'EOF'
+          set ftp:ssl-allow yes
+          set ssl:verify-certificate no
+          set net:max-retries 5
+          set net:reconnect-interval-base 3
+          mirror --reverse --only-newer --parallel=2 ./dist/ ./
+          bye
+          EOF
