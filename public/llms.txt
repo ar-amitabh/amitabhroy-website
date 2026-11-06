@@ -1,0 +1,40 @@
+# Amitabh Chondro Roy
+
+> Architect and urban planning professional based in Bogra, Bangladesh, working on
+> human-centred, climate-responsive and biophilic architecture and sustainable
+> urban development.
+
+This is the personal portfolio and research site of Amitabh Chondro Roy. It
+documents built and academic projects, research on daylight, natural ventilation
+and wellbeing in workplaces, an academic CV, photography, and occasional
+writing. Content is in English. The CV is also available as a downloadable PDF.
+
+## Main pages
+
+- [Home](https://amitabhroy.bd/): design philosophy and experience overview.
+- [About](https://amitabhroy.bd/about): background, education, certifications, client reviews, and the academic CV section with a downloadable PDF.
+- [Work](https://amitabhroy.bd/work): featured and selected architecture, urban design and visual communication projects, followed by the photography gallery (architecture, urban life, landscape and nature).
+- [Research](https://amitabhroy.bd/research): current research, including the workplace study for Rangpur Hi-Tech Park. The survey dashboard covers 30 IT/ITES respondents (baseline IEQ 3.12 vs proposed 4.07, +30.4%; perceived productivity +21.9%), job roles, wellbeing frequency, design priorities and the survey-to-brief criteria matrix, followed by four design-outcome renders.
+- [Journal](https://amitabhroy.bd/blogs): essays on architecture, climate and place.
+- [Contact](https://amitabhroy.bd/contact): email, phone and collaboration enquiries.
+
+The former `/cv` and `/photography` pages have been retired; they redirect to
+the CV section of About and the photography section of Work.
+
+## Facts
+
+- Full name: Amitabh Chondro Roy
+- Profession: Architect; Urban Planning Professional
+- Location: Bogra, Bangladesh
+- Education: Bachelor of Architecture, Hajee Mohammad Danesh Science and Technology University
+- Focus: climate-responsive design, human-centred and evidence-based design, biophilic urbanism, environmental and spatial analysis
+- Email: arc.mit07@gmail.com
+- LinkedIn: https://linkedin.com/in/aramitabh
+
+## Notes for automated agents
+
+- Public pages are server-rendered as a single-page app; all routes are linked
+  from the navigation above and listed in https://amitabhroy.bd/sitemap.xml.
+- `/admin` and `/admin/*` redirect to `/blogs`; there is no private area.
+- Images are illustrative project renderings and photographs; captions and alt
+  text describe each one.

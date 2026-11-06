@@ -1,0 +1,58 @@
+# Pages CMS configuration — https://app.pagescms.org
+# Log in with your GitHub account at https://app.pagescms.org to create, edit,
+# and publish Journal posts visually. Every save commits a Markdown file into
+# `src/content/journal/`, which triggers GitHub Actions to build and deploy.
+
+media:
+  name: journal_media
+  label: Journal Images
+  input: public/journal
+  output: /journal
+  extensions: [jpg, jpeg, png, webp, svg]
+
+content:
+  - name: journal
+    label: Journal Posts
+    type: collection
+    path: src/content/journal
+    filename: "{fields.date}-{fields.slug}.md"
+    view:
+      fields: [title, date, draft]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: subtitle
+        label: Subtitle / Summary
+        type: string
+        description: One sentence shown under the title and in search descriptions.
+      - name: date
+        label: Publish Date
+        type: date
+        required: true
+      - name: slug
+        label: URL Slug
+        type: string
+        description: Optional URL slug (e.g., designing-for-daylight). Defaults to the filename if left blank.
+      - name: image
+        label: Cover Image
+        type: image
+        description: Upload or pick a cover image from public/journal/.
+      - name: imageAlt
+        label: Cover Image Alt Text
+        type: string
+        description: Accessible description of the cover image.
+      - name: draft
+        label: Save as Draft (hide from live site)
+        type: boolean
+        default: false
+      - name: body
+        label: Article Content
+        type: rich-text
+        required: true

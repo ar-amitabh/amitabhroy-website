@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /work
+Allow: /research
+Allow: /blogs
+Allow: /contact
+Allow: /assets/
+Allow: /cv/
+Allow: /photography/
+Allow: /amitabh-chondro-roy-architect-profile.jpg
+Allow: /amitabh-chondro-roy-architect-portrait.png
+Allow: /favicon-amitabh-roy.png
+Allow: /research-rangpur-hitech-park-conceptual-visual.jpg
+Allow: /brand-logo-*
+
+# Keep private administration and implementation paths out of search results.
+Disallow: /admin
+Disallow: /admin/
+Disallow: /login
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Sitemap
+Sitemap: https://amitabhroy.bd/sitemap.xml

@@ -1,0 +1,95 @@
+# ----------------------------------------------------------------------
+# Amitabh Chondro Roy - Apache config for Hostinger
+# ----------------------------------------------------------------------
+
+# --- Canonical host: https://amitabhroy.bd (non-www) -------------------
+# This matches <link rel="canonical">, sitemap.xml and the JSON-LD @id.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Force HTTPS
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Force non-www
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+    # Retired standalone pages, kept alive for bookmarks and search results.
+    # The CV now lives inside About; photography now lives inside Work.
+    RewriteRule ^cv/?$ /about#cv [NE,R=301,L]
+    RewriteRule ^photography/?$ /work#photography [NE,R=301,L]
+
+    # Missing files under /assets/ must 404, not fall back to the SPA shell
+    RewriteCond %{REQUEST_URI} ^/assets/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ - [L,R=404]
+
+    # React single-page application routing
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+<FilesMatch "\.(env|git|gitignore|htpasswd)$">
+    Require all denied
+</FilesMatch>
+
+# --- MIME types --------------------------------------------------------
+<IfModule mod_mime.c>
+    AddType font/woff2                .woff2
+    AddType application/manifest+json .webmanifest
+    AddType image/svg+xml             .svg
+    AddType image/webp                .webp
+    AddType application/pdf           .pdf
+</IfModule>
+
+# --- Security headers --------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # Fonts are served from this origin, so fonts.googleapis.com is not needed.
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com; frame-ancestors 'self';"
+</IfModule>
+
+# --- Compression -------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE application/xml application/manifest+json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --- Caching -----------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Vite emits content-hashed filenames under /assets - cache them forever
+    <FilesMatch "^.+[.-][a-zA-Z0-9_-]{8}\.(js|css)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+
+    ExpiresByType font/woff2               "access plus 1 year"
+    ExpiresByType image/jpeg               "access plus 1 year"
+    ExpiresByType image/png                "access plus 1 year"
+    ExpiresByType image/webp               "access plus 1 year"
+    ExpiresByType image/svg+xml            "access plus 1 year"
+    ExpiresByType application/pdf          "access plus 1 month"
+    ExpiresByType application/javascript   "access plus 1 year"
+    ExpiresByType text/css                 "access plus 1 year"
+    ExpiresByType application/manifest+json "access plus 1 week"
+    ExpiresByType text/html                "access plus 0 seconds"
+</IfModule>

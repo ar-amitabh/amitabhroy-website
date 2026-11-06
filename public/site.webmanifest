@@ -1,0 +1,23 @@
+{
+  "name": "Amitabh Chondro Roy — Architect & Urban Planning Professional",
+  "short_name": "A. C. Roy",
+  "description": "Human-centred, climate-responsive architecture and sustainable urban development.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#040816",
+  "theme_color": "#040816",
+  "icons": [
+    {
+      "src": "/favicon-amitabh-roy.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
