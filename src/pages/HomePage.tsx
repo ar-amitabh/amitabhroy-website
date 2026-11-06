@@ -7,7 +7,7 @@ export default function HomePage() {
     <>
       <SEO
         title="Home"
-        description="Amitabh Chondro Roy is an architect and urban planning professional in Bangladesh, exploring human-centred, climate-responsive architecture and sustainable urban development."
+        description="Amitabh Chondro Roy (Amitabh Roy) is an architect and urban planning professional in Bangladesh, exploring human-centred, climate-responsive architecture and sustainable urban development."
         path="/"
         profilePage
       />

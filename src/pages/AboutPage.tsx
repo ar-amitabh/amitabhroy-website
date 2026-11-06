@@ -8,11 +8,11 @@ export default function AboutPage() {
   return (
     <div className="pt-16">
       <SEO
-        title="About Amitabh Chondro Roy | Architect"
-        description="Learn about my journey as an architect, my design philosophy, and my commitment to creating healthier, more sustainable spaces through human-centered design."
+        title="About Amitabh Chondro Roy (Amitabh Roy) | Architect"
+        description="Learn about Amitabh Chondro Roy (Amitabh Roy) — architect and urban planning professional focused on healthier, climate-responsive, and sustainable spaces through human-centered design."
         path="/about"
       />
-      <h1 className="sr-only">About Amitabh Chondro Roy</h1>
+      <h1 className="sr-only">About Amitabh Chondro Roy (Amitabh Roy)</h1>
       <CVSection />
       <About />
       <Experience />

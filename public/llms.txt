@@ -23,13 +23,14 @@ the CV section of About and the photography section of Work.
 
 ## Facts
 
-- Full name: Amitabh Chondro Roy
+- Full name: Amitabh Chondro Roy (also known as Amitabh Roy, Ar. Amitabh Roy)
 - Profession: Architect; Urban Planning Professional
 - Location: Bogra, Bangladesh
 - Education: Bachelor of Architecture, Hajee Mohammad Danesh Science and Technology University
 - Focus: climate-responsive design, human-centred and evidence-based design, biophilic urbanism, environmental and spatial analysis
 - Email: arc.mit07@gmail.com
 - LinkedIn: https://linkedin.com/in/aramitabh
+- GitHub: https://github.com/ar-amitabh
 
 ## Notes for automated agents
 

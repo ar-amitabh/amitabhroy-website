@@ -3,23 +3,23 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://amitabhroy.bd/</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-06</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <image:image>
             <image:loc>https://amitabhroy.bd/amitabh-chondro-roy-architect-profile.jpg</image:loc>
-            <image:title>Amitabh Chondro Roy - Architect</image:title>
+            <image:title>Amitabh Chondro Roy (Amitabh Roy) - Architect &amp; Urban Planning Professional</image:title>
         </image:image>
     </url>
     <url>
         <loc>https://amitabhroy.bd/about</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://amitabhroy.bd/work</loc>
-        <lastmod>2026-10-27</lastmod>
+        <lastmod>2026-11-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -46,19 +46,19 @@
         </image:image>
         <image:image>
             <image:loc>https://amitabhroy.bd/research/figures/proposed-masterplan-1536.webp</image:loc>
-            <image:title>Figure 5-6: Proposed masterplan</image:title>
+            <image:title>Proposed masterplan - Rangpur Hi-Tech Park</image:title>
         </image:image>
         <image:image>
             <image:loc>https://amitabhroy.bd/research/figures/courtyard-gathering-space-1536.webp</image:loc>
-            <image:title>Figure 5-26: Courtyard as common gathering space</image:title>
+            <image:title>Courtyard as common gathering space</image:title>
         </image:image>
         <image:image>
             <image:loc>https://amitabhroy.bd/research/figures/biophilic-environment-1536.webp</image:loc>
-            <image:title>Figure 5-30: Biophilic environment</image:title>
+            <image:title>Biophilic workplace environment</image:title>
         </image:image>
         <image:image>
             <image:loc>https://amitabhroy.bd/research/figures/natural-view-green-lens-1536.webp</image:loc>
-            <image:title>Figure 5-32: Natural view as a green lens</image:title>
+            <image:title>Natural view as a green lens</image:title>
         </image:image>
     </url>
     <url>

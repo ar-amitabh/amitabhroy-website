@@ -31,15 +31,27 @@ export default function SEO({
   const profileStructuredData = profilePage ? {
     '@context': 'https://schema.org',
     '@type': 'ProfilePage',
-    'dateModified': '2026-10-04T00:00:00+06:00',
+    'dateModified': '2026-11-06T00:00:00+06:00',
     'mainEntity': {
       '@type': 'Person',
       '@id': `${siteUrl}/#person`,
       'name': siteName,
+      'alternateName': [
+        'Amitabh Roy',
+        'Ar. Amitabh Roy',
+        'Ar. Amitabh Chondro Roy',
+      ],
+      'givenName': 'Amitabh',
+      'additionalName': 'Chondro',
+      'familyName': 'Roy',
       'url': siteUrl,
       'image': imageUrl,
       'jobTitle': ['Architect', 'Urban Planning Professional'],
-      'description': 'Architect and emerging urban-planning researcher focused on human-centred design, climate-responsive architecture, environmental analysis, and sustainable urban development.',
+      'description': 'Amitabh Chondro Roy (Amitabh Roy) is an architect and urban-planning researcher focused on human-centred design, climate-responsive architecture, environmental analysis, and sustainable urban development.',
+      'alumniOf': {
+        '@type': 'CollegeOrUniversity',
+        'name': 'Hajee Mohammad Danesh Science and Technology University',
+      },
       'knowsAbout': [
         'Architecture',
         'Urban and regional planning',
@@ -48,7 +60,12 @@ export default function SEO({
         'Sustainable urban development',
         'Environmental analysis',
       ],
-      'sameAs': ['https://linkedin.com/in/aramitabh'],
+      'sameAs': [
+        'https://linkedin.com/in/aramitabh',
+        'https://github.com/ar-amitabh',
+        'https://www.facebook.com/aramitabh',
+        'https://x.com/ArAmitabh',
+      ],
     },
   } : null;
 
@@ -75,7 +92,7 @@ export default function SEO({
       <meta name="twitter:image" content={imageUrl} />
 
       <link rel="canonical" href={fullUrl} />
-      <meta name="keywords" content={keywords ?? 'architect, urban planning, sustainable design, climate-responsive architecture, Bangladesh, Amitabh Chondro Roy'} />
+      <meta name="keywords" content={keywords ?? 'Amitabh Chondro Roy, Amitabh Roy, Ar. Amitabh Roy, architect, urban planning, sustainable design, climate-responsive architecture, Bangladesh'} />
       <meta name="author" content={siteName} />
       <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
       <meta name="language" content="English" />
