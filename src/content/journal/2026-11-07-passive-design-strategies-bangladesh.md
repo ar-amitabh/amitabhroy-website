@@ -31,7 +31,7 @@ Light, ventilation and greenery received the lowest average rating among the exi
 
 The survey also recorded self-reported symptoms during a typical workweek. Back or neck discomfort was reported by **86.7%** of respondents, eye strain after screen work by **80%**, and work-related stress or mental fatigue by **76.7%** at least sometimes.
 
-The figures describe the experiences of these 30 professionals. They should not be read as a picture of every office worker in Bangladesh, and the symptoms are self-reported rather than medical diagnoses. Even with those limits, the survey points to issues worth considering in the design brief: daylight, air movement and access to nature.
+The figures describe the experiences of these 30 professionals. They should not be read as a picture of every office worker in Bangladesh, and the symptoms are self-reported rather than medical diagnoses. Even with those limits, the survey points to issues worth considering in the design brief: daylight, air movement and access to nature (for a closer look at the survey findings, see [Can Workplace Design Influence Employee Wellbeing? Lessons from Rangpur](/blogs/workplace-wellbeing-architecture-bangladesh-rangpur)).
 
 ## Start with the climate, not the façade style
 

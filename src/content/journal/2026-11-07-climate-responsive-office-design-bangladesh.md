@@ -141,7 +141,7 @@ Ventilation depends on how buildings are organised and how their openings and me
 
 These findings should be interpreted within their limitations. The survey used a small convenience and snowball sample (n = 30). It does not represent the entire IT workforce of Bangladesh. The improved workplace was hypothetical, so its ratings reflect expectations rather than actual post-occupancy experience.
 
-Nevertheless, the study helped me understand why workplace design should consider more than the provision of desks, equipment and cooling systems.
+Nevertheless, the study helped me understand why workplace design should consider more than the provision of desks, equipment and cooling systems (read more in [Can Workplace Design Influence Employee Wellbeing? Lessons from Rangpur](/blogs/workplace-wellbeing-architecture-bangladesh-rangpur)).
 
 ### Translating Research into Architectural Design
 
