@@ -6,7 +6,6 @@ const disciplines = [
   'Urban Planning',
   'Climate-Responsive Design',
   'Biophilic Workplaces',
-  'Landscape & Courtyard Systems',
   'Architectural Research',
 ];
 
@@ -16,18 +15,18 @@ export default function MarqueeStrip() {
   return (
     <section
       aria-label="Practice disciplines"
-      className="relative overflow-hidden border-y border-stone bg-paper-raised py-6"
+      className="relative overflow-hidden border-y border-stone bg-paper-raised py-5"
     >
-      <div className="flex items-center">
-        <div className={`animate-brand-marquee items-center ${paused ? 'is-paused' : ''}`}>
+      <div className="flex items-center overflow-hidden">
+        <div className={`animate-brand-marquee flex shrink-0 items-center whitespace-nowrap ${paused ? 'is-paused' : ''}`}>
           {[0, 1].map((copy) => (
-            <div key={copy} className="flex items-center" aria-hidden={copy === 1}>
+            <div key={copy} className="flex shrink-0 items-center whitespace-nowrap" aria-hidden={copy === 1}>
               {disciplines.map((item) => (
-                <div key={`${copy}-${item}`} className="flex items-center">
-                  <span className="px-6 font-serif text-3xl italic text-graphite sm:px-8 sm:text-[40px]">
+                <div key={`${copy}-${item}`} className="flex shrink-0 items-center whitespace-nowrap">
+                  <span className="whitespace-nowrap px-6 font-serif text-3xl italic text-graphite sm:px-8 sm:text-[40px]">
                     {item}
                   </span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-terracotta" aria-hidden="true" />
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-terracotta" aria-hidden="true" />
                 </div>
               ))}
             </div>
