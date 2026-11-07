@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowRight, Download } from 'lucide-react';
@@ -22,7 +22,7 @@ type Stage =
 /**
  * Renders every character in the DOM from the start so there is zero layout shift
  * and search engines / No-JS visitors have the complete text in the initial HTML.
- * Words are wrapped in ` whitespace-nowrap` spans so line breaks are fixed from frame 0,
+ * Words are wrapped in `whitespace-nowrap` spans so line breaks are fixed from frame 0,
  * and individual character spans toggle opacity from 0 to 1.
  */
 function CharacterStream({
@@ -36,7 +36,6 @@ function CharacterStream({
   showCaret: boolean;
   caretPhase: 'solid' | 'blinking' | 'fading' | 'hidden';
 }) {
-  // Split into words and spaces while tracking each character's global index
   const tokens = text.split(/(\s+)/);
   let globalIndex = 0;
 
@@ -54,7 +53,7 @@ function CharacterStream({
   );
 
   return (
-    <span aria-hidden="true" className=" relative inline">
+    <span aria-hidden="true" className="relative inline">
       {showCaret && revealedCount === 0 && caretElement}
       {tokens.map((token, tokenIdx) => {
         const isSpace = /^\s+$/.test(token);
@@ -91,12 +90,8 @@ function CharacterStream({
 }
 
 export default function HeroVideoSection() {
-  const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
-
-  const [videoSrc, setVideoSrc] = useState<string | null>(null);
-  const [canPlayVideo, setCanPlayVideo] = useState(false);
-  const [minDelayPassed, setMinDelayPassed] = useState(false);
+  const [imageSettled, setImageSettled] = useState(Boolean(reduceMotion));
 
   const [nameCount, setNameCount] = useState(reduceMotion ? NAME_TEXT.length : 0);
   const [titleCount, setTitleCount] = useState(reduceMotion ? TITLE_TEXT.length : 0);
@@ -104,62 +99,9 @@ export default function HeroVideoSection() {
   const [stage, setStage] = useState<Stage>(reduceMotion ? 'done' : 'waiting');
   const [showButtons, setShowButtons] = useState(Boolean(reduceMotion));
 
-  // 1. Load video after first paint (non-render-blocking) & respect Save-Data / Reduced Motion
-  useEffect(() => {
-    if (reduceMotion) return;
-
-    const conn = (navigator as Navigator & {
-      connection?: { saveData?: boolean; effectiveType?: string };
-    }).connection;
-
-    if (conn?.saveData) {
-      return;
-    }
-
-    const timer03 = window.setTimeout(() => {
-      setMinDelayPassed(true);
-    }, 300);
-
-    const rafId = window.requestAnimationFrame(() => {
-      const isDesktop = window.innerWidth >= 1024 && conn?.effectiveType !== '2g' && conn?.effectiveType !== 'slow-2g';
-      setVideoSrc(isDesktop ? '/hero-courtyard-1080p.mp4' : '/hero-courtyard-720p.mp4');
-    });
-
-    return () => {
-      window.clearTimeout(timer03);
-      window.cancelAnimationFrame(rafId);
-    };
-  }, [reduceMotion]);
-
-  // Trigger playback when video is ready
-  useEffect(() => {
-    if (!videoSrc || reduceMotion) return;
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleReady = () => {
-      setCanPlayVideo(true);
-      video.play().catch(() => {
-        // Low Power Mode or autoplay policy blocked video: poster remains cleanly visible
-      });
-    };
-
-    if (video.readyState >= 3) {
-      handleReady();
-    } else {
-      video.addEventListener('canplay', handleReady, { once: true });
-      video.addEventListener('loadeddata', handleReady, { once: true });
-    }
-
-    return () => {
-      video.removeEventListener('canplay', handleReady);
-      video.removeEventListener('loadeddata', handleReady);
-    };
-  }, [videoSrc, reduceMotion]);
-
-  // 2. Exact Typewriter Sequence (~4.5s total)
   useEffect(() => {
     if (reduceMotion) {
+      setImageSettled(true);
       setNameCount(NAME_TEXT.length);
       setTitleCount(TITLE_TEXT.length);
       setSubtitleCount(SUBTITLE_TEXT.length);
@@ -168,6 +110,10 @@ export default function HeroVideoSection() {
       return;
     }
 
+    const settleId = window.requestAnimationFrame(() => {
+      setImageSettled(true);
+    });
+
     const timers: number[] = [];
     const schedule = (fn: () => void, ms: number) => {
       const id = window.setTimeout(fn, ms);
@@ -175,7 +121,7 @@ export default function HeroVideoSection() {
       return id;
     };
 
-    // 0.8s: caret appears, name types at 55ms/char
+    // 0.5s: caret appears, name types at 55ms/char
     schedule(() => {
       setStage('typing-name');
       let n = 0;
@@ -233,14 +179,13 @@ export default function HeroVideoSection() {
       };
 
       typeNextName();
-    }, 800);
+    }, 500);
 
     return () => {
+      window.cancelAnimationFrame(settleId);
       timers.forEach((id) => window.clearTimeout(id));
     };
   }, [reduceMotion]);
-
-  const showVideo = canPlayVideo && minDelayPassed && !reduceMotion;
 
   const isCaretOnName = stage === 'typing-name' || stage === 'pause-after-name';
   const isCaretOnTitle = stage === 'typing-title' || stage === 'pause-after-title';
@@ -278,7 +223,7 @@ export default function HeroVideoSection() {
         }
       `}</style>
 
-      {/* 0.0s: Instant LCP Poster Image (WebP with JPG fallback, fetchpriority="high") */}
+      {/* Full-Screen Architectural Hero Image (WebP with JPG fallback, fetchpriority="high") */}
       <picture className="pointer-events-none absolute inset-0 h-full w-full">
         <source srcSet="/hero-courtyard-poster.webp" type="image/webp" />
         <img
@@ -288,34 +233,20 @@ export default function HeroVideoSection() {
           height={1080}
           fetchPriority="high"
           decoding="sync"
-          className="h-full w-full object-cover object-center"
+          className={`h-full w-full object-cover object-center transition-transform duration-[1600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            imageSettled ? 'scale-100' : 'scale-[1.04]'
+          }`}
         />
       </picture>
 
-      {/* 0.3s: Silent Seamless-Loop Video Fades In Over Poster (600ms) */}
-      {videoSrc && !reduceMotion && (
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-          className={`pointer-events-none absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-[600ms] ease-out ${
-            showVideo ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
-      )}
-
-      {/* Legibility Gradients (WCAG >= 4.5:1 across all frames of loop while keeping building & people clear) */}
+      {/* Legibility Gradients (WCAG >= 4.5:1 while keeping building & people clear) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           background: [
-            'linear-gradient(to top, rgba(30, 32, 33, 0.72) 0%, rgba(30, 32, 33, 0.55) 34%, rgba(30, 32, 33, 0) 62%)',
-            'linear-gradient(to right, rgba(30, 32, 33, 0.56) 0%, rgba(30, 32, 33, 0.25) 48%, rgba(30, 32, 33, 0) 76%)',
+            'linear-gradient(to top, rgba(30, 32, 33, 0.74) 0%, rgba(30, 32, 33, 0.56) 34%, rgba(30, 32, 33, 0) 62%)',
+            'linear-gradient(to right, rgba(30, 32, 33, 0.58) 0%, rgba(30, 32, 33, 0.26) 48%, rgba(30, 32, 33, 0) 76%)',
             'linear-gradient(to bottom, rgba(30, 32, 33, 0.45) 0%, rgba(30, 32, 33, 0) 18%)',
           ].join(', '),
         }}
