@@ -1,4 +1,4 @@
-﻿/* Inter is self-hosted because the Hostinger CSP (style-src 'self') blocks
+/* Inter is self-hosted because the Hostinger CSP (style-src 'self') blocks
    fonts.googleapis.com. One variable file covers weights 100-900. */
 @font-face {
   font-family: 'Inter';
@@ -43,3 +43,24 @@
   }
 }
 
+/* Smooth Medium-style scroll reveal for blog article blocks */
+.prose-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.prose-reveal.prose-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prose-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,5 +1,7 @@
+import { useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, Clock } from 'lucide-react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import SEO from '../components/SEO';
 import { getJournalPost } from '../data/journal';
 import { markdownToPlainText, renderMarkdown } from '../lib/markdown';
@@ -14,6 +16,13 @@ const publishedDate = (value: string) =>
 
 export default function BlogArticlePage() {
   const { slug = '' } = useParams();
+  const proseRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   let decodedSlug = slug;
   try {
@@ -24,10 +33,45 @@ export default function BlogArticlePage() {
 
   const blog = getJournalPost(decodedSlug);
 
+  useEffect(() => {
+    const container = proseRef.current;
+    if (!container || !blog) return;
+
+    const blocks = Array.from(container.children) as HTMLElement[];
+    if (typeof IntersectionObserver === 'undefined') {
+      blocks.forEach((el) => el.classList.add('prose-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('prose-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
+    );
+
+    blocks.forEach((el, index) => {
+      el.classList.add('prose-reveal');
+      if (index < 3) {
+        // Keep the opening paragraphs immediately visible while still animating softly
+        requestAnimationFrame(() => el.classList.add('prose-visible'));
+      } else {
+        observer.observe(el);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, [blog]);
+
   if (!blog) return (
     <div className="min-h-screen bg-[#040816] px-5 pb-20 pt-32 text-[#F9FAFB]">
       <SEO title="Story not found" description="This journal story could not be found." path={`/blogs/${encodeURIComponent(slug)}`} />
-      <div className="mx-auto max-w-2xl"><p className="mb-4 text-sm text-[#B7C0CC]">Journal</p><h1 className="font-serif text-4xl">This story isn’t available.</h1><p className="mt-4 leading-7 text-[#B7C0CC]">It may have been unpublished or the address may have changed.</p><Link to="/blogs" className="mt-8 inline-flex items-center gap-2 font-semibold text-[#22C55E] hover:underline"><ArrowLeft size={17} /> Back to the journal</Link></div>
+      <div className="mx-auto max-w-3xl"><p className="mb-4 text-sm text-[#B7C0CC]">Journal</p><h1 className="font-serif text-4xl">This story isn’t available.</h1><p className="mt-4 leading-7 text-[#B7C0CC]">It may have been unpublished or the address may have changed.</p><Link to="/blogs" className="mt-8 inline-flex items-center gap-2 font-semibold text-[#22C55E] hover:underline"><ArrowLeft size={17} /> Back to the journal</Link></div>
     </div>
   );
 
@@ -67,23 +111,117 @@ export default function BlogArticlePage() {
         keywords={blog.keywords || undefined}
       />
       <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
-      <article>
-        <header className="mx-auto max-w-3xl px-5 pb-9 pt-12 sm:px-8 sm:pt-16">
-          <Link to="/blogs" className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-[#B7C0CC] hover:text-[#22C55E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#22C55E]"><ArrowLeft size={16} /> Journal</Link>
-          <p className="mb-5 text-sm text-[#B7C0CC]">
-            {blog.category && <><span className="font-medium text-[#22C55E]">{blog.category}</span><span className="px-2">·</span></>}
+
+      {/* Top Reading Progress Bar */}
+      <motion.div
+        style={{ scaleX }}
+        className="fixed left-0 right-0 top-16 z-40 h-1 origin-left bg-gradient-to-r from-[#22C55E] to-[#0EA5E9]"
+      />
+
+      {/* Unified Medium-style single column container: identical margins for header, cover image, and body text */}
+      <article className="mx-auto max-w-3xl px-5 sm:px-8">
+        <header className="pb-9 pt-12 sm:pt-16">
+          <motion.div
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            <Link
+              to="/blogs"
+              className="mb-10 inline-flex items-center gap-2 text-sm font-medium text-[#B7C0CC] transition-colors hover:text-[#22C55E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#22C55E]"
+            >
+              <ArrowLeft size={16} /> Journal
+            </Link>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.05, ease: 'easeOut' }}
+            className="mb-5 text-sm text-[#B7C0CC]"
+          >
+            {blog.category && (
+              <>
+                <span className="font-medium text-[#22C55E]">{blog.category}</span>
+                <span className="px-2">·</span>
+              </>
+            )}
             {publishedDate(blog.date)}
-          </p>
-          <h1 className="font-serif text-4xl leading-[1.08] tracking-[-0.035em] sm:text-6xl">{blog.title}</h1>
-          {blog.subtitle && <p className="mt-5 font-serif text-xl leading-relaxed text-[#B7C0CC] sm:text-2xl">{blog.subtitle}</p>}
-          <div className="mt-6 flex flex-wrap items-center gap-2 text-sm text-[#B7C0CC]"><span>By Amitabh Chondro Roy | Architect &amp; Urban Planning Researcher</span><span aria-hidden="true">·</span><Clock size={15} /><span>{blog.readingMinutes} min read</span></div>
+          </motion.p>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.1, ease: 'easeOut' }}
+            className="font-serif text-4xl leading-[1.1] tracking-[-0.03em] sm:text-5xl"
+          >
+            {blog.title}
+          </motion.h1>
+
+          {blog.subtitle && (
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.18, ease: 'easeOut' }}
+              className="mt-5 font-serif text-xl leading-relaxed text-[#B7C0CC] sm:text-2xl"
+            >
+              {blog.subtitle}
+            </motion.p>
+          )}
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25, ease: 'easeOut' }}
+            className="mt-6 flex flex-wrap items-center gap-2 border-y border-gray-800/80 py-4 text-sm text-[#B7C0CC]"
+          >
+            <span>By Amitabh Chondro Roy | Architect &amp; Urban Planning Researcher</span>
+            <span aria-hidden="true">·</span>
+            <Clock size={15} className="text-[#22C55E]" />
+            <span>{blog.readingMinutes} min read</span>
+          </motion.div>
         </header>
 
-        {coverImage && <figure className="mx-auto mb-12 max-w-6xl px-0 sm:px-8"><img src={coverImage} alt={blog.imageAlt} className="max-h-[620px] w-full bg-[#D9DED5] object-cover" /><figcaption className="px-5 pt-3 text-center text-xs text-[#B7C0CC] sm:px-0">{blog.imageAlt}</figcaption></figure>}
+        {coverImage && (
+          <motion.figure
+            initial={{ opacity: 0, y: 24, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.65, delay: 0.2, ease: 'easeOut' }}
+            className="mb-12"
+          >
+            <div className="overflow-hidden rounded-xl border border-gray-800/80 bg-[#0B1120] shadow-2xl">
+              <img
+                src={coverImage}
+                alt={blog.imageAlt}
+                className="h-auto w-full object-contain transition-transform duration-700 hover:scale-[1.015]"
+              />
+            </div>
+            <figcaption className="pt-3 text-center text-xs leading-relaxed text-[#9CA3AF]">
+              {blog.imageAlt}
+            </figcaption>
+          </motion.figure>
+        )}
 
-        <div className="mx-auto max-w-[720px] px-5 sm:px-8">
-          <div className="journal-prose font-serif text-lg leading-[1.9] text-[#B7C0CC] [&_a]:text-[#22C55E] [&_a]:underline [&_blockquote]:my-8 [&_blockquote]:border-l-2 [&_blockquote]:border-[#22C55E] [&_blockquote]:pl-5 [&_blockquote]:italic [&_h1]:mb-5 [&_h1]:mt-12 [&_h1]:font-sans [&_h1]:text-3xl [&_h1]:font-semibold [&_h1]:text-[#F9FAFB] [&_h2]:mb-4 [&_h2]:mt-12 [&_h2]:font-sans [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#F9FAFB] [&_h3]:mb-3 [&_h3]:mt-9 [&_h3]:font-sans [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-[#F9FAFB] [&_hr]:my-10 [&_img]:my-8 [&_img]:h-auto [&_img]:w-full [&_img]:object-cover [&_li]:my-2 [&_ol]:my-6 [&_ol]:list-decimal [&_ol]:pl-7 [&_p]:my-6 [&_pre]:my-6 [&_pre]:overflow-x-auto [&_pre]:bg-[#111827] [&_pre]:p-4 [&_strong]:font-semibold [&_strong]:text-[#F9FAFB] [&_table]:my-8 [&_table]:w-full [&_table]:border-collapse [&_table]:font-sans [&_table]:text-sm [&_td]:border-b [&_td]:border-gray-800 [&_td]:py-3 [&_td]:pr-4 [&_th]:border-b [&_th]:border-gray-700 [&_th]:py-3 [&_th]:pr-4 [&_th]:text-left [&_th]:font-semibold [&_th]:text-[#F9FAFB] [&_ul]:my-6 [&_ul]:list-disc [&_ul]:pl-7" dangerouslySetInnerHTML={{ __html: sanitizeHtml(renderMarkdown(blog.content)) }} />
-          <footer className="mt-16 border-t border-gray-800 pt-8"><Link to="/blogs" className="inline-flex items-center gap-2 font-semibold text-[#22C55E] hover:underline"><ArrowLeft size={17} /> More from the journal</Link></footer>
+        <div>
+          <div
+            ref={proseRef}
+            className="journal-prose font-serif text-lg leading-[1.9] text-[#B7C0CC] [&_a]:text-[#22C55E] [&_a]:underline [&_a]:decoration-[#22C55E]/50 [&_a]:underline-offset-4 hover:[&_a]:decoration-[#22C55E] [&_blockquote]:my-8 [&_blockquote]:border-l-2 [&_blockquote]:border-[#22C55E] [&_blockquote]:pl-5 [&_blockquote]:italic [&_h1]:mb-5 [&_h1]:mt-12 [&_h1]:font-sans [&_h1]:text-3xl [&_h1]:font-semibold [&_h1]:text-[#F9FAFB] [&_h2]:mb-4 [&_h2]:mt-12 [&_h2]:font-sans [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#F9FAFB] [&_h3]:mb-3 [&_h3]:mt-9 [&_h3]:font-sans [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-[#F9FAFB] [&_hr]:my-10 [&_hr]:border-gray-800 [&_img]:my-8 [&_img]:h-auto [&_img]:w-full [&_img]:rounded-xl [&_img]:object-cover [&_li]:my-2 [&_ol]:my-6 [&_ol]:list-decimal [&_ol]:pl-7 [&_p]:my-6 [&_pre]:my-6 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:bg-[#111827] [&_pre]:p-4 [&_strong]:font-semibold [&_strong]:text-[#F9FAFB] [&_table]:my-8 [&_table]:w-full [&_table]:border-collapse [&_table]:font-sans [&_table]:text-sm [&_td]:border-b [&_td]:border-gray-800 [&_td]:py-3 [&_td]:pr-4 [&_th]:border-b [&_th]:border-gray-700 [&_th]:py-3 [&_th]:pr-4 [&_th]:text-left [&_th]:font-semibold [&_th]:text-[#F9FAFB] [&_ul]:my-6 [&_ul]:list-disc [&_ul]:pl-7"
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(renderMarkdown(blog.content)) }}
+          />
+          <motion.footer
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mt-16 border-t border-gray-800 pt-8"
+          >
+            <Link
+              to="/blogs"
+              className="inline-flex items-center gap-2 font-semibold text-[#22C55E] transition-transform hover:-translate-x-1 hover:underline"
+            >
+              <ArrowLeft size={17} /> More from the journal
+            </Link>
+          </motion.footer>
         </div>
       </article>
     </div>

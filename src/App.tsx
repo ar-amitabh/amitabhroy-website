@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useEffect, lazy, Suspense } from 'react';
+import { motion } from 'framer-motion';
 import Header from './components/portfolio/Header';
 import Footer from './components/portfolio/Footer';
 
@@ -60,20 +61,27 @@ function Layout() {
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#22C55E]"></div>
           </div>
         }>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/work" element={<WorkPage />} />
-            <Route path="/research" element={<ResearchPage />} />
-            {/* Retired standalone pages: keep old links working. */}
-            <Route path="/photography" element={<Navigate to="/work#photography" replace />} />
-            <Route path="/cv" element={<Navigate to="/about#cv" replace />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/blogs" element={<BlogsPage />} />
-            <Route path="/blogs/:slug" element={<BlogArticlePage />} />
-            <Route path="/admin" element={<AdminStudioPage />} />
-            <Route path="/admin/*" element={<AdminStudioPage />} />
-          </Routes>
+          <motion.div
+            key={location.pathname}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
+            <Routes location={location}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/work" element={<WorkPage />} />
+              <Route path="/research" element={<ResearchPage />} />
+              {/* Retired standalone pages: keep old links working. */}
+              <Route path="/photography" element={<Navigate to="/work#photography" replace />} />
+              <Route path="/cv" element={<Navigate to="/about#cv" replace />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/blogs" element={<BlogsPage />} />
+              <Route path="/blogs/:slug" element={<BlogArticlePage />} />
+              <Route path="/admin" element={<AdminStudioPage />} />
+              <Route path="/admin/*" element={<AdminStudioPage />} />
+            </Routes>
+          </motion.div>
         </Suspense>
       </main>
       {!isAdminRoute && <Footer />}
