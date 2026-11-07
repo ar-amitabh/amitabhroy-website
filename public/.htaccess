@@ -28,13 +28,15 @@
 
     # React single-page application routing
     RewriteRule ^index\.html$ - [L]
+    RewriteRule ^(about|work|research|blogs|contact)/?$ /index.html [L]
+    RewriteRule ^blogs/.+$ /index.html [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule . /index.html [L]
 </IfModule>
 
-# Disable directory browsing
-Options -Indexes
+# Disable directory browsing and MultiViews
+Options -Indexes -MultiViews
 
 # Protect sensitive files
 <FilesMatch "^\.">

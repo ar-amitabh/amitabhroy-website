@@ -40,8 +40,10 @@ function renderInline(source: string): string {
 
   text = text.replace(
     /\[([^\]]+)\]\(([^)\s]+)(?:\s+&quot;([^&]*)&quot;)?\)/g,
-    (_match, label: string, href: string, title?: string) =>
-      `<a href="${href}"${title ? ` title="${title}"` : ''}>${label}</a>`,
+    (_match, label: string, href: string, title?: string) => {
+      const external = /^https?:\/\//i.test(href) && !href.startsWith('https://amitabhroy.bd');
+      return `<a href="${href}"${title ? ` title="${title}"` : ''}${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}</a>`;
+    },
   );
 
   text = text
