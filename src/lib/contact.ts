@@ -5,6 +5,7 @@ export const isContactFormConfigured = accessKey.length > 0;
 export interface ContactMessage {
   name: string;
   email: string;
+  purpose?: string;
   message: string;
 }
 
@@ -12,7 +13,7 @@ export interface ContactMessage {
  * Sends a contact message through Web3Forms, which forwards it to the
  * portfolio inbox. The access key is public by design and safe to ship.
  */
-export async function sendContactMessage({ name, email, message }: ContactMessage): Promise<void> {
+export async function sendContactMessage({ name, email, purpose, message }: ContactMessage): Promise<void> {
   if (!accessKey) {
     throw new Error('Contact form is not configured.');
   }
@@ -27,8 +28,9 @@ export async function sendContactMessage({ name, email, message }: ContactMessag
       access_key: accessKey,
       name,
       email,
+      purpose: purpose || 'General enquiry',
       message,
-      subject: `Portfolio enquiry from ${name}`,
+      subject: `[${purpose || 'Enquiry'}] Portfolio message from ${name}`,
       from_name: 'amitabhroy.bd',
       replyto: email,
       botcheck: '',

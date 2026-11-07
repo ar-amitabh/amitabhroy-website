@@ -1,6 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="12" fill="#040816"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-    font-family="Georgia, serif" font-size="28" font-weight="700"
-    fill="#22C55E" letter-spacing="-1">AR</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Amitabh Chondro Roy monogram">
+  <style>
+    .bg { fill: #F6F4EF; }
+    .ring { fill: none; stroke: #627363; stroke-width: 1.5; }
+    .mark { fill: #343638; font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif; font-size: 28px; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1E2021; }
+      .ring { stroke: #8FA591; }
+      .mark { fill: #F6F4EF; }
+    }
+  </style>
+  <rect width="64" height="64" rx="32" class="bg" />
+  <circle cx="32" cy="32" r="28" class="ring" />
+  <text x="32" y="41" text-anchor="middle" class="mark">AR</text>
 </svg>

@@ -19,13 +19,13 @@ function PhotographyCard({ photo, index }: { photo: GalleryPhoto; index: number 
 
   return (
     <motion.figure
-      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.4, delay: Math.min(index * 0.06, 0.24) }}
-      className="group mb-5 break-inside-avoid overflow-hidden rounded-xl border border-gray-800 bg-[#0D1423]"
+      transition={{ duration: 0.55, delay: Math.min(index * 0.06, 0.24), ease: [0.16, 1, 0.3, 1] }}
+      className="group mb-6 break-inside-avoid overflow-hidden border border-stone bg-paper-raised"
     >
-      <div className="relative overflow-hidden bg-[#111D2B]">
+      <div className="relative overflow-hidden bg-paper">
         <img
           src={`${photo.image}-1024.webp`}
           srcSet={srcSet(photo)}
@@ -35,15 +35,15 @@ function PhotographyCard({ photo, index }: { photo: GalleryPhoto; index: number 
           alt={photo.alt}
           loading="lazy"
           decoding="async"
-          className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="h-auto w-full object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.035]"
         />
-        <span className="absolute bottom-3 left-3 rounded-full bg-[#040816]/85 px-3 py-1 text-[11px] font-medium text-[#D6DEE8] backdrop-blur-sm">
+        <span className="tag-pill absolute bottom-3 left-3 shadow-subtle">
           {photo.category}
         </span>
       </div>
       <figcaption className="p-5">
-        <h3 className="text-lg font-semibold text-[#F9FAFB]">{photo.title}</h3>
-        <p className="mt-1.5 text-sm leading-relaxed text-[#9CA3AF]">{photo.caption}</p>
+        <h3 className="font-serif text-2xl text-graphite">{photo.title}</h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-graphite-soft">{photo.caption}</p>
       </figcaption>
     </motion.figure>
   );
@@ -57,14 +57,19 @@ export default function PhotographySection() {
       : galleryPhotos.filter((photo) => photo.category === activeCategory);
 
   return (
-    <section id="photography" className="scroll-mt-24 border-t border-gray-800 bg-[#080D1B] py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 grid gap-5 xl:grid-cols-[1fr_auto] xl:items-end">
+    <section
+      id="photography"
+      className="brand-section scroll-mt-24 border-t border-stone bg-paper-raised text-graphite"
+    >
+      <div className="brand-container">
+        <div className="mb-10 grid gap-6 border-b border-stone pb-8 xl:grid-cols-[1fr_auto] xl:items-end">
           <div>
-            <p className="mb-3 text-sm font-semibold text-[#22C55E]">Photography</p>
-            <h2 className="text-3xl font-bold text-[#F9FAFB] sm:text-4xl">A view of place</h2>
-            <p className="mt-3 max-w-2xl leading-relaxed text-[#9CA3AF]">
-              Architecture, urban life, landscape and nature seen through the lens.
+            <p className="type-label mb-3 text-forest-deep">Architectural &amp; Field Photography</p>
+            <h2 className="type-h2 text-graphite">
+              A view of <span className="accent-italic">place</span>.
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-graphite-soft">
+              Architecture, urban life, landscape and monsoon light across Bangladesh.
             </p>
           </div>
           <div className="flex flex-wrap gap-2" aria-label="Filter photographs">
@@ -74,10 +79,10 @@ export default function PhotographySection() {
                 type="button"
                 onClick={() => setActiveCategory(category)}
                 aria-pressed={activeCategory === category}
-                className={`rounded-full px-4 py-2 text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E] ${
+                className={`min-h-[40px] rounded-pill px-4 py-2 font-mono text-xs uppercase tracking-[0.08em] transition-colors ${
                   activeCategory === category
-                    ? 'bg-[#22C55E] text-[#04110A]'
-                    : 'border border-gray-700 text-[#B7C0CC] hover:border-[#22C55E] hover:text-white'
+                    ? 'bg-forest text-paper'
+                    : 'bg-blush text-graphite hover:bg-sage/40'
                 }`}
               >
                 {category}
@@ -95,24 +100,24 @@ export default function PhotographySection() {
           key={activeCategory}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="columns-1 gap-5 sm:columns-2 lg:columns-3 [column-fill:_balance]"
+          transition={{ duration: 0.35 }}
+          className="columns-1 gap-6 sm:columns-2 lg:columns-3 [column-fill:_balance]"
         >
           {visiblePhotos.map((photo, index) => (
             <PhotographyCard key={photo.id} photo={photo} index={index} />
           ))}
         </motion.div>
 
-        <div className="mt-6 flex items-center gap-3 border-t border-gray-800 pt-5 text-sm text-[#758296]">
+        <div className="mt-8 flex items-center gap-3 border-t border-stone pt-5 font-mono text-xs uppercase tracking-[0.08em] text-graphite-soft">
           {visiblePhotos.length === 0 ? (
-            <Camera size={17} className="text-[#22C55E]" aria-hidden="true" />
+            <Camera size={16} strokeWidth={1.5} className="text-forest" aria-hidden="true" />
           ) : (
-            <Grid3x3 size={17} className="text-[#22C55E]" aria-hidden="true" />
+            <Grid3x3 size={16} strokeWidth={1.5} className="text-forest" aria-hidden="true" />
           )}
           <p>
             {activeCategory === 'All'
-              ? `${galleryPhotos.length} photographs so far — the collection grows as new work is added.`
-              : `${visiblePhotos.length} photograph${visiblePhotos.length === 1 ? '' : 's'} in ${activeCategory}.`}
+              ? `${galleryPhotos.length} photographs archived`
+              : `${visiblePhotos.length} photograph${visiblePhotos.length === 1 ? '' : 's'} in ${activeCategory}`}
           </p>
         </div>
       </div>

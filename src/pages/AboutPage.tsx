@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 
 export default function AboutPage() {
   return (
-    <div className="pt-16">
+    <div className="pt-20 bg-paper">
       <SEO
         title="About Amitabh Chondro Roy (Amitabh Roy) | Architect"
         description="Learn about Amitabh Chondro Roy (Amitabh Roy) — architect and urban planning professional focused on healthier, climate-responsive, and sustainable spaces through human-centered design."

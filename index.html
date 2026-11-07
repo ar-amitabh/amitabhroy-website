@@ -1,20 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Amitabh Chondro Roy | Architect &amp; Urban Planning Professional</title>
-    <!--
-      Intentionally no static <link rel="canonical">, <meta name="description">
-      or og:url here. src/components/SEO.tsx sets them per route through
-      react-helmet-async; a static copy made every page claim the homepage URL.
-    -->
     <meta name="author" content="Amitabh Chondro Roy" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-    <meta name="theme-color" content="#040816" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#F6F4EF" />
+    <meta name="color-scheme" content="light dark" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="256x256" href="/favicon-amitabh-roy.png" />
@@ -22,7 +17,9 @@
     <link rel="apple-touch-icon" href="/favicon-amitabh-roy.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Section 3: Preload the two most used self-hosted WOFF2 fonts -->
+    <link rel="preload" href="/fonts/instrument-serif-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/amitabh-chondro-roy-architect-profile.jpg" as="image" fetchpriority="high" />
 
     <meta property="og:type" content="website" />
@@ -39,6 +36,19 @@
     <meta name="twitter:title" content="Amitabh Chondro Roy (Amitabh Roy) | Architect &amp; Urban Planning Professional" />
     <meta name="twitter:description" content="Amitabh Chondro Roy (Amitabh Roy) is an architect and urban planning professional exploring human-centred, climate-responsive architecture and sustainable urban development in Bangladesh." />
     <meta name="twitter:image" content="https://amitabhroy.bd/og-image.jpg" />
+
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('ar_theme');
+          if (saved === 'dark' || saved === 'light') {
+            document.documentElement.setAttribute('data-theme', saved);
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <script type="application/ld+json">
       {
@@ -88,12 +98,12 @@
     <div id="root"></div>
 
     <noscript>
-      <div style="max-width:48rem;margin:4rem auto;padding:0 1.5rem;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#F9FAFB;background:#040816;line-height:1.6">
-        <h1 style="font-size:2rem;line-height:1.2;margin:0 0 1rem">Amitabh Chondro Roy (Amitabh Roy)</h1>
-        <p style="font-size:1.125rem;margin:0 0 .5rem">Architect | Urban Planning &amp; Sustainable Design</p>
-        <p style="margin:0 0 1rem;color:#9CA3AF">Human-centred, climate-responsive and sustainable design informed by architecture, urban planning and research.</p>
-        <p style="margin:0 0 .5rem">Email: <a style="color:#22C55E" href="mailto:arc.mit07@gmail.com">arc.mit07@gmail.com</a></p>
-        <p style="margin:0">LinkedIn: <a style="color:#22C55E" href="https://linkedin.com/in/aramitabh">linkedin.com/in/aramitabh</a></p>
+      <div style="max-width:48rem;margin:4rem auto;padding:0 1.5rem;font-family:Georgia,serif;color:#343638;background:#F6F4EF;line-height:1.6">
+        <h1 style="font-size:2.5rem;font-weight:400;line-height:1.1;margin:0 0 1rem">Amitabh Chondro Roy</h1>
+        <p style="font-size:1.125rem;margin:0 0 .5rem">Architecture, urban planning and sustainable design.</p>
+        <p style="margin:0 0 1rem;color:#5A5D5F">Human-centred, climate-responsive and sustainable design, informed by architecture, urban planning and research.</p>
+        <p style="margin:0 0 .5rem">Email: <a style="color:#4F5E50" href="mailto:arc.mit07@gmail.com">arc.mit07@gmail.com</a></p>
+        <p style="margin:0">LinkedIn: <a style="color:#4F5E50" href="https://linkedin.com/in/aramitabh">linkedin.com/in/aramitabh</a></p>
       </div>
     </noscript>
 

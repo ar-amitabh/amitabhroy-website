@@ -51,12 +51,12 @@ export type Priority = {
 };
 
 export const priorities: Priority[] = [
-  { label: 'Views of greenery', count: 8, color: '#22C55E' },
-  { label: 'Ventilation & temperature', count: 8, color: '#0EA5E9' },
-  { label: 'Ergonomic furniture', count: 5, color: '#F59E0B' },
-  { label: 'Quiet focus zones', count: 3, color: '#8B5CF6' },
-  { label: 'Breakout & rest areas', count: 3, color: '#F43F5E' },
-  { label: 'Greenery & daylight', count: 3, color: '#14B8A6' },
+  { label: 'Views of greenery', count: 8, color: 'var(--forest)' },
+  { label: 'Ventilation & temperature', count: 8, color: 'var(--sage)' },
+  { label: 'Ergonomic furniture', count: 5, color: 'var(--terracotta)' },
+  { label: 'Quiet focus zones', count: 3, color: 'var(--terracotta-deep)' },
+  { label: 'Breakout & rest areas', count: 3, color: 'var(--blush)' },
+  { label: 'Greenery & daylight', count: 3, color: 'var(--stone)' },
 ];
 
 /**
@@ -86,7 +86,13 @@ export const ieqDimensions: IeqDimension[] = [
 
 export const healthFrequencies = ['Never', 'Rarely', 'Sometimes', 'Often', 'Daily'] as const;
 
-export const healthColors = ['#22C55E', '#0EA5E9', '#FACC15', '#F97316', '#EF4444'];
+export const healthColors = [
+  'var(--sage)',
+  'var(--forest)',
+  'var(--blush)',
+  'var(--terracotta)',
+  'var(--terracotta-deep)',
+];
 
 export type HealthSymptom = {
   label: string;

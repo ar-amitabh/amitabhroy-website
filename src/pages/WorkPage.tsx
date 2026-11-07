@@ -4,7 +4,7 @@ import PhotographySection from '../components/portfolio/PhotographySection';
 
 export default function WorkPage() {
   return (
-    <div className="pt-16">
+    <div className="pt-20 bg-paper">
       <SEO
         title="Architectural Works"
         description="Architectural, urban design and visual communication projects, plus a photography gallery of architecture, urban life, landscape and nature in Bangladesh."

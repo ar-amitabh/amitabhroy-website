@@ -35,26 +35,26 @@ export default function RankedBars({ rows, max, from, to, showRank = false }: Ra
           <div className="flex items-baseline justify-between gap-3">
             <div className="flex min-w-0 items-baseline gap-2">
               {showRank && (
-                <span aria-hidden="true" className="w-4 shrink-0 font-mono text-[10px] text-[#8A96A8]">
+                <span aria-hidden="true" className="w-4 shrink-0 font-mono text-[11px] text-graphite-soft">
                   {String(index + 1).padStart(2, '0')}
                 </span>
               )}
-              <span className="truncate text-[13px] text-[#DCE3EC]">{row.label}</span>
+              <span className="truncate text-sm text-graphite">{row.label}</span>
             </div>
-            <div className="shrink-0 font-mono text-xs tabular-nums text-[#F9FAFB]">
+            <div className="shrink-0 font-mono text-xs tabular-nums text-graphite font-medium">
               {row.value}
               {row.meta && (
-                <span className="ml-1.5 font-sans text-[10px] font-normal text-[#8A96A8]">{row.meta}</span>
+                <span className="ml-1.5 font-sans text-[11px] font-normal text-graphite-soft">{row.meta}</span>
               )}
             </div>
           </div>
 
           <div
             aria-hidden="true"
-            className={`mt-1.5 h-2 overflow-hidden rounded-full bg-white/[0.055] ${showRank ? 'ml-6' : ''}`}
+            className={`mt-1.5 h-2 overflow-hidden rounded-pill bg-stone/35 ${showRank ? 'ml-6' : ''}`}
           >
             <motion.div
-              className="h-full rounded-full transition-[filter] duration-300 group-hover:brightness-110"
+              className="h-full rounded-pill transition-[filter] duration-300 group-hover:brightness-95"
               style={{ backgroundImage: `linear-gradient(90deg, ${from}, ${to})` }}
               initial={reduceMotion ? false : { width: 0 }}
               whileInView={{ width: `${Math.max((row.value / max) * 100, 3)}%` }}

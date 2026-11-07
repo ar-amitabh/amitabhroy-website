@@ -6,62 +6,65 @@ export default function FiverrReviews() {
       id: 1,
       rating: 5,
       clientName: 'bethanyellis105',
-      reviewText: "Amitabh, has been a blessing to work with. It's communication is great and produces quality work in a timely fashion.",
-      country: 'USA',
+      reviewText:
+        'Amitabh has been a blessing to work with. Communication is great and he produces quality work in a timely fashion.',
+      country: 'United States',
     },
     {
       id: 2,
       rating: 5,
       clientName: 'beyondxb',
-      reviewText: "Communication with Amitabh was fast and easy, he understood what I need and how to get to my goal quickly. More importantly he didn't use a lot of technical jargons so I was able to understand him too. Work done on time. Great will hire again!",
-      country: 'UK',
+      reviewText:
+        'Communication with Amitabh was fast and easy—he understood what I needed and how to reach my goal quickly without unnecessary jargon. Great work, will hire again.',
+      country: 'United Kingdom',
     },
     {
       id: 3,
       rating: 5,
       clientName: 'msrealtor514',
-      reviewText: 'Amitabh was Awesome. every question was answered. I am new setting up things digitally, and he was a God sent. I am now ready to take my business to the next level. I would highly recommend him. He has me as a returning customer.',
-      country: 'USA',
+      reviewText:
+        'Every question was answered clearly and thoughtfully. I would highly recommend working with Amitabh.',
+      country: 'United States',
     },
   ];
 
   return (
-    <section id="fiverr-reviews" className="py-24 bg-[#0A1120]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">Fiverr Reviews</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#22C55E] to-[#0EA5E9] mx-auto"></div>
+    <section id="fiverr-reviews" className="brand-section bg-paper-raised text-graphite">
+      <div className="brand-container">
+        <div className="mb-12 border-b border-stone pb-8">
+          <p className="type-label mb-3 text-forest-deep">Collaborator &amp; Client Feedback</p>
+          <h2 className="type-h2 text-graphite">
+            Selected client <span className="accent-italic">testimonials</span>.
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {reviews.map((review) => (
-            <div
+            <blockquote
               key={review.id}
-              className="bg-[#111827] rounded-xl p-6 border border-gray-800 hover:border-[#22C55E] transition-all hover:shadow-lg hover:shadow-[#22C55E]/10"
+              className="flex flex-col justify-between rounded-card border border-stone bg-paper p-7"
             >
-              <div className="flex items-center mb-4">
-                {[...Array(5)].map((_, index) => (
-                  <Star
-                    key={index}
-                    size={20}
-                    className={
-                      index < review.rating
-                        ? 'fill-[#22C55E] text-[#22C55E]'
-                        : 'text-gray-600'
-                    }
-                  />
-                ))}
+              <div>
+                <div className="mb-4 flex items-center gap-1" aria-label={`${review.rating} out of 5 stars`}>
+                  {[...Array(5)].map((_, index) => (
+                    <Star
+                      key={index}
+                      size={15}
+                      strokeWidth={1.5}
+                      className="fill-terracotta text-terracotta"
+                    />
+                  ))}
+                </div>
+                <p className="text-base leading-relaxed text-graphite-soft">
+                  “{review.reviewText}”
+                </p>
               </div>
 
-              <p className="text-[#9CA3AF] mb-6 leading-relaxed min-h-[80px]">
-                {review.reviewText}
-              </p>
-
-              <div className="border-t border-gray-800 pt-4">
-                <p className="font-semibold text-[#F9FAFB] mb-1">{review.clientName}</p>
-                <p className="text-sm text-[#9CA3AF]">Client Country: {review.country}</p>
-              </div>
-            </div>
+              <footer className="mt-6 border-t border-stone pt-4">
+                <p className="font-serif text-xl text-graphite">{review.clientName}</p>
+                <p className="type-label mt-0.5 text-graphite-soft">{review.country}</p>
+              </footer>
+            </blockquote>
           ))}
         </div>
       </div>

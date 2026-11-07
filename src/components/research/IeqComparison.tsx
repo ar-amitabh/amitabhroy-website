@@ -28,9 +28,9 @@ const polygonFor = (values: number[]) =>
 function IeqBar({ value, color, delay }: { value: number; color: string; delay: number }) {
   const reduceMotion = useReducedMotion();
   return (
-    <div aria-hidden="true" className="h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
+    <div aria-hidden="true" className="h-2 overflow-hidden rounded-pill bg-stone/30">
       <motion.div
-        className="h-full rounded-full"
+        className="h-full rounded-pill"
         style={{ background: color }}
         initial={reduceMotion ? false : { width: 0 }}
         whileInView={{ width: `${(value / surveyMeta.scaleMax) * 100}%` }}
@@ -57,17 +57,17 @@ export default function IeqComparison({ className = '' }: { className?: string }
     <div
       role="group"
       aria-label="IEQ chart view"
-      className="flex items-center gap-1 rounded-lg border border-gray-800 bg-[#0B1120] p-1"
+      className="flex items-center gap-1 rounded-pill border border-stone bg-paper p-1"
     >
       <button
         type="button"
         aria-label="Bars view"
         aria-pressed={view === 'bar'}
         onClick={() => setView('bar')}
-        className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[11px] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E] ${
+        className={`inline-flex items-center gap-1.5 rounded-pill px-3 py-1 font-mono text-[11px] uppercase tracking-[0.06em] transition-colors ${
           view === 'bar'
-            ? 'bg-[#22C55E] text-[#040816]'
-            : 'text-[#9CA3AF] hover:bg-white/[0.06] hover:text-[#F9FAFB]'
+            ? 'bg-forest text-paper'
+            : 'text-graphite-soft hover:text-graphite'
         }`}
       >
         <BarChart3 size={13} aria-hidden="true" />
@@ -78,10 +78,10 @@ export default function IeqComparison({ className = '' }: { className?: string }
         aria-label="Radar profile view"
         aria-pressed={view === 'radar'}
         onClick={() => setView('radar')}
-        className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-[11px] font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E] ${
+        className={`inline-flex items-center gap-1.5 rounded-pill px-3 py-1 font-mono text-[11px] uppercase tracking-[0.06em] transition-colors ${
           view === 'radar'
-            ? 'bg-[#22C55E] text-[#040816]'
-            : 'text-[#9CA3AF] hover:bg-white/[0.06] hover:text-[#F9FAFB]'
+            ? 'bg-forest text-paper'
+            : 'text-graphite-soft hover:text-graphite'
         }`}
       >
         <RadarIcon size={13} aria-hidden="true" />
@@ -101,22 +101,22 @@ export default function IeqComparison({ className = '' }: { className?: string }
       insight={
         <>
           Every dimension improves. Light and air gains most at{' '}
-          <strong className="font-semibold text-[#86EFAC]">+{lightGain.toFixed(1)}%</strong>; productivity
+          <strong className="font-semibold text-forest-deep">+{lightGain.toFixed(1)}%</strong>; productivity
           gains least at +{productivityGain.toFixed(1)}%, yet comfort still converts into output.
         </>
       }
     >
       <div>
-        <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[10px] text-[#AEBAC9]">
+        <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 type-meta text-graphite-soft">
           <span className="flex items-center gap-1.5">
-            <span aria-hidden="true" className="h-2 w-3 rounded-sm bg-[#64748B]" />
+            <span aria-hidden="true" className="h-2 w-3 rounded-card bg-stone" />
             Current baseline
           </span>
           <span className="flex items-center gap-1.5">
-            <span aria-hidden="true" className="h-2 w-3 rounded-sm bg-[#22C55E]" />
+            <span aria-hidden="true" className="h-2 w-3 rounded-card bg-forest" />
             Proposed environment
           </span>
-          <span className="ml-auto font-mono text-[10px] text-[#8A96A8]">Scale 1–5</span>
+          <span className="ml-auto font-mono text-[11px] text-graphite-soft">Scale 1–5</span>
         </div>
 
         <AnimatePresence mode="wait" initial={false}>
@@ -134,18 +134,18 @@ export default function IeqComparison({ className = '' }: { className?: string }
                 return (
                   <div key={dimension.key}>
                     <div className="flex items-baseline justify-between gap-3">
-                      <span className="text-[13px] text-[#DCE3EC]">{dimension.label}</span>
-                      <span className="shrink-0 font-mono text-[11px] tabular-nums text-[#94A3B8]">
+                      <span className="text-sm text-graphite font-medium">{dimension.label}</span>
+                      <span className="shrink-0 font-mono text-xs tabular-nums text-graphite-soft">
                         {dimension.baseline.toFixed(2)}
                         <span aria-hidden="true"> → </span>
                         <span className="sr-only"> to </span>
-                        <span className="text-[#86EFAC]">{dimension.proposed.toFixed(2)}</span>
-                        <span className="ml-2 text-[#4ADE80]">+{gain.toFixed(1)}%</span>
+                        <span className="text-graphite font-medium">{dimension.proposed.toFixed(2)}</span>
+                        <span className="ml-2 text-forest-deep font-medium">+{gain.toFixed(1)}%</span>
                       </span>
                     </div>
                     <div className="mt-2 space-y-1.5">
-                      <IeqBar value={dimension.baseline} color="#64748B" delay={index * 0.05} />
-                      <IeqBar value={dimension.proposed} color="#22C55E" delay={0.1 + index * 0.05} />
+                      <IeqBar value={dimension.baseline} color="var(--stone)" delay={index * 0.05} />
+                      <IeqBar value={dimension.proposed} color="var(--forest)" delay={0.1 + index * 0.05} />
                     </div>
                   </div>
                 );
@@ -174,7 +174,7 @@ export default function IeqComparison({ className = '' }: { className?: string }
                     key={ring}
                     points={polygonFor(ieqDimensions.map(() => ring))}
                     fill="none"
-                    stroke="rgba(255,255,255,0.08)"
+                    stroke="var(--stone)"
                     strokeWidth={ring === 5 ? 1.2 : 0.8}
                   />
                 ))}
@@ -188,7 +188,7 @@ export default function IeqComparison({ className = '' }: { className?: string }
                       y1={RADAR.cy}
                       x2={x}
                       y2={y}
-                      stroke="rgba(255,255,255,0.08)"
+                      stroke="var(--stone)"
                       strokeWidth={0.8}
                     />
                   );
@@ -203,20 +203,22 @@ export default function IeqComparison({ className = '' }: { className?: string }
                 >
                   <polygon
                     points={polygonFor(baselineValues)}
-                    fill="rgba(100,116,139,0.16)"
-                    stroke="#94A3B8"
+                    fill="var(--stone)"
+                    fillOpacity={0.25}
+                    stroke="var(--graphite-soft)"
                     strokeWidth={1.6}
                     strokeDasharray="4 4"
                   />
                   <polygon
                     points={polygonFor(proposedValues)}
-                    fill="rgba(34,197,94,0.18)"
-                    stroke="#22C55E"
+                    fill="var(--sage)"
+                    fillOpacity={0.35}
+                    stroke="var(--forest)"
                     strokeWidth={2.2}
                   />
                   {proposedValues.map((value, index) => {
                     const [x, y] = pointFor(index, value);
-                    return <circle key={ieqDimensions[index].key} cx={x} cy={y} r={3} fill="#22C55E" />;
+                    return <circle key={ieqDimensions[index].key} cx={x} cy={y} r={3.5} fill="var(--forest)" />;
                   })}
                 </motion.g>
 
@@ -233,31 +235,30 @@ export default function IeqComparison({ className = '' }: { className?: string }
                       textAnchor={anchor}
                       dominantBaseline="middle"
                       fontSize="12"
-                      fill="#AEBAC9"
+                      fill="var(--graphite)"
                     >
                       {dimension.short}
                     </text>
                   );
                 })}
-
               </svg>
 
               <ul className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-6">
                 {ieqDimensions.map((dimension) => (
                   <li
                     key={dimension.key}
-                    className="rounded-lg border border-gray-800 bg-[#0B1120] px-2.5 py-2 text-center"
+                    className="rounded-card border border-stone bg-paper px-2.5 py-2 text-center"
                   >
-                    <span className="block truncate text-[10px] font-medium text-[#94A3B8]">
+                    <span className="block truncate type-meta text-graphite-soft">
                       {dimension.short}
                     </span>
-                    <span className="mt-0.5 block font-mono text-[11px] tabular-nums text-[#F9FAFB]">
+                    <span className="mt-0.5 block font-mono text-xs tabular-nums text-graphite">
                       {dimension.baseline.toFixed(2)}
                       <span aria-hidden="true"> → </span>
                       <span className="sr-only"> to </span>
-                      <span className="text-[#86EFAC]">{dimension.proposed.toFixed(2)}</span>
+                      <span className="font-semibold">{dimension.proposed.toFixed(2)}</span>
                     </span>
-                    <span className="block text-[10px] font-semibold text-[#4ADE80]">
+                    <span className="block font-mono text-[11px] font-medium text-forest-deep">
                       +{dimension.changePct.toFixed(1)}%
                     </span>
                   </li>

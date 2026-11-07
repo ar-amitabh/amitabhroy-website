@@ -7,108 +7,106 @@ export default function Experience() {
       company: 'Abode Engineers',
       location: 'Bogra, Bangladesh',
       period: '2022–Present',
-      type: 'work',
     },
     {
       role: 'Brand Identity Designer',
       company: 'Fiverr',
-      location: '70+ clients, 5-star rating',
+      location: '70+ international clients · 5.0 rating',
       period: '2022–2024',
-      type: 'work',
     },
     {
       role: 'Intern Architect',
       company: 'Sthapotik',
-      location: 'Dhaka',
+      location: 'Dhaka, Bangladesh',
       period: '2019',
-      type: 'work',
     },
   ];
 
   const certifications = [
     {
-      title: 'ETH Zurich edX: Future Cities (FC-01x)',
-      year: '2020',
+      title: 'Sustainable Construction Management (CMAN-4) · University of Maryland via edX',
+      year: '2026',
     },
     {
-      title: 'LinkedIn Learning: Wellness & Sustainability in Architectural Design',
+      title: 'Wellness and Sustainability in Architectural Design · LinkedIn Learning',
+      year: '2025',
+    },
+    {
+      title: 'Climate Change: A Top ESG Concern · LinkedIn Learning',
+      year: '2025',
+    },
+    {
+      title: 'ArcGIS Pro Essential Training · LinkedIn Learning',
       year: '2023',
     },
     {
-      title: 'Oracle: Generative AI Professional Certificate',
-      year: '2024',
+      title: 'Future Cities (FC-01x) · ETH Zurich via edX',
+      year: '2020',
+    },
+    {
+      title: 'Google IT Support Professional Certificate · Coursera',
+      year: '2020',
     },
   ];
 
   return (
-    <section id="experience" className="py-24 bg-[#040816]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">Experience & Learning</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#22C55E] to-[#0EA5E9] mx-auto"></div>
+    <section id="experience" className="brand-section border-b border-stone bg-paper text-graphite">
+      <div className="brand-container">
+        <div className="mb-14 border-b border-stone pb-8">
+          <p className="type-label mb-3 text-forest-deep">Practice &amp; Continuing Education</p>
+          <h2 className="type-h2 text-graphite">
+            Professional experience &amp; <span className="accent-italic">certifications</span>.
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div>
-            <div className="flex items-center mb-8">
-              <Briefcase className="text-[#22C55E] mr-3" size={28} />
-              <h3 className="text-2xl font-bold">Professional Experience</h3>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <div className="mb-6 flex items-center gap-3">
+              <Briefcase className="text-forest" size={20} strokeWidth={1.5} />
+              <h3 className="font-serif text-3xl text-graphite">Professional Experience</h3>
             </div>
-            <div className="space-y-6">
-              {experiences.map((exp, index) => (
-                <div
-                  key={index}
-                  className="relative bg-[#111827] rounded-xl p-6 border border-gray-800 hover:border-[#22C55E] transition-all"
-                >
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-xl font-semibold">{exp.role}</h4>
-                    <span className="text-[#22C55E] text-sm font-medium">{exp.period}</span>
+            <div className="divide-y divide-stone border-y border-stone">
+              {experiences.map((exp) => (
+                <div key={exp.role + exp.company} className="py-6">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h4 className="font-serif text-2xl text-graphite">{exp.role}</h4>
+                    <span className="type-label text-forest-deep">{exp.period}</span>
                   </div>
-                  <p className="text-[#9CA3AF] font-medium mb-1">{exp.company}</p>
-                  <p className="text-sm text-[#9CA3AF]">{exp.location}</p>
+                  <p className="mt-1 font-sans text-sm font-medium text-graphite">{exp.company}</p>
+                  <p className="mt-0.5 text-sm text-graphite-soft">{exp.location}</p>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-8 rounded-card border border-stone bg-paper-raised p-6">
+              <div className="mb-3 flex items-center gap-2.5">
+                <Award className="text-terracotta" size={18} strokeWidth={1.5} />
+                <h4 className="font-serif text-2xl text-graphite">Honours &amp; Leadership</h4>
+              </div>
+              <ul className="space-y-2 text-sm text-graphite-soft">
+                <li>• Diploma of High Achievement in Urbanism · Open Doors (2026)</li>
+                <li>• ICT Division Freelancer Recognition, Bangladesh</li>
+                <li>• Co-Founder, HSTU Photographic Society</li>
+                <li>• Primary &amp; Secondary Board Merit Scholarships</li>
+              </ul>
             </div>
           </div>
 
-          <div>
-            <div className="flex items-center mb-8">
-              <GraduationCap className="text-[#0EA5E9] mr-3" size={28} />
-              <h3 className="text-2xl font-bold">Certifications</h3>
+          <div className="lg:col-span-7">
+            <div className="mb-6 flex items-center gap-3">
+              <GraduationCap className="text-forest" size={20} strokeWidth={1.5} />
+              <h3 className="font-serif text-3xl text-graphite">Courses &amp; Certifications</h3>
             </div>
-            <div className="space-y-6">
-              {certifications.map((cert, index) => (
+            <div className="divide-y divide-stone border-y border-stone">
+              {certifications.map((cert) => (
                 <div
-                  key={index}
-                  className="bg-[#111827] rounded-xl p-6 border border-gray-800 hover:border-[#0EA5E9] transition-all"
+                  key={cert.title}
+                  className="flex items-baseline justify-between gap-6 py-5"
                 >
-                  <div className="flex items-start justify-between">
-                    <p className="text-lg font-medium text-[#F9FAFB] flex-1">{cert.title}</p>
-                    <span className="text-[#0EA5E9] text-sm font-semibold ml-4">{cert.year}</span>
-                  </div>
+                  <p className="text-base text-graphite">{cert.title}</p>
+                  <span className="type-label shrink-0 text-graphite-soft">{cert.year}</span>
                 </div>
               ))}
-            </div>
-
-            <div className="mt-8 bg-gradient-to-br from-[#111827] to-[#1F2937] rounded-xl p-6 border border-[#F97316]/30">
-              <div className="flex items-center mb-3">
-                <Award className="text-[#F97316] mr-3" size={24} />
-                <h4 className="text-lg font-bold">Recognition</h4>
-              </div>
-              <ul className="space-y-2 text-[#9CA3AF]">
-                <li className="flex items-start">
-                  <span className="text-[#F97316] mr-2">•</span>
-                  <span>ICT Division Freelancer Recognition</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[#F97316] mr-2">•</span>
-                  <span>Primary & SSC Scholarships</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-[#F97316] mr-2">•</span>
-                  <span>Co-Founder, HSTU Photographic Society</span>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

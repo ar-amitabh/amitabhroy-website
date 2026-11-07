@@ -47,7 +47,7 @@ export default function PriorityDonut() {
       tone="amber"
       insight={
         <>
-          <strong className="font-semibold text-[#E5E7EB]">Greenery and ventilation each hold 26.7%.</strong>{' '}
+          <strong className="font-semibold text-graphite">Greenery and ventilation each hold 26.7%.</strong>{' '}
           Together they carry {combinedPriorityShare}% of first-choice demand, so the brief leads with
           biophilic micro-climates rather than a single headline feature.
         </>
@@ -66,7 +66,8 @@ export default function PriorityDonut() {
               cy={CENTER}
               r={RADIUS}
               fill="none"
-              stroke="rgba(255,255,255,0.05)"
+              stroke="var(--stone)"
+              strokeOpacity={0.35}
               strokeWidth={26}
             />
             <g transform={`rotate(-90 ${CENTER} ${CENTER})`}>
@@ -84,7 +85,7 @@ export default function PriorityDonut() {
                     strokeWidth={focus === segment.index ? 28 : 24}
                     strokeDasharray={`${dash} ${CIRCUMFERENCE}`}
                     strokeDashoffset={-segment.offset}
-                    opacity={dimmed ? 0.38 : 1}
+                    opacity={dimmed ? 0.35 : 1}
                     className="cursor-pointer"
                     style={{
                       transition: reduceMotion
@@ -106,23 +107,23 @@ export default function PriorityDonut() {
           >
             {focusItem ? (
               <>
-                <span className="font-mono text-2xl font-semibold tabular-nums text-[#F9FAFB]">
+                <span className="font-serif text-2xl font-normal tabular-nums text-graphite">
                   {((focusItem.count / total) * 100).toFixed(1)}
                   <span className="text-sm">%</span>
                 </span>
-                <span className="mt-1 line-clamp-2 w-full text-[9px] leading-tight text-[#AEBAC9]">
+                <span className="mt-1 line-clamp-2 w-full text-[10px] leading-tight text-graphite-soft">
                   {focusItem.label}
                 </span>
-                <span className="mt-1 text-[10px] text-[#94A3B8]">
+                <span className="mt-1 font-mono text-[10px] text-graphite-soft">
                   {focusItem.count} of {total}
                 </span>
               </>
             ) : (
               <>
-                <span className="font-mono text-3xl font-semibold tabular-nums text-[#F9FAFB]">
+                <span className="font-serif text-3xl font-normal tabular-nums text-graphite">
                   {combinedPriorityShare}<span className="text-base">%</span>
                 </span>
-                <span className="mt-1 max-w-[7rem] text-[10px] uppercase leading-tight tracking-[0.12em] text-[#AEBAC9]">
+                <span className="mt-1 max-w-[7rem] font-mono text-[9px] uppercase leading-tight tracking-[0.08em] text-graphite-soft">
                   greenery + ventilation
                 </span>
               </>
@@ -130,7 +131,7 @@ export default function PriorityDonut() {
           </div>
         </div>
 
-        <ul className="grid w-full grid-cols-1 gap-1 sm:grid-cols-1">
+        <ul className="grid w-full grid-cols-1 gap-1">
           {segments.map((segment) => {
             const selected = active === segment.index;
             return (
@@ -143,19 +144,19 @@ export default function PriorityDonut() {
                   onMouseLeave={() => setHovered(null)}
                   onFocus={() => setHovered(segment.index)}
                   onBlur={() => setHovered(null)}
-                  className={`flex w-full items-center gap-2.5 rounded-lg border px-2.5 py-1.5 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E] ${
+                  className={`flex w-full items-center gap-2.5 rounded-card border px-2.5 py-1.5 text-left transition-colors ${
                     selected
-                      ? 'border-white/20 bg-white/[0.07]'
-                      : 'border-transparent hover:bg-white/[0.045]'
+                      ? 'border-forest bg-sage/20'
+                      : 'border-transparent hover:bg-stone/20'
                   }`}
                 >
                   <span
                     aria-hidden="true"
-                    className="h-2.5 w-2.5 shrink-0 rounded-[3px]"
+                    className="h-2.5 w-2.5 shrink-0 rounded-card"
                     style={{ backgroundColor: segment.color }}
                   />
-                  <span className="min-w-0 flex-1 truncate text-[11px] text-[#C9D2DE]">{segment.label}</span>
-                  <span className="shrink-0 font-mono text-[10px] tabular-nums text-[#8A96A8]">
+                  <span className="min-w-0 flex-1 truncate text-xs text-graphite">{segment.label}</span>
+                  <span className="shrink-0 font-mono text-[11px] tabular-nums text-graphite-soft">
                     {((segment.count / surveyMeta.sampleSize) * 100).toFixed(1)}%
                   </span>
                 </button>

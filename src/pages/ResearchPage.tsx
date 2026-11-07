@@ -1,48 +1,68 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Calendar, ExternalLink, MapPin } from 'lucide-react';
+import { ArrowDown, Calendar, Check, Copy, ExternalLink, FileText, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import ResearchDashboard from '../components/research/ResearchDashboard';
 
+const CITATION_TEXT =
+  'Roy, A. C. (2021; rev. 2026). Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park. Bachelor of Architecture Thesis, Hajee Mohammad Danesh Science and Technology University (HSTU). https://doi.org/10.5281/zenodo.23915357';
+
 export default function ResearchPage() {
+  const [copiedCitation, setCopiedCitation] = useState(false);
+
+  const handleCopyCitation = async () => {
+    try {
+      await navigator.clipboard.writeText(CITATION_TEXT);
+      setCopiedCitation(true);
+      setTimeout(() => setCopiedCitation(false), 2600);
+    } catch {
+      setCopiedCitation(false);
+    }
+  };
+
   const featuredResearch = {
-    title: 'Human-Centered Work Environment for Rangpur Hi-Tech Park',
+    title: 'Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park',
     description:
-      'A thesis project exploring the intersection of human-centered design principles and sustainable workplace architecture in the context of Bangladesh\'s growing tech sector.',
-    year: '2024',
+      'A B.Arch thesis project and empirical study exploring the intersection of human-centered design principles, indoor environmental quality (IEQ), and climate-responsive workplace architecture in Bangladesh’s growing technology sector.',
+    year: '2021 · Rev. 2026',
     location: 'Rangpur, Bangladesh',
-    status: 'Completed',
+    status: 'Published · Open Access',
     image: '/research-rangpur-hitech-park-conceptual-visual.jpg',
     tags: ['Human-Centered Design', 'Sustainable Architecture', 'Workplace Design', 'Urban Planning'],
     highlights: [
-      'Conducted extensive user research with tech professionals to understand workplace needs',
-      'Developed climate-responsive design strategies for tropical conditions',
-      'Integrated biophilic design principles to enhance worker well-being',
-      'Proposed sustainable building systems and green infrastructure',
-      'Created spatial configurations that promote collaboration and focus',
+      'Conducted a structured field survey with 30 IT / ITES professionals to evaluate workplace comfort',
+      'Developed climate-responsive passive design strategies for composite sub-tropical conditions',
+      'Integrated biophilic micro-courtyards and greenery to support psychological restoration',
+      'Formulated an 18 Design Attributes Framework translating occupant data into spatial criteria',
+      'Achieved a +30.4% projected improvement in mean IEQ and +21.9% perceived productivity uplift',
     ],
   };
 
   const researchAreas = [
     {
+      number: '01',
       title: 'Human-Centered Design',
       description:
-        'Exploring how architecture can respond to human psychological, social, and physiological needs.',
-      icon: '👥',
+        'Exploring how spatial configuration, daylight, and acoustics respond to human psychological, social, and physiological needs in everyday work settings.',
     },
     {
+      number: '02',
       title: 'Climate-Responsive Architecture',
-      description: 'Investigating passive design strategies for tropical and subtropical climates.',
-      icon: '🌤️',
+      description:
+        'Investigating solar orientation, thermal mass, shaded courtyards, and passive cross-ventilation strategies for South Asian sub-tropical climates.',
     },
     {
+      number: '03',
       title: 'Sustainable Urban Development',
-      description: 'Researching sustainable urbanization patterns in rapidly growing cities.',
-      icon: '🏙️',
+      description:
+        'Researching urban heat island mitigation, green infrastructure, and GIS-informed spatial planning in rapidly urbanizing Bangladeshi cities.',
     },
     {
-      title: 'Workplace Well-Being',
-      description: 'Examining the relationship between workspace design and occupant health.',
-      icon: '💼',
+      number: '04',
+      title: 'Workplace Well-Being & IEQ',
+      description:
+        'Examining the empirical relationship between indoor environmental quality, ergonomic comfort, and occupant health and concentration.',
     },
   ];
 
@@ -55,63 +75,121 @@ export default function ResearchPage() {
         keywords="architectural research, human-centered design, sustainable architecture, workplace design, indoor environmental quality, Rangpur Hi-Tech Park, Bangladesh architecture"
       />
 
-      <div className="min-h-screen bg-[#040816] pt-24 pb-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-paper text-graphite pt-20">
+        <div className="brand-container brand-section">
           <motion.header
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 max-w-3xl"
+            transition={{ duration: 0.55 }}
+            className="mb-14 max-w-4xl border-b border-stone pb-12"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#22C55E]">
-              Evidence-based design
+            <p className="type-meta text-forest-deep mb-3">
+              02 / Research &amp; Publications
             </p>
-            <h1 className="mt-3 text-4xl font-bold text-[#F9FAFB] sm:text-5xl">Research</h1>
-            <p className="mt-5 text-lg leading-relaxed text-[#9CA3AF] sm:text-xl">
-              Field studies on how workplaces shape comfort, focus and well-being — and how those
-              findings become architectural criteria.
+            <h1 className="type-h1 text-graphite">
+              Evidence-based design for <span className="accent-italic">climate</span> and human wellbeing.
+            </h1>
+            <p className="mt-5 type-body-lg text-graphite-soft max-w-2xl">
+              Field studies on how workplaces shape thermal comfort, focus, and health—and how empirical occupant findings become measurable architectural criteria.
             </p>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a
-                href="#field-evidence"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#22C55E] px-5 py-2.5 text-sm font-semibold text-[#040816] transition-colors hover:bg-[#16A34A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]"
-              >
-                Explore the survey data
-                <ArrowDown size={16} aria-hidden="true" />
-              </a>
-              <a
-                href="#project-context"
-                className="inline-flex items-center gap-2 rounded-lg border border-gray-700 px-5 py-2.5 text-sm font-medium text-[#C9D2DE] transition-colors hover:border-[#22C55E] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]"
-              >
-                Project context
-              </a>
-              <a
-                href="https://doi.org/10.5281/zenodo.23915357"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-gray-700 px-4 py-2.5 text-sm font-medium text-[#C9D2DE] transition-colors hover:border-[#22C55E] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]"
-              >
-                DOI: 10.5281/zenodo.23915357
-                <ExternalLink size={15} aria-hidden="true" />
-              </a>
-              <a
-                href="https://orcid.org/0009-0004-6847-0225"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-gray-700 px-4 py-2.5 text-sm font-medium text-[#C9D2DE] transition-colors hover:border-[#22C55E] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]"
-              >
-                ORCID
-                <ExternalLink size={15} aria-hidden="true" />
-              </a>
-              <a
-                href="https://www.researchgate.net/profile/Amitabh-Chondro-Roy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-gray-700 px-4 py-2.5 text-sm font-medium text-[#C9D2DE] transition-colors hover:border-[#22C55E] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]"
-              >
-                ResearchGate
-                <ExternalLink size={15} aria-hidden="true" />
-              </a>
+
+            {/* Primary Thesis Publication Card with Copy Citation */}
+            <div className="mt-8 bg-paper-raised border border-stone rounded-card p-6 sm:p-8">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span className="type-meta text-terracotta-deep">
+                  B.Arch Thesis · HSTU · 2021 (Rev. 2026)
+                </span>
+                <span className="tag-pill">DOI: 10.5281/zenodo.23915357</span>
+              </div>
+              <h2 className="type-h3 text-graphite mb-3">
+                {featuredResearch.title}
+              </h2>
+              <p className="type-body text-graphite-soft mb-5">
+                {featuredResearch.description}
+              </p>
+
+              <div className="bg-paper border border-stone rounded-card p-4 mb-6">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                  <span className="type-meta text-graphite-soft flex items-center gap-1.5">
+                    <FileText size={13} className="text-forest-deep" aria-hidden="true" />
+                    Recommended Citation
+                  </span>
+                  <button
+                    type="button"
+                    onClick={handleCopyCitation}
+                    className="inline-flex items-center gap-1.5 font-mono text-xs text-forest-deep hover:text-graphite transition-colors"
+                  >
+                    {copiedCitation ? (
+                      <>
+                        <Check size={13} className="text-forest-deep" aria-hidden="true" />
+                        Citation copied
+                      </>
+                    ) : (
+                      <>
+                        <Copy size={13} aria-hidden="true" />
+                        Copy citation
+                      </>
+                    )}
+                  </button>
+                </div>
+                <p className="font-mono text-xs text-graphite-soft leading-relaxed select-all">
+                  {CITATION_TEXT}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="#field-evidence"
+                  className="btn-primary text-sm"
+                >
+                  Explore survey data
+                  <ArrowDown size={15} aria-hidden="true" />
+                </a>
+                <a
+                  href="https://doi.org/10.5281/zenodo.23915357"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-sm"
+                >
+                  Read on Zenodo (DOI)
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
+                <button
+                  type="button"
+                  onClick={handleCopyCitation}
+                  className="btn-secondary text-sm"
+                >
+                  {copiedCitation ? (
+                    <>
+                      <Check size={14} aria-hidden="true" />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={14} aria-hidden="true" />
+                      Copy citation
+                    </>
+                  )}
+                </button>
+                <a
+                  href="https://orcid.org/0009-0004-6847-0225"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-sm"
+                >
+                  ORCID
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
+                <a
+                  href="https://www.researchgate.net/profile/Amitabh-Chondro-Roy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-sm"
+                >
+                  ResearchGate
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
+              </div>
             </div>
           </motion.header>
 
@@ -121,88 +199,87 @@ export default function ResearchPage() {
           <motion.section
             id="project-context"
             aria-labelledby="project-context-heading"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.6 }}
-            className="mt-20 scroll-mt-24"
+            transition={{ duration: 0.55 }}
+            className="mt-20 scroll-mt-24 pt-16 border-t border-stone"
           >
-            <div className="mb-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#22C55E]">
-                Thesis project
+            <div className="mb-10">
+              <p className="type-meta text-forest-deep">
+                Thesis Project Context
               </p>
               <h2
                 id="project-context-heading"
-                className="mt-3 text-3xl font-bold text-[#F9FAFB]"
+                className="mt-2 type-h2 text-graphite"
               >
-                Project context
+                Translating survey evidence into a <span className="accent-italic">campus</span> masterplan.
               </h2>
-              <p className="mt-3 max-w-2xl leading-relaxed text-[#9CA3AF]">
-                The survey sits inside a larger design study: translating occupant evidence into a
-                climate-responsive workplace campus for Rangpur.
+              <p className="mt-3 max-w-2xl type-body text-graphite-soft">
+                The empirical survey sits inside a full architectural design investigation: translating occupant priorities into a climate-responsive workplace campus for Rangpur.
               </p>
             </div>
 
-            <div className="bg-[#111827] rounded-xl border border-gray-800 overflow-hidden">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <figure className="relative min-h-[280px] overflow-hidden bg-gray-900 lg:min-h-full">
+            <div className="bg-paper-raised rounded-card border border-stone overflow-hidden">
+              <div className="grid grid-cols-1 lg:grid-cols-12">
+                <figure className="relative min-h-[300px] overflow-hidden bg-stone/20 lg:col-span-6 lg:min-h-full">
                   <img
                     src="/research-rangpur-hitech-park-conceptual-visual.jpg"
                     alt="Conceptual visualization of a shaded, landscaped technology campus courtyard with connected academic and workplace spaces"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="h-full w-full object-cover"
                     loading="lazy"
                     decoding="async"
                   />
-                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent px-5 pb-5 pt-14 text-sm leading-relaxed text-white/90">
-                    Conceptual visualization illustrating the project’s biophilic and climate-responsive
-                    design direction.
+                  <figcaption className="border-t border-stone bg-paper-raised px-5 py-3 type-caption text-graphite-soft">
+                    Conceptual visualization illustrating the project’s biophilic courtyard and climate-responsive envelope direction.
                   </figcaption>
                 </figure>
 
-                <div className="p-8">
-                  <div className="flex items-center gap-4 mb-4 text-sm text-[#9CA3AF]">
-                    <div className="flex items-center gap-2">
-                      <Calendar size={16} className="text-[#22C55E]" aria-hidden="true" />
-                      <span>{featuredResearch.year}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin size={16} className="text-[#22C55E]" aria-hidden="true" />
-                      <span>{featuredResearch.location}</span>
-                    </div>
-                  </div>
-
-                  <h3 className="text-2xl font-bold mb-4 text-[#F9FAFB]">{featuredResearch.title}</h3>
-
-                  <p className="text-[#9CA3AF] mb-6 leading-relaxed">{featuredResearch.description}</p>
-
-                  <div className="mb-6">
-                    <h4 className="text-lg font-semibold mb-3 text-[#F9FAFB]">Key highlights</h4>
-                    <ul className="space-y-2">
-                      {featuredResearch.highlights.map((highlight, index) => (
-                        <li key={index} className="flex items-start text-[#9CA3AF]">
-                          <span className="text-[#22C55E] mr-2" aria-hidden="true">
-                            →
-                          </span>
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {featuredResearch.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-[#22C55E]/10 text-[#86EFAC] rounded-full text-sm"
-                      >
-                        {tag}
+                <div className="p-6 sm:p-10 lg:col-span-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-4 mb-4 type-meta text-graphite-soft">
+                      <span className="inline-flex items-center gap-1.5">
+                        <Calendar size={14} className="text-forest-deep" aria-hidden="true" />
+                        {featuredResearch.year}
                       </span>
-                    ))}
+                      <span className="inline-flex items-center gap-1.5">
+                        <MapPin size={14} className="text-forest-deep" aria-hidden="true" />
+                        {featuredResearch.location}
+                      </span>
+                    </div>
+
+                    <h3 className="type-h3 text-graphite mb-3">{featuredResearch.title}</h3>
+                    <p className="type-body text-graphite-soft mb-6">{featuredResearch.description}</p>
+
+                    <div className="mb-6">
+                      <h4 className="type-meta text-graphite mb-3">Key Research &amp; Design Highlights</h4>
+                      <ul className="space-y-2.5">
+                        {featuredResearch.highlights.map((highlight) => (
+                          <li key={highlight} className="flex items-start gap-2.5 type-body text-graphite-soft text-sm">
+                            <span className="text-forest-deep font-mono mt-0.5" aria-hidden="true">
+                              →
+                            </span>
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#22C55E]/10 text-[#86EFAC] rounded-lg text-sm font-medium">
-                    <span className="w-2 h-2 bg-[#22C55E] rounded-full" aria-hidden="true" />
-                    {featuredResearch.status}
+                  <div className="pt-6 border-t border-stone flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-wrap gap-2">
+                      {featuredResearch.tags.map((tag) => (
+                        <span key={tag} className="tag-pill">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <Link
+                      to="/work?project=rangpur-hi-tech-park"
+                      className="link-underline font-medium text-sm text-forest-deep"
+                    >
+                      View architectural case study →
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -212,31 +289,34 @@ export default function ResearchPage() {
           {/* Research Areas */}
           <motion.section
             aria-labelledby="research-areas-heading"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6 }}
-            className="mt-20"
+            transition={{ duration: 0.55 }}
+            className="mt-20 pt-16 border-t border-stone"
           >
-            <h2 id="research-areas-heading" className="text-3xl font-bold mb-8 text-[#F9FAFB]">
-              Research areas
-            </h2>
+            <div className="mb-10">
+              <p className="type-meta text-forest-deep mb-2">Lines of Inquiry</p>
+              <h2 id="research-areas-heading" className="type-h2 text-graphite">
+                Core research themes
+              </h2>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {researchAreas.map((area, index) => (
                 <motion.div
                   key={area.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  className="bg-[#111827] rounded-xl p-6 border border-gray-800 hover:border-[#22C55E] transition-all"
+                  transition={{ duration: 0.45, delay: index * 0.07 }}
+                  className="bg-paper-raised rounded-card p-6 sm:p-8 border border-stone hover:border-forest transition-colors"
                 >
-                  <div className="text-4xl mb-4" aria-hidden="true">
-                    {area.icon}
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 text-[#F9FAFB]">{area.title}</h3>
-                  <p className="text-[#9CA3AF] leading-relaxed">{area.description}</p>
+                  <p className="type-meta text-terracotta-deep mb-3">
+                    {area.number} / Theme
+                  </p>
+                  <h3 className="type-h3 text-graphite mb-3">{area.title}</h3>
+                  <p className="type-body text-graphite-soft">{area.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -244,24 +324,22 @@ export default function ResearchPage() {
 
           {/* Call to Action */}
           <motion.section
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6 }}
-            className="mt-16 text-center bg-gradient-to-br from-[#111827] to-[#1F2937] rounded-xl p-8 border border-[#22C55E]/30"
+            transition={{ duration: 0.55 }}
+            className="mt-20 bg-paper-raised rounded-card p-8 sm:p-12 border border-stone flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
           >
-            <h2 className="text-2xl font-bold mb-4 text-[#F9FAFB]">Interested in collaboration?</h2>
-            <p className="text-[#9CA3AF] mb-6 max-w-2xl mx-auto">
-              I'm open to research partnerships, academic collaborations, and opportunities to contribute
-              to projects exploring human-centered and sustainable design.
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#22C55E] text-[#040816] rounded-lg font-semibold hover:bg-[#22C55E]/90 transition-all hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]"
-            >
+            <div className="max-w-2xl">
+              <p className="type-meta text-forest-deep mb-2">Academic &amp; Studio Collaboration</p>
+              <h2 className="type-h3 text-graphite mb-2">Interested in research collaboration?</h2>
+              <p className="type-body text-graphite-soft">
+                I welcome research partnerships, graduate supervision inquiries, and opportunities to contribute to projects exploring climate-responsive and evidence-based spatial design.
+              </p>
+            </div>
+            <Link to="/contact" className="btn-primary shrink-0">
               Get in touch
-              <ExternalLink size={20} aria-hidden="true" />
-            </a>
+            </Link>
           </motion.section>
         </div>
       </div>

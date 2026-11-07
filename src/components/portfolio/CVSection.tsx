@@ -1,102 +1,197 @@
 import { Download, ExternalLink, FileText, Mail, Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const cvPath = '/cv/Amitabh_Chondro_Roy_Academic_CV.pdf';
 
 const focusAreas = [
-  'Climate-responsive architecture',
-  'Human-centred and evidence-based design',
-  'Environmental and spatial analysis',
+  'Climate-responsive architecture & passive cooling',
+  'Human-centred and evidence-based workplace design',
+  'Environmental and spatial GIS analysis',
   'Biophilic urbanism and sustainable cities',
 ];
 
 const highlights = [
   {
     title: 'Academic foundation',
-    text: 'Bachelor of Architecture from Hajee Mohammad Danesh Science and Technology University, with a thesis on human-centred work environments.',
+    text: 'Bachelor of Architecture from Hajee Mohammad Danesh Science and Technology University (HSTU), with a thesis on human-centred work environments for Rangpur Hi-Tech Park.',
   },
   {
     title: 'Research direction',
-    text: 'Investigating how daylight, natural ventilation, open space, and biophilic environments influence wellbeing and spatial experience.',
+    text: 'Investigating how daylight, natural ventilation, courtyard proportions, and biophilic environments influence occupant wellbeing and spatial experience.',
   },
   {
-    title: 'Professional experience',
-    text: 'Experience across architectural design, environmental strategies, visualisation, urban projects, and interdisciplinary collaboration.',
+    title: 'Professional practice',
+    text: 'Architect at Abode Engineers (Bogra, 2022–Present), former Intern Architect at Sthapotik (Dhaka), and visual identity designer for 70+ international clients.',
   },
 ];
 
 export default function CVSection() {
   return (
-    <section id="cv" className="scroll-mt-24 bg-[#040816] py-20 sm:py-24">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 grid gap-5 border-b border-gray-800 pb-8 sm:grid-cols-[1fr_auto] sm:items-end">
+    <section
+      id="cv"
+      className="brand-section scroll-mt-24 border-b border-stone bg-paper-raised text-graphite"
+    >
+      <div className="brand-container">
+        {/* Section 8.6: CV and Downloads with file size and update date */}
+        <div className="mb-12 grid gap-6 border-b border-stone pb-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
-            <p className="mb-3 text-sm font-semibold text-[#22C55E]">Academic CV · Updated October 2026</p>
-            <h2 className="text-3xl font-bold text-[#F9FAFB] sm:text-4xl">Education, research & recognition</h2>
-            <p className="mt-3 max-w-2xl leading-relaxed text-[#9CA3AF]">
-              A concise overview of my academic preparation, research direction, and recent distinction in urbanism.
+            <p className="type-label mb-3 text-forest-deep">
+              CV &amp; Downloads · 2 Pages · PDF (142 KB) · Updated October 2026
+            </p>
+            <h2 className="type-h2 text-graphite">
+              Education, research &amp; academic <span className="accent-italic">record</span>.
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-graphite-soft">
+              A concise overview of academic preparation, research publications, and recent
+              distinctions in urbanism and sustainable construction management.
             </p>
           </div>
           <div className="flex shrink-0 flex-wrap gap-3">
-            <a href={cvPath} download="Amitabh_Chondro_Roy_Academic_CV.pdf" className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#22C55E] px-5 py-3 font-semibold text-[#040816] transition-colors hover:bg-[#16A34A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]">
-              <Download size={18} /> Download CV
+            <a
+              href={cvPath}
+              download="Amitabh_Chondro_Roy_Academic_CV.pdf"
+              className="btn-primary"
+            >
+              <Download size={16} strokeWidth={1.5} />
+              Download CV (142 KB)
             </a>
-            <a href={cvPath} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-700 px-5 py-3 font-semibold text-[#F9FAFB] transition-colors hover:border-[#22C55E] hover:text-[#22C55E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]">
-              <ExternalLink size={17} /> View PDF
+            <a
+              href={cvPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              <ExternalLink size={16} strokeWidth={1.5} />
+              Open PDF
             </a>
           </div>
         </div>
 
-        <div className="mb-10 grid gap-4 sm:grid-cols-3">
-          <div className="border-l-2 border-[#22C55E] bg-[#0B1120] px-5 py-4">
-            <p className="text-sm text-[#9CA3AF]">Academic distinction · 2026</p>
-            <p className="mt-1 font-semibold text-[#F9FAFB]">Diploma of High Achievement in Urbanism</p>
-            <p className="mt-1 text-sm text-[#22C55E]">Open Doors Master’s Track Programme</p>
-          </div>
-          <div className="border-l-2 border-[#0EA5E9] bg-[#0B1120] px-5 py-4">
-            <p className="text-sm text-[#9CA3AF]">Recent certification · 2026</p>
-            <p className="mt-1 font-semibold text-[#F9FAFB]">Sustainable Construction Management</p>
-            <p className="mt-1 text-sm text-[#0EA5E9]">University of Maryland via edX</p>
-          </div>
-          <div className="border-l-2 border-[#F97316] bg-[#0B1120] px-5 py-4">
-            <p className="text-sm text-[#9CA3AF]">Graduate admission · 2026/27</p>
-            <p className="mt-1 font-semibold text-[#F9FAFB]">MSc Urban &amp; Regional Planning</p>
-            <p className="mt-1 text-sm text-[#F97316]">Admitted to Politecnico di Torino; unable to enroll following visa refusal.</p>
-          </div>
-        </div>
-
-        <div className="grid gap-8 lg:grid-cols-[1.35fr_0.85fr]">
-          <div>
-            <h3 className="mb-4 text-xl font-semibold text-[#F9FAFB]">Research profile</h3>
-            <p className="max-w-3xl leading-7 text-[#9CA3AF]">
-              My academic interests examine how daylight, natural ventilation, open space, and biophilic environments influence wellbeing and spatial experience. I extend these questions from the building scale to healthy cities, climate-adaptive planning, and sustainable urban development in South Asian contexts.
+        {/* Academic Milestones */}
+        <div className="mb-12 grid gap-6 md:grid-cols-3">
+          <div className="rounded-card border border-stone bg-paper p-6">
+            <p className="type-label text-forest-deep">Academic Distinction · 2026</p>
+            <h3 className="mt-2 font-serif text-2xl text-graphite">
+              Diploma of High Achievement in Urbanism
+            </h3>
+            <p className="mt-2 text-sm text-graphite-soft">
+              Open Doors Master’s Track Programme
             </p>
-            <h3 className="mb-4 mt-8 text-xl font-semibold text-[#F9FAFB]">Selected highlights</h3>
-            <div className="space-y-5">
+          </div>
+          <div className="rounded-card border border-stone bg-paper p-6">
+            <p className="type-label text-forest-deep">Executive Certification · 2026</p>
+            <h3 className="mt-2 font-serif text-2xl text-graphite">
+              Sustainable Construction Management
+            </h3>
+            <p className="mt-2 text-sm text-graphite-soft">
+              University of Maryland via edX (CMAN-4)
+            </p>
+          </div>
+          <div className="rounded-card border border-stone bg-paper p-6">
+            <p className="type-label text-terracotta-deep">Graduate Admission · 2026/27</p>
+            <h3 className="mt-2 font-serif text-2xl text-graphite">
+              MSc Urban &amp; Regional Planning
+            </h3>
+            <p className="mt-2 text-sm text-graphite-soft">
+              Admitted to Politecnico di Torino; unable to enroll following visa refusal.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="type-label mb-3 text-forest-deep">Research Profile</p>
+            <p className="max-w-[65ch] text-base leading-[1.7] text-graphite-soft">
+              My academic interests examine how daylight, natural ventilation, open space, and
+              biophilic environments influence wellbeing and spatial experience. I extend these
+              questions from the building scale to healthy cities, climate-adaptive planning, and
+              sustainable urban development in South Asian contexts.
+            </p>
+
+            <p className="type-label mb-4 mt-10 text-forest-deep">Selected Highlights</p>
+            <div className="space-y-6">
               {highlights.map((highlight) => (
-                <div key={highlight.title} className="border-l-2 border-[#22C55E]/60 pl-4">
-                  <h4 className="font-semibold text-[#22C55E]">{highlight.title}</h4>
-                  <p className="mt-1 leading-relaxed text-[#9CA3AF]">{highlight.text}</p>
+                <div key={highlight.title} className="border-l border-forest pl-5">
+                  <h3 className="font-serif text-2xl text-graphite">{highlight.title}</h3>
+                  <p className="mt-1.5 text-base leading-relaxed text-graphite-soft">
+                    {highlight.text}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          <aside className="space-y-7 border-t border-gray-800 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+          <aside className="space-y-8 border-t border-stone pt-8 lg:col-span-5 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
             <div>
-              <h3 className="mb-4 text-xl font-semibold text-[#F9FAFB]">Research interests</h3>
-              <ul className="space-y-2 text-[#9CA3AF]">
-                {focusAreas.map((area) => <li key={area}>{area}</li>)}
+              <p className="type-label mb-4 text-forest-deep">Research Interests</p>
+              <ul className="space-y-2.5 text-sm text-graphite-soft">
+                {focusAreas.map((area) => (
+                  <li key={area} className="flex items-start gap-2.5">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-terracotta" />
+                    <span>{area}</span>
+                  </li>
+                ))}
               </ul>
             </div>
+
             <div>
-              <h3 className="mb-4 text-xl font-semibold text-[#F9FAFB]">Professional &amp; academic links</h3>
-              <a href="mailto:arc.mit07@gmail.com" className="mb-3 flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><Mail size={18} className="text-[#22C55E]" /> arc.mit07@gmail.com</a>
-              <a href="https://linkedin.com/in/aramitabh" target="_blank" rel="noopener noreferrer" className="mb-3 flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><Linkedin size={18} className="text-[#22C55E]" /> linkedin.com/in/aramitabh</a>
-              <a href="https://orcid.org/0009-0004-6847-0225" target="_blank" rel="noopener noreferrer" className="mb-3 flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><ExternalLink size={18} className="text-[#22C55E]" /> ORCID: 0009-0004-6847-0225</a>
-              <a href="https://www.researchgate.net/profile/Amitabh-Chondro-Roy" target="_blank" rel="noopener noreferrer" className="mb-3 flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><ExternalLink size={18} className="text-[#22C55E]" /> ResearchGate Profile</a>
-              <a href="https://doi.org/10.5281/zenodo.23915357" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><FileText size={18} className="text-[#22C55E]" /> Zenodo DOI: 10.5281/zenodo.23915357</a>
+              <p className="type-label mb-4 text-forest-deep">Academic &amp; Professional Links</p>
+              <div className="space-y-3 text-sm">
+                <a
+                  href="mailto:arc.mit07@gmail.com"
+                  className="flex items-center gap-3 text-graphite-soft transition-colors hover:text-graphite"
+                >
+                  <Mail size={16} strokeWidth={1.5} className="text-forest" />
+                  arc.mit07@gmail.com
+                </a>
+                <a
+                  href="https://orcid.org/0009-0004-6847-0225"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-graphite-soft transition-colors hover:text-graphite"
+                >
+                  <ExternalLink size={16} strokeWidth={1.5} className="text-forest" />
+                  ORCID: 0009-0004-6847-0225
+                </a>
+                <a
+                  href="https://www.researchgate.net/profile/Amitabh-Chondro-Roy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-graphite-soft transition-colors hover:text-graphite"
+                >
+                  <ExternalLink size={16} strokeWidth={1.5} className="text-forest" />
+                  ResearchGate Profile
+                </a>
+                <a
+                  href="https://doi.org/10.5281/zenodo.23915357"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-graphite-soft transition-colors hover:text-graphite"
+                >
+                  <FileText size={16} strokeWidth={1.5} className="text-forest" />
+                  Zenodo DOI: 10.5281/zenodo.23915357
+                </a>
+                <a
+                  href="https://linkedin.com/in/aramitabh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-graphite-soft transition-colors hover:text-graphite"
+                >
+                  <Linkedin size={16} strokeWidth={1.5} className="text-forest" />
+                  linkedin.com/in/aramitabh
+                </a>
+              </div>
             </div>
-            <a href={cvPath} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-[#22C55E] hover:underline"><FileText size={17} /> Open the full two-page CV</a>
+
+            <div className="rounded-card border border-stone bg-paper p-5">
+              <p className="type-label text-graphite-soft">Full Portfolio Request</p>
+              <p className="mt-2 text-sm leading-relaxed text-graphite-soft">
+                Need high-resolution architectural drawings or full studio sheets?
+              </p>
+              <Link to="/contact" className="link-underline mt-3 text-xs">
+                Request full portfolio PDF
+              </Link>
+            </div>
           </aside>
         </div>
       </div>

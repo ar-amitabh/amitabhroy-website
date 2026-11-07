@@ -3,6 +3,8 @@ import { useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Header from './components/portfolio/Header';
 import Footer from './components/portfolio/Footer';
+import IntroOverlay from './components/brand/IntroOverlay';
+import CustomCursor from './components/brand/CustomCursor';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
@@ -20,8 +22,6 @@ function ScrollToTop() {
     const hash = window.location.hash;
     if (hash) {
       const sectionId = decodeURIComponent(hash.slice(1));
-      // Lazy routes mount after the first frame, so keep looking for the target
-      // instead of scrolling once into an empty page.
       let frame = 0;
       let raf = 0;
       const scrollToSection = () => {
@@ -47,25 +47,29 @@ function Layout() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className="min-h-screen bg-[#040816] text-[#F9FAFB]">
+    <div className="min-h-screen bg-paper text-graphite transition-colors duration-300">
+      {!isAdminRoute && <IntroOverlay />}
+      {!isAdminRoute && <CustomCursor />}
       {!isAdminRoute && <Header />}
       <main id="main-content">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-[#22C55E] focus:px-4 focus:py-2 focus:font-semibold focus:text-[#040816]"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:rounded-pill focus:bg-forest focus:px-5 focus:py-2.5 focus:font-medium focus:text-paper"
         >
           Skip to content
         </a>
-        <Suspense fallback={
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#22C55E]"></div>
-          </div>
-        }>
+        <Suspense
+          fallback={
+            <div className="min-h-screen flex items-center justify-center bg-paper">
+              <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-forest" />
+            </div>
+          }
+        >
           <motion.div
             key={location.pathname}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
             <Routes location={location}>
               <Route path="/" element={<HomePage />} />

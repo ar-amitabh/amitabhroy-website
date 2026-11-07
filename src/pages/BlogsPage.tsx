@@ -18,89 +18,100 @@ export default function BlogsPage() {
   const rest = blogs.slice(1);
 
   return (
-    <div className="min-h-screen bg-[#040816] pt-16 text-[#F9FAFB]">
+    <div className="min-h-screen bg-paper pt-20 text-graphite">
       <SEO title="Journal" description="Notes on architecture, place, climate, and the everyday life of buildings." path="/blogs" />
-      <section className="mx-auto max-w-6xl px-5 pb-20 pt-12 sm:px-8 sm:pt-20">
-        <header className="relative border-b border-gray-800 pb-9 sm:pb-12">
+      <section className="brand-container brand-section">
+        <header className="relative border-b border-stone pb-10 sm:pb-12">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45 }}
+            className="type-meta text-forest-deep mb-3"
+          >
+            04 / Field Notes &amp; Essays
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.06 }}
+            className="max-w-3xl type-display-l text-graphite"
+          >
+            Ideas shaped by <span className="accent-italic">place</span>.
+          </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: 'easeOut' }}
-            className="mb-4 text-sm font-medium tracking-wide text-[#22C55E]"
+            transition={{ duration: 0.55, delay: 0.12 }}
+            className="mt-5 max-w-xl type-body-lg text-graphite-soft"
           >
-            Field notes &amp; essays
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.08, ease: 'easeOut' }}
-            className="max-w-3xl font-serif text-5xl leading-[1.04] tracking-[-0.04em] text-[#F9FAFB] sm:text-7xl"
-          >
-            Ideas shaped by place.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.16, ease: 'easeOut' }}
-            className="mt-5 max-w-xl text-base leading-7 text-[#B7C0CC] sm:text-lg"
-          >
-            Writing on architecture, climate, and the small details that make spaces feel human.
+            Writing on architecture, climate-responsive design, and the spatial details that make buildings feel human.
           </motion.p>
         </header>
 
         {blogs.length === 0 ? (
-          <div className="py-20"><p className="mb-3 text-sm font-medium text-[#22C55E]">The journal is beginning</p><h2 className="font-serif text-3xl text-[#F9FAFB] sm:text-4xl">The first story is on its way.</h2><p className="mt-3 max-w-lg leading-7 text-[#9CA3AF]">New writing on architecture, design, and place will appear here.</p></div>
+          <div className="py-20">
+            <p className="type-meta text-forest-deep mb-3">The journal is beginning</p>
+            <h2 className="type-h2 text-graphite">The first story is on its way.</h2>
+            <p className="mt-3 max-w-lg type-body text-graphite-soft">New writing on architecture, design, and place will appear here.</p>
+          </div>
         ) : (
           <>
             {featured && (
               <motion.article
-                initial={{ opacity: 0, y: 28 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.65, delay: 0.2, ease: 'easeOut' }}
-                className="grid gap-7 border-b border-gray-800 py-9 sm:py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-12"
+                transition={{ duration: 0.55, delay: 0.16 }}
+                className="grid gap-8 border-b border-stone py-10 sm:py-14 lg:grid-cols-12 lg:items-center lg:gap-12"
               >
-                <Link
-                  to={`/blogs/${encodeURIComponent(featured.slug)}`}
-                  aria-label={`Read ${featured.title}`}
-                  className="group order-1 overflow-hidden rounded-xl border border-gray-800/80 bg-[#111827] shadow-xl transition-colors duration-300 hover:border-[#22C55E]/60 lg:order-2"
-                >
-                  {sanitizeUrl(featured.image) ? (
-                    <img
-                      src={sanitizeUrl(featured.image)}
-                      alt={featured.imageAlt}
-                      className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.035]"
-                    />
-                  ) : (
-                    <div className="flex aspect-[16/10] items-center justify-center font-serif text-2xl text-[#758296]">A field note</div>
-                  )}
-                </Link>
-                <div className="order-2 lg:order-1">
-                  <p className="mb-4 text-sm text-[#758296]">
-                    <span className="font-medium text-[#22C55E]">Featured story</span> <span className="px-2">·</span>
+                <div className="order-2 lg:order-1 lg:col-span-6">
+                  <p className="mb-4 type-meta text-graphite-soft">
+                    <span className="text-terracotta-deep">Featured Essay</span>
+                    <span className="px-2">·</span>
                     {publishedDate(featured.date)}
                   </p>
-                  <h2 className="max-w-xl font-serif text-3xl leading-tight tracking-[-0.025em] text-[#F9FAFB] sm:text-5xl">
+                  <h2 className="type-h1 text-graphite">
                     <Link
-                      className="transition-colors duration-200 hover:text-[#22C55E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#22C55E]"
+                      className="transition-colors duration-200 hover:text-forest-deep"
                       to={`/blogs/${encodeURIComponent(featured.slug)}`}
                     >
                       {featured.title}
                     </Link>
                   </h2>
-                  {featured.subtitle && <p className="mt-4 max-w-xl text-lg leading-7 text-[#B7C0CC]">{featured.subtitle}</p>}
-                  <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-[#758296]">
-                    <span className="inline-flex items-center gap-2">
-                      <Clock size={15} className="text-[#22C55E]" />
+                  {featured.subtitle && (
+                    <p className="mt-4 max-w-xl type-body-lg text-graphite-soft">
+                      {featured.subtitle}
+                    </p>
+                  )}
+                  <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 type-meta text-graphite-soft">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Clock size={14} className="text-forest-deep" />
                       {featured.readingMinutes} min read
                     </span>
                     <Link
                       to={`/blogs/${encodeURIComponent(featured.slug)}`}
-                      className="group inline-flex items-center gap-1 font-semibold text-[#22C55E] hover:underline"
+                      className="link-underline inline-flex items-center gap-1 font-sans text-sm font-medium text-forest-deep normal-case tracking-normal"
                     >
-                      Read story <ArrowUpRight size={16} className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      Read essay <ArrowUpRight size={15} />
                     </Link>
                   </div>
                 </div>
+
+                <Link
+                  to={`/blogs/${encodeURIComponent(featured.slug)}`}
+                  aria-label={`Read ${featured.title}`}
+                  data-cursor="view"
+                  className="group order-1 overflow-hidden border border-stone bg-paper-raised lg:order-2 lg:col-span-6"
+                >
+                  {sanitizeUrl(featured.image) ? (
+                    <img
+                      src={sanitizeUrl(featured.image)}
+                      alt={featured.imageAlt}
+                      className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <div className="flex aspect-[16/10] items-center justify-center font-serif text-2xl text-graphite-soft">A field note</div>
+                  )}
+                </Link>
               </motion.article>
             )}
 
@@ -109,51 +120,55 @@ export default function BlogsPage() {
                 {rest.map((blog, index) => (
                   <motion.article
                     key={blog.slug}
-                    initial={{ opacity: 0, y: 24 }}
+                    initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.55, delay: index * 0.12, ease: 'easeOut' }}
-                    whileHover={{ y: -3 }}
-                    className="group grid grid-cols-[1fr_104px] gap-5 border-b border-gray-800 py-7 transition-colors hover:border-gray-700 sm:grid-cols-[1fr_136px]"
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group grid grid-cols-[1fr_112px] gap-6 border-b border-stone py-8 transition-colors hover:border-forest sm:grid-cols-[1fr_144px]"
                   >
                     <div>
-                      <p className="mb-2 text-xs text-[#758296]">
+                      <p className="mb-2.5 type-meta text-graphite-soft">
                         {blog.category && (
                           <>
-                            <span className="font-medium text-[#22C55E]">{blog.category}</span>
+                            <span className="text-forest-deep">{blog.category}</span>
                             <span className="px-1.5">·</span>
                           </>
                         )}
                         {publishedDate(blog.date)}
                       </p>
-                      <h2 className="font-serif text-2xl leading-tight tracking-[-0.02em] text-[#F9FAFB]">
+                      <h2 className="type-h3 text-graphite">
                         <Link
                           to={`/blogs/${encodeURIComponent(blog.slug)}`}
-                          className="transition-colors duration-200 group-hover:text-[#22C55E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#22C55E]"
+                          className="transition-colors duration-200 group-hover:text-forest-deep"
                         >
                           {blog.title}
                         </Link>
                       </h2>
-                      {blog.subtitle && <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#9CA3AF]">{blog.subtitle}</p>}
-                      <p className="mt-3 inline-flex items-center gap-2 text-xs text-[#758296]">
-                        <Clock size={14} className="text-[#22C55E]" />
+                      {blog.subtitle && (
+                        <p className="mt-2 line-clamp-2 type-caption text-graphite-soft">
+                          {blog.subtitle}
+                        </p>
+                      )}
+                      <p className="mt-4 inline-flex items-center gap-1.5 type-meta text-graphite-soft">
+                        <Clock size={13} className="text-forest-deep" />
                         {blog.readingMinutes} min read
                       </p>
                     </div>
                     <Link
                       to={`/blogs/${encodeURIComponent(blog.slug)}`}
                       aria-label={`Read ${blog.title}`}
-                      className="overflow-hidden rounded-lg border border-gray-800/80 bg-[#111827] transition-colors group-hover:border-[#22C55E]/50"
+                      data-cursor="view"
+                      className="overflow-hidden border border-stone bg-paper-raised"
                     >
                       {sanitizeUrl(blog.image) ? (
                         <img
                           src={sanitizeUrl(blog.image)}
                           alt=""
                           loading="lazy"
-                          className="aspect-square h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="aspect-square h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                         />
                       ) : (
-                        <span className="flex aspect-square h-full items-center justify-center font-serif text-xs text-[#758296]">Journal</span>
+                        <span className="flex aspect-square h-full items-center justify-center font-serif text-xs text-graphite-soft">Journal</span>
                       )}
                     </Link>
                   </motion.article>

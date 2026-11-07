@@ -1,51 +1,26 @@
 import { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
+import {
+  ArrowLeft,
+  ArrowRight,
+  LayoutGrid,
+  List,
+  X,
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import {
+  portfolioProjects,
+  type PortfolioProject,
+  type ProjectCategory,
+} from '../../data/projects';
 
-const featuredProject = {
-  title: 'Human-Centered Hi-Tech Park, Rangpur',
-  tags: ['Workplace', 'Biophilia', 'Thesis'],
-  year: '2021',
-  image: '/hi-tech-park-rangpur-biophilic-architecture.jpg',
-  description: 'A comprehensive thesis project focusing on creating a technology park that prioritizes human needs and integrates biophilic design principles. The design emphasizes natural light, green spaces, and sustainable workplace environments that foster innovation and well-being.',
-};
-
-const selectedWork = [
-  {
-    title: '500-Bed Hospital Design',
-    tags: ['Healthcare', 'Healing Spaces', 'Passive Cooling'],
-    year: '2020',
-    image: '/hospital-design-500-bed-healing-spaces.jpg',
-    description: 'A large-scale healthcare facility designed with patient-centered healing spaces. Incorporates passive cooling strategies and natural ventilation to create comfortable, energy-efficient environments that support recovery and wellness.',
-  },
-  {
-    title: 'Sundar Bari Competition',
-    tags: ['Competition', 'Climate Housing'],
-    year: '2020',
-    image: '/sundar-bari-climate-housing-competition.jpg',
-    description: 'Competition entry for climate-responsive housing design. The project addresses environmental challenges through innovative architectural solutions that balance traditional living patterns with modern sustainability requirements.',
-  },
-  {
-    title: 'HSTU Residential Complex',
-    tags: ['Housing', 'Courtyard Living'],
-    year: '2019',
-    image: '/hstu-residential-complex-courtyard-living.jpg',
-    description: 'A residential complex design that embraces courtyard living principles, creating communal spaces that encourage social interaction while maintaining privacy. The design integrates local architectural traditions with contemporary needs.',
-  },
-  {
-    title: 'SK+F Office Rendering',
-    tags: ['Commercial', 'Intern Work', '3D Rendering'],
-    year: '2019',
-    image: '/skf-office-commercial-3d-rendering.jpg',
-    description: 'Professional 3D visualization work completed during internship. The project showcases modern commercial office design with attention to lighting, materials, and spatial quality to create impressive client presentations.',
-  },
-  {
-    title: 'Renewal of Public Realm, Dinajpur',
-    tags: ['Urban Design', 'Heritage', 'Placemaking'],
-    year: '2018',
-    image: '/dinajpur-public-realm-urban-design.jpg',
-    description: 'Urban design project focused on revitalizing public spaces in Dinajpur. The design respects heritage values while introducing contemporary placemaking strategies that enhance community engagement and urban vitality.',
-  },
+const filterCategories: ('All' | ProjectCategory)[] = [
+  'All',
+  'Architecture',
+  'Urban Planning',
+  'Landscape',
+  'Research',
+  'Competitions',
 ];
 
 const clients = [
@@ -74,256 +49,450 @@ const logos = clients.map((client, i) => ({
   client,
 }));
 
-type SelectedProject = { title: string; tags: string[]; year: string; image: string; description: string } | null;
-
 export default function Work() {
-  const [selectedProject, setSelectedProject] = useState<SelectedProject>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeFilter, setActiveFilter] = useState<'All' | ProjectCategory>('All');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [selectedLogo, setSelectedLogo] = useState<number | null>(null);
+
+  const projectSlug = searchParams.get('project');
+  const activeProject: PortfolioProject | null =
+    portfolioProjects.find((p) => p.slug === projectSlug) ?? null;
+
+  const visibleProjects =
+    activeFilter === 'All'
+      ? portfolioProjects
+      : portfolioProjects.filter((p) => p.categories.includes(activeFilter));
+
+  const openProject = (project: PortfolioProject) => {
+    setSearchParams({ project: project.slug });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const closeProject = () => {
+    setSearchParams({});
+  };
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSelectedProject(null);
+      if (e.key === 'Escape' && selectedLogo !== null) {
+        setSelectedLogo(null);
+      }
     };
-    if (selectedProject !== null) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
-    }
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedProject]);
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [selectedLogo]);
 
-  return (
-    <section id="work" className="py-24 bg-[#040816]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  // Next project for Case Study footer (Section 8.3 #8)
+  const activeIndex = activeProject
+    ? portfolioProjects.findIndex((p) => p.slug === activeProject.slug)
+    : -1;
+  const nextProject =
+    activeIndex >= 0
+      ? portfolioProjects[(activeIndex + 1) % portfolioProjects.length]
+      : null;
 
-        {/* Featured Project */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">Work</h1>
-          <p className="text-xl text-[#9CA3AF] max-w-3xl mx-auto">
-            Architecture, urban design and research projects.
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#22C55E] to-[#0EA5E9] mx-auto mt-6"></div>
-        </motion.div>
+  if (activeProject) {
+    return (
+      <article className="bg-paper pb-20 pt-12 text-graphite lg:pt-16">
+        <div className="brand-container">
+          <button
+            type="button"
+            onClick={closeProject}
+            className="type-label mb-8 inline-flex min-h-[44px] items-center gap-2 text-graphite-soft transition-colors hover:text-graphite"
+          >
+            <ArrowLeft size={15} strokeWidth={1.5} />
+            Back to all work
+          </button>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-6"
-        >
-          <h2 className="text-xs uppercase tracking-widest text-[#22C55E] font-semibold">Featured Project</h2>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          onClick={() => setSelectedProject(featuredProject)}
-          className="group mb-20 bg-[#111827] rounded-2xl overflow-hidden border border-[#22C55E]/40 hover:border-[#22C55E] transition-all duration-300 cursor-pointer grid grid-cols-1 lg:grid-cols-2"
-        >
-          <div className="aspect-[16/10] lg:aspect-auto overflow-hidden">
-            <img
-              src={featuredProject.image}
-              alt={featuredProject.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-          </div>
-          <div className="p-8 flex flex-col justify-center">
-            <span className="text-[#22C55E] text-sm font-semibold mb-3">{featuredProject.year}</span>
-            <h3 className="text-2xl font-bold mb-4 group-hover:text-[#22C55E] transition-colors">
-              {featuredProject.title}
-            </h3>
-            <p className="text-[#9CA3AF] leading-relaxed mb-6">{featuredProject.description}</p>
-            <div className="flex flex-wrap gap-2">
-              {featuredProject.tags.map((tag, i) => (
-                <span key={i} className="px-3 py-1 bg-[#22C55E]/10 text-[#22C55E] text-xs uppercase tracking-wide rounded-full border border-[#22C55E]/30">
-                  {tag}
+          {/* 1. Hero title + metadata strip (Section 8.3 #1) */}
+          <header className="border-b border-stone pb-10">
+            <div className="flex flex-wrap items-center gap-2">
+              {activeProject.categories.map((cat) => (
+                <span key={cat} className="tag-pill">
+                  {cat}
                 </span>
               ))}
             </div>
-          </div>
-        </motion.div>
+            <h1 className="type-h1 mt-4 text-graphite">{activeProject.title}</h1>
 
-        {/* Selected Work */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-6"
-        >
-          <h2 className="text-xs uppercase tracking-widest text-[#9CA3AF] font-semibold">Selected Work</h2>
-        </motion.div>
+            <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-stone pt-6 sm:grid-cols-4">
+              <div>
+                <dt className="type-label text-graphite-soft">Year</dt>
+                <dd className="mt-1 font-mono text-sm text-graphite">{activeProject.year}</dd>
+              </div>
+              <div>
+                <dt className="type-label text-graphite-soft">Location</dt>
+                <dd className="mt-1 font-mono text-sm text-graphite">{activeProject.location}</dd>
+              </div>
+              <div>
+                <dt className="type-label text-graphite-soft">Role</dt>
+                <dd className="mt-1 font-mono text-sm text-graphite">{activeProject.role}</dd>
+              </div>
+              <div>
+                <dt className="type-label text-graphite-soft">Status</dt>
+                <dd className="mt-1 font-mono text-sm text-graphite">{activeProject.status}</dd>
+              </div>
+            </dl>
+          </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
-          {selectedWork.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              onClick={() => setSelectedProject(project)}
-              className="group relative bg-[#111827] rounded-2xl overflow-hidden border border-gray-800 hover:border-[#22C55E] transition-all duration-300 cursor-pointer"
-            >
-              <div className="aspect-[16/10] overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[#22C55E] text-sm font-semibold">{project.year}</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-[#22C55E] transition-colors">
-                  {project.title}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-3 py-1 bg-[#1F2937] text-[#9CA3AF] text-xs uppercase tracking-wide rounded-full border border-gray-700"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+          {/* Hero render */}
+          <figure className="render-image-wrap my-12 overflow-hidden border border-stone bg-paper-raised">
+            <img
+              src={activeProject.image}
+              alt={activeProject.imageAlt}
+              width={1600}
+              height={900}
+              className="aspect-[16/9] w-full object-cover"
+            />
+            <figcaption className="type-label border-t border-stone px-5 py-3 text-graphite-soft">
+              {activeProject.title} · {activeProject.location} ({activeProject.year})
+            </figcaption>
+          </figure>
 
-        {/* Brand Identity — below architecture work */}
-        <div id="brand-identity" className="mt-8 pt-16 border-t border-gray-800">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Independent Design & Visual Communication</h2>
-            <p className="text-lg text-[#9CA3AF] max-w-3xl mx-auto">
-              70+ logos for international clients via Fiverr with 5-star rating
-            </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-[#22C55E] to-[#0EA5E9] mx-auto mt-6"></div>
-          </motion.div>
-
-          <div className="mb-12 p-8 bg-[#111827]/50 backdrop-blur-sm border border-gray-800 rounded-2xl hover:border-[#0EA5E9] transition-all duration-300">
-            <div className="flex flex-col md:flex-row items-start gap-8">
-              <div className="w-full md:w-1/2">
-                <div className="rounded-xl overflow-hidden border border-gray-700">
-                  <img
-                    src="/agriculture-journal-logo-cover-design.jpg"
-                    alt="International Journal of Agriculture and Medicinal Plants logo and cover page design by Amitabh Chondro Roy"
-                    className="w-full h-full object-contain bg-white"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-              <div className="w-full md:w-1/2 flex items-start gap-4">
-                <div className="w-2 h-2 bg-[#22C55E] rounded-full mt-2 flex-shrink-0"></div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">Featured Design</h3>
-                  <p className="text-lg text-white mb-2">
-                    International Journal of Agriculture and Medicinal Plants
-                  </p>
-                  <p className="text-[#9CA3AF]">Logo & Cover Page Design</p>
-                </div>
-              </div>
+          {/* 2. Overview & Key Facts (Section 8.3 #2) */}
+          <div className="grid grid-cols-1 gap-12 border-b border-stone pb-14 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <p className="type-label text-forest-deep">01 · Overview &amp; Key Facts</p>
+              <dl className="mt-6 grid grid-cols-2 gap-4">
+                {activeProject.keyFacts.map((fact) => (
+                  <div
+                    key={fact.label}
+                    className="rounded-card border border-stone bg-paper-raised p-4"
+                  >
+                    <dt className="type-label text-graphite-soft">{fact.label}</dt>
+                    <dd className="mt-1 font-mono text-sm font-medium text-graphite">
+                      {fact.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div className="lg:col-span-8">
+              <p className="type-body-lg max-w-[65ch] text-graphite">{activeProject.overview}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {logos.map((logo, idx) => (
-              <motion.div
-                key={logo.id}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="group flex flex-col items-center"
+          {/* 3–7. Structured Case Study Sections (Section 8.3 #3–#7) */}
+          <div className="divide-y divide-stone">
+            {[
+              { num: '02', label: 'Context & Site Analysis', body: activeProject.context },
+              { num: '03', label: 'Concept & Environmental Strategy', body: activeProject.concept },
+              { num: '04', label: 'Design Process & Iterations', body: activeProject.process },
+              { num: '05', label: 'Final Design & Spatial Organization', body: activeProject.finalDesign },
+              { num: '06', label: 'Outcome & Key Learnings', body: activeProject.impact },
+            ].map((sec) => (
+              <div
+                key={sec.num}
+                className="grid grid-cols-1 gap-6 py-10 lg:grid-cols-12 lg:gap-12"
               >
-                <div className="w-full bg-[#111827]/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-[#22C55E] transition-all duration-300 aspect-square mb-3">
+                <div className="lg:col-span-4">
+                  <p className="type-label text-forest-deep">
+                    {sec.num} · {sec.label}
+                  </p>
+                </div>
+                <div className="lg:col-span-8">
+                  <p className="max-w-[65ch] text-base leading-[1.7] text-graphite-soft">
+                    {sec.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Drawings & Renders Gallery if available */}
+          {activeProject.galleryImages && activeProject.galleryImages.length > 0 && (
+            <div className="mt-12 border-t border-stone pt-12">
+              <p className="type-label mb-3 text-forest-deep">07 · Drawings &amp; Spatial Outcomes</p>
+              <h2 className="type-h2 mb-8 text-graphite">
+                Plans, courtyard sections and architectural <span className="accent-italic">renders</span>.
+              </h2>
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                {activeProject.galleryImages.map((img) => (
+                  <figure
+                    key={img.src}
+                    className="overflow-hidden border border-stone bg-paper-raised"
+                  >
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      width={1200}
+                      height={800}
+                      loading="lazy"
+                      className="aspect-[3/2] w-full object-cover"
+                    />
+                    <figcaption className="type-label border-t border-stone px-4 py-3 text-graphite-soft">
+                      {img.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* 8. Next Project Link (Section 8.3 #8: Large, full-width, with image preview) */}
+          {nextProject && (
+            <div className="mt-20 border-t border-stone pt-14">
+              <p className="type-label mb-4 text-graphite-soft">Next Case Study</p>
+              <button
+                type="button"
+                onClick={() => openProject(nextProject)}
+                data-cursor="view"
+                className="group grid w-full grid-cols-1 items-center gap-8 border border-stone bg-paper-raised p-6 text-left transition-colors hover:border-graphite sm:p-10 lg:grid-cols-12"
+              >
+                <div className="lg:col-span-7">
+                  <span className="tag-pill">{nextProject.category}</span>
+                  <h2 className="type-h2 mt-4 text-graphite transition-transform duration-500 group-hover:translate-x-2">
+                    {nextProject.title}
+                  </h2>
+                  <p className="type-label mt-3 text-graphite-soft">
+                    {nextProject.year} · {nextProject.location}
+                  </p>
+                  <span className="link-underline mt-6 text-sm">
+                    View next project
+                    <ArrowRight size={15} strokeWidth={1.5} />
+                  </span>
+                </div>
+                <div className="overflow-hidden border border-stone lg:col-span-5">
                   <img
-                    src={logo.image}
-                    alt={`${logo.client} logo design by Amitabh Chondro Roy`}
-                    className="w-full h-full object-cover"
+                    src={nextProject.image}
+                    alt={nextProject.imageAlt}
+                    width={800}
+                    height={533}
                     loading="lazy"
+                    className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
                 </div>
-                <p className="text-sm text-[#9CA3AF] text-center">{logo.client}</p>
-              </motion.div>
+              </button>
+            </div>
+          )}
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <section id="work" className="brand-section bg-paper text-graphite">
+      <div className="brand-container">
+        {/* Page Heading */}
+        <header className="border-b border-stone pb-10">
+          <p className="type-label mb-3 text-forest-deep">Work &amp; Case Studies</p>
+          <h1 className="type-h1 text-graphite">
+            Architecture, urban planning and <span className="accent-italic">research</span>.
+          </h1>
+          <p className="type-body-lg mt-5 max-w-2xl text-graphite-soft">
+            Selected academic, competition and professional projects exploring climate-responsive
+            building form, courtyard systems and healthier public realms in Bangladesh.
+          </p>
+
+          {/* Section 8.2: Filter chips + Grid/List view toggle */}
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects by discipline">
+              {filterCategories.map((category) => {
+                const active = activeFilter === category;
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveFilter(category)}
+                    aria-pressed={active}
+                    className={`min-h-[40px] rounded-pill px-4 py-2 font-mono text-xs uppercase tracking-[0.08em] transition-colors ${
+                      active
+                        ? 'bg-forest text-paper'
+                        : 'bg-blush text-graphite hover:bg-sage/40'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="inline-flex items-center rounded-pill border border-stone bg-paper-raised p-1">
+              <button
+                type="button"
+                onClick={() => setViewMode('grid')}
+                aria-pressed={viewMode === 'grid'}
+                className={`inline-flex min-h-[36px] items-center gap-1.5 rounded-pill px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.08em] transition-colors ${
+                  viewMode === 'grid'
+                    ? 'bg-forest text-paper'
+                    : 'text-graphite-soft hover:text-graphite'
+                }`}
+              >
+                <LayoutGrid size={14} strokeWidth={1.5} />
+                Grid
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('list')}
+                aria-pressed={viewMode === 'list'}
+                className={`inline-flex min-h-[36px] items-center gap-1.5 rounded-pill px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.08em] transition-colors ${
+                  viewMode === 'list'
+                    ? 'bg-forest text-paper'
+                    : 'text-graphite-soft hover:text-graphite'
+                }`}
+              >
+                <List size={14} strokeWidth={1.5} />
+                List
+              </button>
+            </div>
+          </div>
+        </header>
+
+        {/* Projects Grid / List */}
+        {viewMode === 'grid' ? (
+          <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2">
+            {visibleProjects.map((project, index) => (
+              <motion.article
+                key={project.slug}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.12 }}
+                transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                className="group cursor-pointer"
+                onClick={() => openProject(project)}
+              >
+                <div
+                  data-cursor="view"
+                  className="render-image-wrap overflow-hidden border border-stone bg-paper-raised"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt}
+                    width={1200}
+                    height={800}
+                    loading="lazy"
+                    className="aspect-[3/2] w-full object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                  />
+                </div>
+
+                <div className="mt-5">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="type-label text-graphite-soft">
+                      {project.year} · {project.location}
+                    </span>
+                    <span className="tag-pill">{project.category}</span>
+                  </div>
+
+                  <h2 className="mt-3 font-serif text-3xl leading-tight text-graphite transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2">
+                    {project.title}
+                  </h2>
+
+                  <div className="mt-2.5 h-px w-10 bg-terracotta transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-28" />
+
+                  <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-graphite-soft">
+                    {project.overview}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-10 divide-y divide-stone border-b border-stone">
+            {visibleProjects.map((project) => (
+              <article
+                key={project.slug}
+                onClick={() => openProject(project)}
+                className="group grid cursor-pointer grid-cols-1 items-center gap-6 py-7 transition-colors hover:bg-paper-raised/70 md:grid-cols-12"
+              >
+                <div className="md:col-span-5">
+                  <h2 className="font-serif text-2xl text-graphite transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
+                    {project.title}
+                  </h2>
+                </div>
+                <div className="md:col-span-3">
+                  <span className="type-label text-graphite-soft">{project.location}</span>
+                </div>
+                <div className="md:col-span-2">
+                  <span className="tag-pill">{project.category}</span>
+                </div>
+                <div className="flex items-center justify-between md:col-span-2 md:justify-end">
+                  <span className="type-label text-graphite-soft">{project.year}</span>
+                  <ArrowRight
+                    size={16}
+                    strokeWidth={1.5}
+                    className="ml-3 text-forest transition-transform group-hover:translate-x-1"
+                  />
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+
+        {/* Visual Communication & Brand Identity Section */}
+        <div className="mt-24 border-t border-stone pt-16">
+          <div className="mb-10 max-w-2xl">
+            <p className="type-label mb-3 text-forest-deep">Visual Communication · 2022–2024</p>
+            <h2 className="type-h2 text-graphite">
+              Brand identity &amp; graphic <span className="accent-italic">systems</span>.
+            </h2>
+            <p className="mt-3 text-base leading-relaxed text-graphite-soft">
+              Alongside architectural practice, I have delivered visual identity systems for over
+              70 international clients with a 5.0-star rating.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-7">
+            {logos.map((logo, index) => (
+              <button
+                key={logo.id}
+                type="button"
+                onClick={() => setSelectedLogo(index)}
+                className="group overflow-hidden border border-stone bg-paper-raised p-2 text-left transition-colors hover:border-graphite"
+              >
+                <div className="aspect-square overflow-hidden">
+                  <img
+                    src={logo.image}
+                    alt={`Brand identity design for ${logo.client}`}
+                    width={400}
+                    height={400}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <p className="type-label mt-2 truncate text-graphite-soft">{logo.client}</p>
+              </button>
             ))}
           </div>
         </div>
       </div>
 
+      {/* Logo Lightbox Modal */}
       <AnimatePresence>
-        {selectedProject !== null && (
+        {selectedLogo !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedProject(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Logo preview for ${logos[selectedLogo].client}`}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-graphite/80 p-4 backdrop-blur-sm"
+            onClick={() => setSelectedLogo(null)}
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="bg-[#111827] rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#22C55E] relative"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              className="relative max-w-xl border border-stone bg-paper p-6"
               onClick={(e) => e.stopPropagation()}
             >
               <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 w-10 h-10 bg-[#1F2937] hover:bg-[#22C55E] rounded-full flex items-center justify-center transition-colors z-10"
+                type="button"
+                onClick={() => setSelectedLogo(null)}
+                aria-label="Close preview"
+                className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-stone bg-paper-raised text-graphite"
               >
-                <X className="w-5 h-5" />
+                <X size={18} strokeWidth={1.5} />
               </button>
-
-              <div className="aspect-[16/10] overflow-hidden rounded-t-2xl">
-                <img
-                  src={selectedProject.image}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="p-8">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[#22C55E] text-sm font-semibold">{selectedProject.year}</span>
-                </div>
-                <h2 className="text-3xl font-bold mb-4">{selectedProject.title}</h2>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {selectedProject.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-3 py-1 bg-[#1F2937] text-[#9CA3AF] text-xs uppercase tracking-wide rounded-full border border-gray-700"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="border-t border-gray-700 pt-6">
-                  <h3 className="text-xl font-semibold mb-4 text-[#22C55E]">Project Description</h3>
-                  <p className="text-[#9CA3AF] leading-relaxed text-lg">{selectedProject.description}</p>
-                </div>
+              <img
+                src={logos[selectedLogo].image}
+                alt={`Brand identity design for ${logos[selectedLogo].client}`}
+                className="w-full object-contain"
+              />
+              <div className="mt-4 flex items-center justify-between border-t border-stone pt-3">
+                <p className="font-serif text-2xl text-graphite">{logos[selectedLogo].client}</p>
+                <span className="type-label text-graphite-soft">Brand Identity</span>
               </div>
             </motion.div>
           </motion.div>

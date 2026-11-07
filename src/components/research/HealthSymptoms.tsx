@@ -22,7 +22,7 @@ export default function HealthSymptoms() {
       tone="rose"
       insight={
         <>
-          <strong className="font-semibold text-[#E5E7EB]">{worst.label} is the most widespread</strong> —{' '}
+          <strong className="font-semibold text-graphite">{worst.label} is the most widespread</strong> —{' '}
           {atLeastSometimes(worst).toFixed(1)}% report it at least “sometimes” and{' '}
           {atLeastOften(worst).toFixed(1)}% often or daily. Eye strain follows at{' '}
           {atLeastSometimes(eyeStrain).toFixed(1)}%, with {eyeStrain.values[4].toFixed(1)}% experiencing it
@@ -30,12 +30,12 @@ export default function HealthSymptoms() {
         </>
       }
     >
-      <ul className="mb-5 flex flex-wrap gap-x-4 gap-y-2 text-[10px] text-[#AEBAC9]">
+      <ul className="mb-5 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[11px] text-graphite-soft">
         {healthFrequencies.map((frequency, index) => (
           <li key={frequency} className="flex items-center gap-1.5">
             <span
               aria-hidden="true"
-              className="h-2 w-2 rounded-[2px]"
+              className="h-2.5 w-2.5 rounded-card"
               style={{ backgroundColor: healthColors[index] }}
             />
             {frequency}
@@ -50,9 +50,9 @@ export default function HealthSymptoms() {
           return (
             <div key={symptom.label}>
               <div className="flex items-baseline justify-between gap-3">
-                <span className="text-[13px] text-[#DCE3EC]">{symptom.label}</span>
-                <span className="shrink-0 text-[10px] text-[#94A3B8]">
-                  <strong className="font-mono text-xs font-semibold tabular-nums text-[#F9FAFB]">
+                <span className="text-sm text-graphite font-medium">{symptom.label}</span>
+                <span className="shrink-0 text-xs text-graphite-soft">
+                  <strong className="font-mono text-xs font-semibold tabular-nums text-terracotta-deep">
                     {risk.toFixed(1)}%
                   </strong>{' '}
                   at least sometimes
@@ -60,7 +60,7 @@ export default function HealthSymptoms() {
               </div>
               <div
                 aria-hidden="true"
-                className="mt-2 flex h-3 overflow-hidden rounded-full bg-white/[0.06]"
+                className="mt-2 flex h-3 overflow-hidden rounded-pill bg-stone/30"
               >
                 {symptom.values.map((value, index) => (
                   <motion.div

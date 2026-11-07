@@ -1,89 +1,206 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    try {
+      const saved = localStorage.getItem('ar_theme');
+      if (saved === 'dark' || saved === 'light') {
+        setTheme(saved);
+        document.documentElement.setAttribute('data-theme', saved);
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch {
+      // Ignore storage errors
+    }
+  }, []);
 
-    window.addEventListener('scroll', handleScroll);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  const toggleTheme = () => {
+    const next = theme === 'light' ? 'dark' : 'light';
+    setTheme(next);
+    document.documentElement.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('ar_theme', next);
+    } catch {
+      // Ignore storage errors
+    }
+  };
+
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
     { name: 'Work', href: '/work' },
     { name: 'Research', href: '/research' },
+    { name: 'About', href: '/about' },
     { name: 'Journal', href: '/blogs' },
     { name: 'Contact', href: '/contact' },
   ];
 
+  const isActive = (href: string) =>
+    location.pathname === href || (href === '/blogs' && location.pathname.startsWith('/blogs/'));
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#0B1120]/90 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="text-xl font-bold tracking-tight hover:text-[#22C55E] transition-colors">
-            Amitabh Chondro Roy
-          </Link>
-
-          <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={`text-sm font-medium transition-colors ${
-                  location.pathname === link.href || (link.href === '/blogs' && location.pathname.startsWith('/blogs/'))
-                    ? 'text-[#22C55E]'
-                    : 'text-[#F9FAFB] hover:text-[#22C55E]'
-                }`}
+    <>
+      <header
+        className={`fixed left-0 right-0 top-0 z-50 transition-[background-color,border-color] duration-300 ${
+          isScrolled || isMobileMenuOpen
+            ? 'border-b border-stone bg-paper/95 backdrop-blur-sm'
+            : 'border-b border-transparent bg-transparent'
+        }`}
+      >
+        <div className="brand-container">
+          <div className="flex h-20 items-center justify-between">
+            {/* Section 5: Wordmark + Monogram */}
+            <Link
+              to="/"
+              className="group inline-flex items-center gap-3 text-graphite transition-colors"
+            >
+              <span
+                aria-hidden="true"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-forest font-serif text-sm text-graphite transition-colors group-hover:bg-forest group-hover:text-paper"
               >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
+                AR
+              </span>
+              <span className="font-serif text-[20px] tracking-normal text-graphite lg:text-[24px]">
+                Amitabh Chondro Roy
+              </span>
+            </Link>
 
-          <button
-            className="md:hidden text-[#F9FAFB]"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={isMobileMenuOpen}
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
+            {/* Desktop Navigation */}
+            <div className="hidden items-center gap-8 md:flex">
+              <nav aria-label="Main navigation" className="flex items-center gap-7">
+                {navLinks.map((link) => {
+                  const active = isActive(link.href);
+                  return (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className={`relative py-1 font-sans text-[15px] font-medium transition-colors ${
+                        active
+                          ? 'border-b border-forest text-graphite'
+                          : 'text-graphite-soft hover:text-graphite'
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                })}
+              </nav>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#0B1120] border-t border-gray-800">
-          <div className="px-4 py-4 space-y-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className={`block text-sm py-2 transition-colors ${
-                  location.pathname === link.href || (link.href === '/blogs' && location.pathname.startsWith('/blogs/'))
-                    ? 'text-[#22C55E]'
-                    : 'text-[#F9FAFB] hover:text-[#22C55E]'
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label={theme === 'light' ? 'Switch to Night theme' : 'Switch to Paper theme'}
+                title={theme === 'light' ? 'Switch to Night theme' : 'Switch to Paper theme'}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone bg-paper-raised text-graphite transition-colors hover:border-graphite"
               >
-                {link.name}
-              </Link>
-            ))}
+                {theme === 'light' ? (
+                  <Moon size={17} strokeWidth={1.5} />
+                ) : (
+                  <Sun size={17} strokeWidth={1.5} />
+                )}
+              </button>
+            </div>
+
+            {/* Mobile controls */}
+            <div className="flex items-center gap-2 md:hidden">
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label={theme === 'light' ? 'Switch to Night theme' : 'Switch to Paper theme'}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone bg-paper-raised text-graphite"
+              >
+                {theme === 'light' ? (
+                  <Moon size={17} strokeWidth={1.5} />
+                ) : (
+                  <Sun size={17} strokeWidth={1.5} />
+                )}
+              </button>
+              <button
+                type="button"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone bg-paper-raised text-graphite"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={isMobileMenuOpen}
+              >
+                {isMobileMenuOpen ? <X size={20} strokeWidth={1.5} /> : <Menu size={20} strokeWidth={1.5} />}
+              </button>
+            </div>
           </div>
         </div>
-      )}
-    </header>
+      </header>
+
+      {/* Section 9 & 10.3 #7: Full-screen mobile overlay menu with clip-path reveal and 60ms link stagger */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            key="mobile-overlay"
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.55, ease: [0.65, 0, 0.35, 1] }}
+            className="fixed inset-0 z-40 flex flex-col justify-between bg-paper px-6 pb-10 pt-28 md:hidden"
+          >
+            <nav aria-label="Mobile navigation" className="flex flex-col space-y-4">
+              {navLinks.map((link, index) => {
+                const active = isActive(link.href);
+                return (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.1 + index * 0.06,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    <Link
+                      to={link.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`inline-block font-serif text-4xl leading-tight ${
+                        active ? 'border-b border-forest text-graphite' : 'text-graphite-soft hover:text-graphite'
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </nav>
+
+            <div className="border-t border-stone pt-6">
+              <p className="type-label text-graphite-soft">Architecture, urban planning and sustainable design.</p>
+              <a
+                href="mailto:arc.mit07@gmail.com"
+                className="mt-2 inline-block font-sans text-sm font-medium text-forest-deep"
+              >
+                arc.mit07@gmail.com
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
