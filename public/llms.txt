@@ -15,7 +15,7 @@ writing. Content is in English. The CV is also available as a downloadable PDF.
 - [About](https://amitabhroy.bd/about): background, education, certifications, client reviews, and the academic CV section with a downloadable PDF.
 - [Work](https://amitabhroy.bd/work): featured and selected architecture, urban design and visual communication projects, followed by the photography gallery (architecture, urban life, landscape and nature).
 - [Research](https://amitabhroy.bd/research): current research, including the workplace study for Rangpur Hi-Tech Park. The survey dashboard covers 30 IT/ITES respondents (baseline IEQ 3.12 vs proposed 4.07, +30.4%; perceived productivity +21.9%), job roles, wellbeing frequency, design priorities and the survey-to-brief criteria matrix, followed by four design-outcome renders.
-- [Journal](https://amitabhroy.bd/blogs): essays on architecture, climate and place.
+- [Journal](https://amitabhroy.bd/blogs): essays on architecture, climate and place, including [Why Office Buildings in Bangladesh Need More Than Air Conditioning](https://amitabhroy.bd/blogs/climate-responsive-office-design-bangladesh).
 - [Contact](https://amitabhroy.bd/contact): email, phone and collaboration enquiries.
 
 The former `/cv` and `/photography` pages have been retired; they redirect to

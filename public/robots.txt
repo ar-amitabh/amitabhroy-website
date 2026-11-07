@@ -8,6 +8,7 @@ Allow: /contact
 Allow: /assets/
 Allow: /cv/
 Allow: /photography/
+Allow: /journal/
 Allow: /amitabh-chondro-roy-architect-profile.jpg
 Allow: /amitabh-chondro-roy-architect-portrait.png
 Allow: /favicon-amitabh-roy.png

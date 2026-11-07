@@ -31,7 +31,19 @@ content:
       - name: subtitle
         label: Subtitle / Summary
         type: string
-        description: One sentence shown under the title and in search descriptions.
+        description: One sentence shown under the title.
+      - name: description
+        label: Meta Description (SEO)
+        type: string
+        description: Custom meta description (~150 characters) for Google search results.
+      - name: category
+        label: Category
+        type: string
+        default: Climate-Responsive Architecture
+      - name: keywords
+        label: SEO Keywords
+        type: string
+        description: Comma-separated primary and secondary keywords.
       - name: date
         label: Publish Date
         type: date

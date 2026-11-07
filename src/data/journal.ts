@@ -5,6 +5,9 @@ export interface JournalPost {
   slug: string;
   title: string;
   subtitle: string;
+  description: string;
+  keywords: string;
+  category: string;
   date: string;
   image: string;
   imageAlt: string;
@@ -60,6 +63,9 @@ function toPost(path: string, raw: string): JournalPost | null {
     slug,
     title,
     subtitle: data.subtitle?.trim() ?? '',
+    description: data.description?.trim() ?? '',
+    keywords: data.keywords?.trim() ?? '',
+    category: data.category?.trim() ?? '',
     date,
     image: data.image?.trim() ?? '',
     imageAlt: data.imagealt?.trim() || title,

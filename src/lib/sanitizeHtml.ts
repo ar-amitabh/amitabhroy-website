@@ -1,6 +1,7 @@
 const ALLOWED_TAGS = new Set([
   'A', 'B', 'BLOCKQUOTE', 'BR', 'CODE', 'DEL', 'EM', 'H1', 'H2', 'H3',
-  'HR', 'I', 'LI', 'OL', 'P', 'PRE', 'S', 'STRONG', 'U', 'UL', 'IMG'
+  'HR', 'I', 'LI', 'OL', 'P', 'PRE', 'S', 'STRONG', 'U', 'UL', 'IMG',
+  'TABLE', 'THEAD', 'TBODY', 'TR', 'TH', 'TD'
 ]);
 
 const ALLOWED_ATTRIBUTES = new Set(['alt', 'class', 'height', 'href', 'rel', 'src', 'target', 'width']);

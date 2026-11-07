@@ -61,7 +61,18 @@ const HORIZONTAL_RULE = /^ {0,3}([-*_])(?:\s*\1){2,}\s*$/;
 const BLOCKQUOTE = /^ {0,3}>/;
 const BULLET = /^ {0,3}[-*+]\s+(.*)$/;
 const ORDERED = /^ {0,3}\d+[.)]\s+(.*)$/;
-const BLOCK_START = /^ {0,3}(#{1,6}\s|>|```|[-*+]\s|\d+[.)]\s)/;
+const TABLE_ROW = /^ {0,3}\|(.+)\| *$/;
+const TABLE_DIVIDER = /^ {0,3}\|(?:\s*:?-{3,}:?\s*\|)+\s*$/;
+const BLOCK_START = /^ {0,3}(#{1,6}\s|>|```|[-*+]\s|\d+[.)]\s|\|)/;
+
+function splitTableCells(line: string): string[] {
+  return line
+    .trim()
+    .replace(/^\|/, '')
+    .replace(/\|$/, '')
+    .split('|')
+    .map((cell) => cell.trim());
+}
 
 export function renderMarkdown(source: string): string {
   const lines = source.replace(/\r\n?/g, '\n').split('\n');
@@ -103,6 +114,19 @@ export function renderMarkdown(source: string): string {
     if (HORIZONTAL_RULE.test(line)) {
       html.push('<hr>');
       index += 1;
+      continue;
+    }
+
+    if (TABLE_ROW.test(line) && index + 1 < lines.length && TABLE_DIVIDER.test(lines[index + 1])) {
+      const headers = splitTableCells(line).map((c) => `<th>${renderInline(c)}</th>`).join('');
+      index += 2;
+      const bodyRows: string[] = [];
+      while (index < lines.length && TABLE_ROW.test(lines[index])) {
+        const cells = splitTableCells(lines[index]).map((c) => `<td>${renderInline(c)}</td>`).join('');
+        bodyRows.push(`<tr>${cells}</tr>`);
+        index += 1;
+      }
+      html.push(`<table><thead><tr>${headers}</tr></thead><tbody>${bodyRows.join('')}</tbody></table>`);
       continue;
     }
 
