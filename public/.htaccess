@@ -26,9 +26,11 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ - [L,R=404]
 
-    # React single-page application routing
-    RewriteRule ^index\.html$ - [L]
-    RewriteRule ^(about|work|research|blogs|contact)/?$ /index.html [L]
+    # React single-page application routing + pre-rendered static route HTML
+    RewriteRule (^|/)index\.html$ - [L]
+    RewriteRule ^(about|work|research|blogs|contact)/?$ /$1/index.html [L]
+    RewriteCond %{DOCUMENT_ROOT}/blogs/$1/index.html -f
+    RewriteRule ^blogs/([^/]+)/?$ /blogs/$1/index.html [L]
     RewriteRule ^blogs/.+$ /index.html [L]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

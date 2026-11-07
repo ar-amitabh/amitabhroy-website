@@ -13,9 +13,13 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/about</loc>
-        <lastmod>2026-11-06</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://amitabhroy.bd/amitabh-chondro-roy-architect-portrait.jpg</image:loc>
+            <image:title>Amitabh Chondro Roy (Amitabh Roy) - Architect &amp; Urban Planning Researcher</image:title>
+        </image:image>
     </url>
     <url>
         <loc>https://amitabhroy.bd/work</loc>

@@ -45,10 +45,11 @@ export default function About() {
           >
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#22C55E]/20 shadow-2xl">
               <img
-                src="/amitabh-chondro-roy-architect-portrait.png"
-                alt="Amitabh Chondro Roy - Architect specializing in human-centered, climate-responsive and sustainable design"
+                src="/amitabh-chondro-roy-architect-portrait.jpg"
+                alt="Amitabh Chondro Roy (Amitabh Roy) - Architect & Urban Planning Researcher specializing in human-centered, climate-responsive and sustainable design"
+                width={847}
+                height={1024}
                 className="w-full h-full object-cover"
-                loading="lazy"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-[#0EA5E9]/20 blur-[80px] rounded-full"></div>

@@ -13,8 +13,8 @@ export default function AboutPage() {
         path="/about"
       />
       <h1 className="sr-only">About Amitabh Chondro Roy (Amitabh Roy)</h1>
-      <CVSection />
       <About />
+      <CVSection />
       <Experience />
       <FiverrReviews />
     </div>
