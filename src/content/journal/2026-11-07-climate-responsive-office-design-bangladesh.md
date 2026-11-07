@@ -5,6 +5,7 @@ description: "Explore climate-responsive office design in Bangladesh, from solar
 category: "Climate-Responsive Architecture"
 keywords: "climate-responsive office design in Bangladesh, energy-efficient office buildings Bangladesh, passive cooling strategies Bangladesh, indoor air quality in office buildings, biophilic workplace design, Amitabh Chondro Roy, Amitabh Roy"
 date: 2026-11-07
+order: 1
 slug: climate-responsive-office-design-bangladesh
 image: "/journal/climate-responsive-office-design-bangladesh.jpg"
 imageAlt: "Conceptual section diagram of a climate-responsive office building in Bangladesh showing a central shaded courtyard, cross ventilation, vertical louvers against west sun, horizontal overhangs on the east facade, and an insulated green roof."
@@ -107,7 +108,7 @@ Nevertheless, the study demonstrates why ventilation and indoor environmental qu
 
 My interest in human-centred and biophilic workplace design developed during my undergraduate research at Hajee Mohammad Danesh Science and Technology University.
 
-My thesis, [*Designing a Human-Centered Work Environment for the Employee of Rangpur Hi-Tech Park*](https://doi.org/10.5281/zenodo.23915357) ([read the full thesis PDF on Zenodo](https://zenodo.org/records/23915357/files/Designing%20a%20Human-Centered%20Work%20Environment%20for%20the%20Employee%20of%20Rangpur%20Hi-Tech%20Park_Amitabh%20Chondro%20Roy.pdf?download=1) or explore the [interactive survey dashboard](/research)), investigated how the physical environment of an office relates to employees' comfort, concentration and workplace experience.
+My thesis, [*Designing a Human-Centered Work Environment for the Employee of Rangpur Hi-Tech Park*](https://doi.org/10.5281/zenodo.23915357), investigated how the physical environment of an office relates to employees' comfort, concentration and workplace experience.
 
 The research included a questionnaire survey of 30 IT and IT-enabled services employees working in conventional offices in Bangladesh. The survey was conducted in 2020 during the COVID-19 restrictions.
 
@@ -169,7 +170,7 @@ Climate-responsive architecture does not always require complicated technologica
 
 Many traditional architectural approaches in South Asia developed in response to local environmental conditions. Courtyards, shaded verandas, deep overhangs and transitional spaces have historically helped people manage sunlight, heat and everyday outdoor activities.
 
-These passive cooling strategies remain relevant to contemporary architecture in Bangladesh.
+These passive cooling strategies remain relevant to contemporary architecture in Bangladesh (see also my companion article on [five passive design strategies for workplaces in Bangladesh](/blogs/passive-design-strategies-bangladesh)).
 
 A well-designed courtyard can provide access to daylight, visual openness and opportunities for ventilation. Its effectiveness, however, depends on its dimensions, orientation, shading, surrounding building heights and local wind conditions.
 
@@ -275,6 +276,6 @@ Indoor air quality is influenced by ventilation, filtration, pollutant sources, 
 4. Allen, J. G., MacNaughton, P., Satish, U., et al. (2016). Associations of Cognitive Function Scores with Carbon Dioxide, Ventilation, and Volatile Organic Compound Exposures in Office Workers. *Environmental Health Perspectives*, 124(6), 805–812. [https://doi.org/10.1289/ehp.1510037](https://doi.org/10.1289/ehp.1510037).
 5. World Health Organization. *Ventilation and air conditioning*. [Read guidance](https://www.who.int/news-room/questions-and-answers/item/coronavirus-disease-covid-19-ventilation-and-air-conditioning).
 6. Sustainable and Renewable Energy Development Authority (SREDA). (2023). *Building Energy Efficiency & Environment Rating: Guideline for New Constructions & Existing Buildings, Version II*. [Visit SREDA portal](https://sreda.gov.bd/).
-7. Roy, A. C. (2021; revised edition 2026). *Designing a Human-Centered Work Environment for the Employee of Rangpur Hi-Tech Park*. Undergraduate thesis, Department of Architecture, Hajee Mohammad Danesh Science and Technology University, Bangladesh. [https://doi.org/10.5281/zenodo.23915357](https://doi.org/10.5281/zenodo.23915357) · [Download PDF](https://zenodo.org/records/23915357/files/Designing%20a%20Human-Centered%20Work%20Environment%20for%20the%20Employee%20of%20Rangpur%20Hi-Tech%20Park_Amitabh%20Chondro%20Roy.pdf?download=1).
+7. Roy, A. C. (2021; revised edition 2026). *Designing a Human-Centered Work Environment for the Employee of Rangpur Hi-Tech Park*. Undergraduate thesis, Department of Architecture, Hajee Mohammad Danesh Science and Technology University, Bangladesh. [https://doi.org/10.5281/zenodo.23915357](https://doi.org/10.5281/zenodo.23915357).
 
 *The author's thesis survey was conducted in 2020. The revised 2026 edition retains the original research data and design work, with editorial revisions.*

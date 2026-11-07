@@ -4,6 +4,7 @@ import { markdownToPlainText } from '../lib/markdown';
 export interface JournalPost {
   slug: string;
   title: string;
+  seoTitle: string;
   subtitle: string;
   description: string;
   keywords: string;
@@ -40,7 +41,7 @@ function readingMinutes(body: string): number {
   return Math.max(1, Math.ceil(words / 200));
 }
 
-function toPost(path: string, raw: string): JournalPost | null {
+function toPost(path: string, raw: string): (JournalPost & { order: number }) | null {
   const { data, body } = parseFrontmatter(raw);
 
   if (data.draft === 'true' || data.published === 'false') return null;
@@ -62,6 +63,7 @@ function toPost(path: string, raw: string): JournalPost | null {
   return {
     slug,
     title,
+    seoTitle: data.seotitle?.trim() || title,
     subtitle: data.subtitle?.trim() ?? '',
     description: data.description?.trim() ?? '',
     keywords: data.keywords?.trim() ?? '',
@@ -71,13 +73,14 @@ function toPost(path: string, raw: string): JournalPost | null {
     imageAlt: data.imagealt?.trim() || title,
     content: body.trim(),
     readingMinutes: readingMinutes(body),
+    order: Number(data.order) || 0,
   };
 }
 
 const posts: JournalPost[] = Object.entries(files)
   .map(([path, raw]) => toPost(path, raw))
-  .filter((post): post is JournalPost => post !== null)
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  .filter((post): post is JournalPost & { order: number } => post !== null)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime() || b.order - a.order);
 
 const postsBySlug = new Map(posts.map((post) => [post.slug, post]));
 

@@ -59,7 +59,7 @@ export default function BlogArticlePage() {
   return (
     <div className="min-h-screen bg-[#040816] pb-24 pt-16 text-[#F9FAFB]">
       <SEO
-        title={blog.title}
+        title={blog.seoTitle || blog.title}
         description={description}
         path={`/blogs/${encodeURIComponent(blog.slug)}`}
         image={coverImage || undefined}

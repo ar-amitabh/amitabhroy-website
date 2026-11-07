@@ -28,6 +28,10 @@ content:
         label: Title
         type: string
         required: true
+      - name: seoTitle
+        label: SEO Title (Optional)
+        type: string
+        description: Optional shorter title (~50-60 chars) for browser tabs and Google search results.
       - name: subtitle
         label: Subtitle / Summary
         type: string

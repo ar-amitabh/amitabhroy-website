@@ -19,42 +19,53 @@ function escapeHtml(value: string): string {
   return value.replace(/[&<>"']/g, (character) => HTML_ESCAPES[character]);
 }
 
+function formatEmphasis(text: string): string {
+  return text
+    .replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/__([^_\n]+)__/g, '<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>')
+    .replace(/(^|[^_\w])_([^_\n]+)_/g, '$1<em>$2</em>')
+    .replace(/~~([^~\n]+)~~/g, '<del>$1</del>');
+}
+
 /** Inline formatting: code, images, links, bold, italic, strikethrough. */
 function renderInline(source: string): string {
-  const codeSpans: string[] = [];
+  const placeholders: string[] = [];
+  const hold = (html: string): string => {
+    placeholders.push(html);
+    return `\u0000${placeholders.length - 1}\u0000`;
+  };
 
   // Pull inline code out first so its contents are not formatted further.
-  let text = source.replace(/`([^`\n]+)`/g, (_match, code: string) => {
-    codeSpans.push(`<code>${escapeHtml(code)}</code>`);
-    return `\u0000${codeSpans.length - 1}\u0000`;
-  });
+  let text = source.replace(/`([^`\n]+)`/g, (_match, code: string) =>
+    hold(`<code>${escapeHtml(code)}</code>`),
+  );
 
   text = escapeHtml(text);
 
   // Images before links: the image syntax contains the link syntax.
+  // Store generated tags in placeholders so underscores/asterisks inside URLs
+  // are never mistaken for italic/bold delimiters.
   text = text.replace(
     /!\[([^\]]*)\]\(([^)\s]+)(?:\s+&quot;([^&]*)&quot;)?\)/g,
     (_match, alt: string, src: string, title?: string) =>
-      `<img src="${src}" alt="${alt}"${title ? ` title="${title}"` : ''}>`,
+      hold(`<img src="${src}" alt="${alt}"${title ? ` title="${title}"` : ''}>`),
   );
 
   text = text.replace(
     /\[([^\]]+)\]\(([^)\s]+)(?:\s+&quot;([^&]*)&quot;)?\)/g,
     (_match, label: string, href: string, title?: string) => {
       const external = /^https?:\/\//i.test(href) && !href.startsWith('https://amitabhroy.bd');
-      return `<a href="${href}"${title ? ` title="${title}"` : ''}${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}</a>`;
+      return hold(
+        `<a href="${href}"${title ? ` title="${title}"` : ''}${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${formatEmphasis(label)}</a>`,
+      );
     },
   );
 
-  text = text
-    .replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
-    .replace(/__([^_\n]+)__/g, '<strong>$1</strong>')
-    .replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>')
-    .replace(/(^|[^_\w])_([^_\n]+)_/g, '$1<em>$2</em>')
-    .replace(/~~([^~\n]+)~~/g, '<del>$1</del>');
+  text = formatEmphasis(text);
 
-  // eslint-disable-next-line no-control-regex -- NUL is the code-span placeholder delimiter
-  return text.replace(/\u0000(\d+)\u0000/g, (_match, index: string) => codeSpans[Number(index)] ?? '');
+  // eslint-disable-next-line no-control-regex -- NUL is the placeholder delimiter
+  return text.replace(/\u0000(\d+)\u0000/g, (_match, index: string) => placeholders[Number(index)] ?? '');
 }
 
 const FENCE = /^ {0,3}```\s*([\w-]*)\s*$/;
