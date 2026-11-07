@@ -3,7 +3,6 @@ import { useEffect, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Header from './components/portfolio/Header';
 import Footer from './components/portfolio/Footer';
-import IntroOverlay from './components/brand/IntroOverlay';
 import CustomCursor from './components/brand/CustomCursor';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -48,7 +47,6 @@ function Layout() {
 
   return (
     <div className="min-h-screen bg-paper text-graphite transition-colors duration-300">
-      {!isAdminRoute && <IntroOverlay />}
       {!isAdminRoute && <CustomCursor />}
       {!isAdminRoute && <Header />}
       <main id="main-content">

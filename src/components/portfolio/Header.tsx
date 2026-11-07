@@ -59,29 +59,41 @@ export default function Header() {
   const isActive = (href: string) =>
     location.pathname === href || (href === '/blogs' && location.pathname.startsWith('/blogs/'));
 
+  const isHeroTransparent = location.pathname === '/' && !isScrolled && !isMobileMenuOpen;
+
   return (
     <>
       <header
-        className={`fixed left-0 right-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
-          isScrolled || isMobileMenuOpen
-            ? 'border-stone bg-paper/95 backdrop-blur-md shadow-sm'
-            : 'border-stone/60 bg-paper/90 backdrop-blur-sm'
+        className={`fixed left-0 right-0 top-0 z-50 border-b transition-[background-color,border-color,color,box-shadow] duration-300 ${
+          isHeroTransparent
+            ? 'border-transparent bg-transparent text-[#F6F4EF]'
+            : 'border-stone bg-paper/95 backdrop-blur-md text-graphite shadow-sm'
         }`}
       >
-        <div className="brand-container">
+        <div className="mx-auto max-w-[1440px] px-5 lg:px-16">
           <div className="flex h-20 items-center justify-between">
             {/* Section 5: Wordmark + Monogram */}
             <Link
               to="/"
-              className="group inline-flex items-center gap-3 text-graphite transition-colors"
+              className={`group inline-flex items-center gap-3 transition-colors ${
+                isHeroTransparent ? 'text-[#F6F4EF]' : 'text-graphite'
+              }`}
             >
               <span
                 aria-hidden="true"
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-forest font-serif text-sm text-graphite transition-colors group-hover:bg-forest group-hover:text-paper"
+                className={`flex h-8 w-8 items-center justify-center rounded-full border font-serif text-sm transition-colors ${
+                  isHeroTransparent
+                    ? 'border-[#A3B09C] text-[#F6F4EF] group-hover:bg-[#627363] group-hover:text-[#F6F4EF]'
+                    : 'border-forest text-graphite group-hover:bg-forest group-hover:text-paper'
+                }`}
               >
                 AR
               </span>
-              <span className="font-serif text-[20px] tracking-normal text-graphite lg:text-[24px]">
+              <span
+                className={`font-serif text-[20px] tracking-normal lg:text-[24px] ${
+                  isHeroTransparent ? 'text-[#F6F4EF]' : 'text-graphite'
+                }`}
+              >
                 Amitabh Chondro Roy
               </span>
             </Link>
@@ -96,9 +108,13 @@ export default function Header() {
                       key={link.href}
                       to={link.href}
                       className={`relative py-1 font-sans text-[15px] font-medium transition-colors ${
-                        active
-                          ? 'border-b border-forest text-graphite'
-                          : 'text-graphite-soft hover:text-graphite'
+                        isHeroTransparent
+                          ? active
+                            ? 'border-b border-[#A3B09C] text-[#F6F4EF]'
+                            : 'text-[#F6F4EF]/85 hover:text-[#F6F4EF]'
+                          : active
+                            ? 'border-b border-forest text-graphite'
+                            : 'text-graphite-soft hover:text-graphite'
                       }`}
                     >
                       {link.name}
@@ -112,7 +128,11 @@ export default function Header() {
                 onClick={toggleTheme}
                 aria-label={theme === 'light' ? 'Switch to Night theme' : 'Switch to Paper theme'}
                 title={theme === 'light' ? 'Switch to Night theme' : 'Switch to Paper theme'}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone bg-paper-raised text-graphite transition-colors hover:border-graphite"
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-full border transition-colors ${
+                  isHeroTransparent
+                    ? 'border-[#F6F4EF]/35 bg-[#1E2021]/35 text-[#F6F4EF] backdrop-blur-sm hover:border-[#F6F4EF]'
+                    : 'border-stone bg-paper-raised text-graphite hover:border-graphite'
+                }`}
               >
                 {theme === 'light' ? (
                   <Moon size={17} strokeWidth={1.5} />
@@ -128,7 +148,11 @@ export default function Header() {
                 type="button"
                 onClick={toggleTheme}
                 aria-label={theme === 'light' ? 'Switch to Night theme' : 'Switch to Paper theme'}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone bg-paper-raised text-graphite"
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-full border ${
+                  isHeroTransparent
+                    ? 'border-[#F6F4EF]/35 bg-[#1E2021]/35 text-[#F6F4EF] backdrop-blur-sm'
+                    : 'border-stone bg-paper-raised text-graphite'
+                }`}
               >
                 {theme === 'light' ? (
                   <Moon size={17} strokeWidth={1.5} />
@@ -138,7 +162,11 @@ export default function Header() {
               </button>
               <button
                 type="button"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stone bg-paper-raised text-graphite"
+                className={`inline-flex h-11 w-11 items-center justify-center rounded-full border ${
+                  isHeroTransparent
+                    ? 'border-[#F6F4EF]/35 bg-[#1E2021]/35 text-[#F6F4EF] backdrop-blur-sm'
+                    : 'border-stone bg-paper-raised text-graphite'
+                }`}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
                 aria-expanded={isMobileMenuOpen}
