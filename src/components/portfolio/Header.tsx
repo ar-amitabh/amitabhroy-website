@@ -62,10 +62,10 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed left-0 right-0 top-0 z-50 transition-[background-color,border-color] duration-300 ${
+        className={`fixed left-0 right-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 ${
           isScrolled || isMobileMenuOpen
-            ? 'border-b border-stone bg-paper/95 backdrop-blur-sm'
-            : 'border-b border-transparent bg-transparent'
+            ? 'border-stone bg-paper/95 backdrop-blur-md shadow-sm'
+            : 'border-stone/60 bg-paper/90 backdrop-blur-sm'
         }`}
       >
         <div className="brand-container">

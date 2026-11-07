@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  ArrowDown,
   ArrowRight,
   ArrowUpRight,
   Compass,
@@ -12,6 +11,7 @@ import {
   Wind,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import HeroVideoSection from '../components/brand/HeroVideoSection';
 import MarqueeStrip from '../components/brand/MarqueeStrip';
 import BeforeAfterSlider from '../components/brand/BeforeAfterSlider';
 import AnimatedNumber from '../components/research/AnimatedNumber';
@@ -77,104 +77,8 @@ export default function HomePage() {
         profilePage
       />
 
-      {/* 1. HERO SECTION (Section 8.1 #1) */}
-      <section id="home" className="relative pt-28 pb-16 lg:pt-36 lg:pb-24">
-        <div className="brand-container">
-          <div className="mb-10 lg:mb-14">
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="type-label mb-5 text-forest-deep"
-            >
-              Architecture, urban planning and sustainable design.
-            </motion.p>
-
-            <div className="overflow-hidden pb-2">
-              <motion.h1
-                initial={{ y: '105%' }}
-                animate={{ y: '0%' }}
-                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="type-display-xl text-graphite"
-              >
-                Amitabh Chondro Roy
-              </motion.h1>
-            </div>
-
-            <div className="mt-8 grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-              <motion.p
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="type-body-lg max-w-2xl text-graphite-soft lg:col-span-7"
-              >
-                Human-centred, climate-responsive and sustainable design, informed by architecture,
-                urban planning and <span className="accent-italic">research</span>.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.65, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-wrap items-center gap-4 lg:col-span-5 lg:justify-end"
-              >
-                <Link to="/work" className="btn-primary">
-                  View projects
-                  <ArrowRight size={16} strokeWidth={1.5} className="btn-arrow" />
-                </Link>
-                <a
-                  href="/cv/Amitabh_Chondro_Roy_Academic_CV.pdf"
-                  download="Amitabh_Chondro_Roy_Academic_CV.pdf"
-                  className="btn-secondary"
-                >
-                  <Download size={16} strokeWidth={1.5} />
-                  Download CV
-                </a>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Full-bleed Hero Image with clip-path + scale settle (Section 10.3 #1 & #3) */}
-          <motion.figure
-            initial={{ clipPath: 'inset(0 0 100% 0)' }}
-            animate={{ clipPath: 'inset(0 0 0% 0)' }}
-            transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="render-image-wrap relative overflow-hidden border border-stone bg-paper-raised"
-          >
-            <motion.img
-              initial={{ scale: 1.08 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              src="/hi-tech-park-rangpur-biophilic-architecture.jpg"
-              alt="Human-Centered Work Environment for Rangpur Hi-Tech Park — shaded central courtyard, planted terraces and climate-responsive office blocks"
-              width={1600}
-              height={900}
-              fetchPriority="high"
-              className="aspect-[16/9] w-full object-cover"
-            />
-            <figcaption className="flex flex-wrap items-center justify-between gap-4 border-t border-stone bg-paper-raised px-5 py-3.5">
-              <span className="type-label text-graphite">
-                Featured Thesis · Human-Centered Work Environment, Rangpur Hi-Tech Park
-              </span>
-              <span className="type-label text-graphite-soft">
-                2021 · Rev. 2026 · Khalishakuri, Rangpur · 8.59 Acres
-              </span>
-            </figcaption>
-          </motion.figure>
-
-          {/* Scroll cue */}
-          <div className="mt-8 flex items-center justify-between">
-            <span className="type-label text-graphite-soft">Based in Bogra, Bangladesh</span>
-            <a
-              href="#selected-work"
-              className="type-label inline-flex min-h-[44px] items-center gap-2 text-graphite-soft transition-colors hover:text-graphite"
-            >
-              Scroll to explore
-              <ArrowDown size={14} strokeWidth={1.5} />
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* 1. HERO VIDEO SECTION WITH TYPEWRITER EFFECT */}
+      <HeroVideoSection />
 
       {/* MARQUEE STRIP (Section 10.3 #9) */}
       <MarqueeStrip />
