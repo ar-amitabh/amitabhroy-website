@@ -85,6 +85,33 @@ export default function ResearchPage() {
               >
                 Project context
               </a>
+              <a
+                href="https://doi.org/10.5281/zenodo.23915357"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-700 px-4 py-2.5 text-sm font-medium text-[#C9D2DE] transition-colors hover:border-[#22C55E] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]"
+              >
+                DOI: 10.5281/zenodo.23915357
+                <ExternalLink size={15} aria-hidden="true" />
+              </a>
+              <a
+                href="https://orcid.org/0009-0004-6847-0225"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-700 px-4 py-2.5 text-sm font-medium text-[#C9D2DE] transition-colors hover:border-[#22C55E] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]"
+              >
+                ORCID
+                <ExternalLink size={15} aria-hidden="true" />
+              </a>
+              <a
+                href="https://www.researchgate.net/profile/Amitabh-Chondro-Roy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-700 px-4 py-2.5 text-sm font-medium text-[#C9D2DE] transition-colors hover:border-[#22C55E] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#22C55E]"
+              >
+                ResearchGate
+                <ExternalLink size={15} aria-hidden="true" />
+              </a>
             </div>
           </motion.header>
 

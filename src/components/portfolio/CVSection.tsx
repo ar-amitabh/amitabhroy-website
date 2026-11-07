@@ -89,9 +89,12 @@ export default function CVSection() {
               </ul>
             </div>
             <div>
-              <h3 className="mb-4 text-xl font-semibold text-[#F9FAFB]">Professional contact</h3>
+              <h3 className="mb-4 text-xl font-semibold text-[#F9FAFB]">Professional &amp; academic links</h3>
               <a href="mailto:arc.mit07@gmail.com" className="mb-3 flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><Mail size={18} className="text-[#22C55E]" /> arc.mit07@gmail.com</a>
-              <a href="https://linkedin.com/in/aramitabh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><Linkedin size={18} className="text-[#22C55E]" /> linkedin.com/in/aramitabh</a>
+              <a href="https://linkedin.com/in/aramitabh" target="_blank" rel="noopener noreferrer" className="mb-3 flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><Linkedin size={18} className="text-[#22C55E]" /> linkedin.com/in/aramitabh</a>
+              <a href="https://orcid.org/0009-0004-6847-0225" target="_blank" rel="noopener noreferrer" className="mb-3 flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><ExternalLink size={18} className="text-[#22C55E]" /> ORCID: 0009-0004-6847-0225</a>
+              <a href="https://www.researchgate.net/profile/Amitabh-Chondro-Roy" target="_blank" rel="noopener noreferrer" className="mb-3 flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><ExternalLink size={18} className="text-[#22C55E]" /> ResearchGate Profile</a>
+              <a href="https://doi.org/10.5281/zenodo.23915357" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-[#9CA3AF] transition-colors hover:text-[#22C55E]"><FileText size={18} className="text-[#22C55E]" /> Zenodo DOI: 10.5281/zenodo.23915357</a>
             </div>
             <a href={cvPath} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-[#22C55E] hover:underline"><FileText size={17} /> Open the full two-page CV</a>
           </aside>

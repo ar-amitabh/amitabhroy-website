@@ -29,6 +29,9 @@ the CV section of About and the photography section of Work.
 - Education: Bachelor of Architecture, Hajee Mohammad Danesh Science and Technology University
 - Focus: climate-responsive design, human-centred and evidence-based design, biophilic urbanism, environmental and spatial analysis
 - Email: arc.mit07@gmail.com
+- ORCID: https://orcid.org/0009-0004-6847-0225
+- ResearchGate: https://www.researchgate.net/profile/Amitabh-Chondro-Roy
+- Zenodo DOI: https://doi.org/10.5281/zenodo.23915357
 - LinkedIn: https://linkedin.com/in/aramitabh
 - GitHub: https://github.com/ar-amitabh
 
