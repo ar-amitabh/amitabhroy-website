@@ -13,6 +13,7 @@ import {
   type PortfolioProject,
   type ProjectCategory,
 } from '../../data/projects';
+import BeforeAfterSlider from '../brand/BeforeAfterSlider';
 
 const filterCategories: ('All' | ProjectCategory)[] = [
   'All',
@@ -216,6 +217,30 @@ export default function Work({ activeProject = null }: WorkProps) {
                   </figure>
                 ))}
               </div>
+
+              {activeProject.slug === 'rangpur-hi-tech-park' && (
+                <div className="mt-14 border-t border-stone pt-12">
+                  <div className="max-w-2xl">
+                    <p className="type-label mb-2 text-forest-deep">Interactive Spatial Study</p>
+                    <h3 className="type-h2 text-graphite">
+                      From campus masterplan to <span className="accent-italic">courtyard</span> life.
+                    </h3>
+                    <p className="mt-3 text-base text-graphite-soft">
+                      Compare the overall four-block solar orientation and water retention strategy
+                      with the human-scale courtyard gathering space at Rangpur Hi-Tech Park.
+                    </p>
+                  </div>
+                  <BeforeAfterSlider
+                    beforeImage="/research/figures/proposed-masterplan-1536.webp"
+                    beforeLabel="Proposed Masterplan · 8.59 Acres"
+                    beforeAlt="Masterplan view of Rangpur Hi-Tech Park showing four blocks around a central courtyard"
+                    afterImage="/research/figures/courtyard-gathering-space-1536.webp"
+                    afterLabel="Courtyard Experience · Shaded Uthon"
+                    afterAlt="Human-level view of the shaded courtyard gathering space and water edge"
+                    caption="Rangpur Hi-Tech Park · B.Arch Thesis by Amitabh Chondro Roy (2021; rev. 2026)"
+                  />
+                </div>
+              )}
             </div>
           )}
 

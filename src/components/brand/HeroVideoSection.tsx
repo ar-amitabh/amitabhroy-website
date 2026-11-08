@@ -130,7 +130,7 @@ export default function HeroVideoSection() {
         n += 1;
         setNameCount(n);
         if (n < NAME_TEXT.length) {
-          schedule(typeNextName, 55);
+          schedule(typeNextName, 32);
         } else {
           // 250ms pause after name
           setStage('pause-after-name');
@@ -142,7 +142,7 @@ export default function HeroVideoSection() {
               t += 1;
               setTitleCount(t);
               if (t < TITLE_TEXT.length) {
-                schedule(typeNextTitle, 30);
+                schedule(typeNextTitle, 14);
               } else {
                 // 250ms pause after title
                 setStage('pause-after-title');
@@ -154,7 +154,7 @@ export default function HeroVideoSection() {
                     s += 1;
                     setSubtitleCount(s);
                     if (s < SUBTITLE_TEXT.length) {
-                      schedule(typeNextSubtitle, 14);
+                      schedule(typeNextSubtitle, 5);
                     } else {
                       // Caret blinks 3 times (~1260ms) then fades out
                       setStage('blinking-caret');
@@ -164,22 +164,22 @@ export default function HeroVideoSection() {
                           setStage('done');
                           setShowButtons(true);
                         }, 300);
-                      }, 1260);
+                      }, 600);
                     }
                   };
 
                   typeNextSubtitle();
-                }, 250);
+                }, 120);
               }
             };
 
             typeNextTitle();
-          }, 250);
+          }, 120);
         }
       };
 
       typeNextName();
-    }, 500);
+    }, 150);
 
     return () => {
       window.cancelAnimationFrame(settleId);
@@ -245,9 +245,9 @@ export default function HeroVideoSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background: [
-            'linear-gradient(to top, rgba(30, 32, 33, 0.74) 0%, rgba(30, 32, 33, 0.56) 34%, rgba(30, 32, 33, 0) 62%)',
-            'linear-gradient(to right, rgba(30, 32, 33, 0.58) 0%, rgba(30, 32, 33, 0.26) 48%, rgba(30, 32, 33, 0) 76%)',
-            'linear-gradient(to bottom, rgba(30, 32, 33, 0.45) 0%, rgba(30, 32, 33, 0) 18%)',
+            'linear-gradient(to top, rgba(30, 32, 33, 0.68) 0%, rgba(30, 32, 33, 0.38) 30%, rgba(30, 32, 33, 0) 55%)',
+            'linear-gradient(to right, rgba(30, 32, 33, 0.42) 0%, rgba(30, 32, 33, 0.14) 45%, rgba(30, 32, 33, 0) 70%)',
+            'linear-gradient(to bottom, rgba(30, 32, 33, 0.35) 0%, rgba(30, 32, 33, 0) 16%)',
           ].join(', '),
         }}
       />
