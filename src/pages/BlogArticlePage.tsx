@@ -84,7 +84,9 @@ export default function BlogArticlePage() {
   }
 
   const coverImage = sanitizeUrl(blog.image);
-  const description = blog.description || blog.subtitle || markdownToPlainText(blog.content).slice(0, 155);
+  const plainText = markdownToPlainText(blog.content);
+  const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+  const description = blog.description || blog.subtitle || plainText.slice(0, 155);
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -92,6 +94,9 @@ export default function BlogArticlePage() {
     description,
     datePublished: blog.date,
     dateModified: blog.date,
+    inLanguage: 'en-US',
+    wordCount,
+    articleSection: blog.category || 'Architecture & Urban Planning',
     image: coverImage ? `https://amitabhroy.bd${coverImage}` : 'https://amitabhroy.bd/og-image.jpg',
     mainEntityOfPage: `https://amitabhroy.bd/blogs/${encodeURIComponent(blog.slug)}`,
     author: {
@@ -115,10 +120,11 @@ export default function BlogArticlePage() {
         description={description}
         path={`/blogs/${encodeURIComponent(blog.slug)}`}
         image={coverImage || undefined}
+        imageAlt={blog.imageAlt || blog.title}
         type="article"
         keywords={blog.keywords || undefined}
+        jsonLd={articleSchema}
       />
-      <script type="application/ld+json">{JSON.stringify(articleSchema)}</script>
 
       {/* Top Reading Progress Bar (2px Forest bar per Section 8.6 & 10.6) */}
       <motion.div
@@ -204,7 +210,9 @@ export default function BlogArticlePage() {
             <div className="overflow-hidden border border-stone bg-paper-raised">
               <img
                 src={coverImage}
-                alt={blog.imageAlt}
+                alt={blog.imageAlt || blog.title}
+                width={1280}
+                height={800}
                 className="h-auto w-full object-contain transition-transform duration-700 hover:scale-[1.015]"
               />
             </div>

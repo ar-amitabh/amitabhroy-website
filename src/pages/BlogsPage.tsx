@@ -17,9 +17,37 @@ export default function BlogsPage() {
   const featured = blogs[0];
   const rest = blogs.slice(1);
 
+  const blogCollectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': 'https://amitabhroy.bd/blogs#blog',
+    name: 'Architecture, Climate & Urban Design Journal | Amitabh Chondro Roy',
+    description:
+      'Long-form essays and field notes on human-centered architecture, passive cooling strategies, courtyard systems, and workplace wellbeing in Bangladesh.',
+    url: 'https://amitabhroy.bd/blogs',
+    inLanguage: 'en-US',
+    author: {
+      '@type': 'Person',
+      '@id': 'https://amitabhroy.bd/#person',
+      name: 'Amitabh Chondro Roy',
+    },
+    blogPost: blogs.map((post) => ({
+      '@type': 'BlogPosting',
+      headline: post.title,
+      url: `https://amitabhroy.bd/blogs/${encodeURIComponent(post.slug)}`,
+      datePublished: post.date,
+      description: post.description || post.subtitle,
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-paper pt-20 text-graphite">
-      <SEO title="Journal" description="Notes on architecture, place, climate, and the everyday life of buildings." path="/blogs" />
+      <SEO
+        title="Architecture, Climate & Urban Design Journal"
+        description="Long-form essays and field notes on human-centered architecture, passive cooling strategies, courtyard systems, and workplace wellbeing in Bangladesh."
+        path="/blogs"
+        jsonLd={blogCollectionSchema}
+      />
       <section className="brand-container brand-section">
         <header className="relative border-b border-stone pb-10 sm:pb-12">
           <motion.p
@@ -105,7 +133,9 @@ export default function BlogsPage() {
                   {sanitizeUrl(featured.image) ? (
                     <img
                       src={sanitizeUrl(featured.image)}
-                      alt={featured.imageAlt}
+                      alt={featured.imageAlt || featured.title}
+                      width={1280}
+                      height={800}
                       className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                   ) : (
@@ -163,7 +193,9 @@ export default function BlogsPage() {
                       {sanitizeUrl(blog.image) ? (
                         <img
                           src={sanitizeUrl(blog.image)}
-                          alt=""
+                          alt={blog.imageAlt || blog.title}
+                          width={400}
+                          height={400}
                           loading="lazy"
                           className="aspect-square h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                         />

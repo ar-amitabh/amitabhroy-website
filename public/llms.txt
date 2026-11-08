@@ -1,44 +1,50 @@
 # Amitabh Chondro Roy
 
-> Architect and urban planning professional based in Bogra, Bangladesh, working on
-> human-centred, climate-responsive and biophilic architecture and sustainable
-> urban development.
+> Architect (IAB Associate Member AR-260) and urban planning professional based in
+> Bogra, Bangladesh, working on human-centred, climate-responsive and biophilic
+> architecture and sustainable urban development.
 
-This is the personal portfolio and research site of Amitabh Chondro Roy. It
-documents built and academic projects, research on daylight, natural ventilation
-and wellbeing in workplaces, an academic CV, photography, and occasional
-writing. Content is in English. The CV is also available as a downloadable PDF.
+This is the personal portfolio and academic research site of Amitabh Chondro Roy
+(also known as Amitabh Roy, Ar. Amitabh Roy). It documents architectural and urban
+design case studies, empirical workplace wellbeing research (Zenodo DOI:
+10.5281/zenodo.23915357), long-form essays on passive cooling in Bangladesh, an
+academic CV, and architectural photography.
 
 ## Main pages
 
-- [Home](https://amitabhroy.bd/): design philosophy and experience overview.
-- [About](https://amitabhroy.bd/about): background, education, certifications, client reviews, and the academic CV section with a downloadable PDF.
-- [Work](https://amitabhroy.bd/work): featured and selected architecture, urban design and visual communication projects, followed by the photography gallery (architecture, urban life, landscape and nature).
-- [Research](https://amitabhroy.bd/research): current research, including the workplace study for Rangpur Hi-Tech Park. The survey dashboard covers 30 IT/ITES respondents (baseline IEQ 3.12 vs proposed 4.07, +30.4%; perceived productivity +21.9%), job roles, wellbeing frequency, design priorities and the survey-to-brief criteria matrix, followed by four design-outcome renders.
-- [Journal](https://amitabhroy.bd/blogs): essays on architecture, climate and place, including [Can Workplace Design Influence Employee Wellbeing? Lessons from Rangpur](https://amitabhroy.bd/blogs/workplace-wellbeing-architecture-bangladesh-rangpur), [Designing Better Workplaces for Bangladesh's Climate](https://amitabhroy.bd/blogs/passive-design-strategies-bangladesh) and [Why Office Buildings in Bangladesh Need More Than Air Conditioning](https://amitabhroy.bd/blogs/climate-responsive-office-design-bangladesh).
-- [Contact](https://amitabhroy.bd/contact): email, phone and collaboration enquiries.
+- [Home](https://amitabhroy.bd/): design philosophy, selected architectural works, approach principles, and research summary.
+- [About](https://amitabhroy.bd/about): biography, education (B.Arch, HSTU), IAB membership (AR-260), Open Doors 2026 Diploma of High Achievement in Urbanism, client reviews, and downloadable Academic CV PDF.
+- [Work & Case Studies](https://amitabhroy.bd/work): architectural, urban design, and competition case studies, brand identity portfolio, and photography gallery.
+- [Research & Publications](https://amitabhroy.bd/research): empirical workplace wellbeing study for Rangpur Hi-Tech Park (`n = 30` IT/ITES respondents across 9 firms; baseline mean IEQ `3.12 / 5.00` vs. proposed `4.07 / 5.00`, `+30.4%` improvement; perceived productivity `+21.9%`; 18-attribute human-centered design framework).
+- [Journal](https://amitabhroy.bd/blogs): long-form essays on architecture, climate, and place.
+- [Contact](https://amitabhroy.bd/contact): direct email, phone, and collaboration inquiries.
 
-The former `/cv` and `/photography` pages have been retired; they redirect to
-the CV section of About and the photography section of Work.
+## Architectural & Urban Design Case Studies
 
-## Facts
+- [Human-Centered Hi-Tech Park, Rangpur](https://amitabhroy.bd/work/rangpur-hi-tech-park): 8.59-acre climate-responsive technology campus in Khalishakuri, Rangpur organized around four shallow-plan blocks, a shaded central courtyard (`uthon`), and a rainwater retention pond (B.Arch Thesis, 2021; rev. 2026).
+- [500-Bed Tertiary Teaching Hospital](https://amitabhroy.bd/work/500-bed-hospital-design): healthcare complex in northern Bangladesh featuring daylit inpatient wards, stepped healing gardens, and separated clinical circulation (2020).
+- [Sundar Bari: Climate-Resilient Rural Homestead](https://amitabhroy.bd/work/sundar-bari-climate-housing): competition proposal combining an elevated flood-resilient masonry plinth with breathable bamboo-brick walls and a productive courtyard (2020).
+- [Renewal of the Historic Public Realm, Dinajpur](https://amitabhroy.bd/work/renewal-of-public-realm-dinajpur): urban regeneration proposal reclaiming civic edges with shaded pedestrian walkways, bioswales, and heritage plazas (2018).
+- [HSTU Campus Residential Complex](https://amitabhroy.bd/work/hstu-residential-complex): multi-family campus housing organized around dual-aspect cross-ventilated apartments, brick jali screens, and car-free green courts (2019).
+- [SK+F Commercial Workplace Visualization](https://amitabhroy.bd/work/skf-commercial-office-visualization): corporate interior spatial quality, acoustic timber ceiling, and daylighting visualization completed at Sthapotik, Dhaka (2019).
+
+## Journal Essays
+
+- [Can Workplace Design Influence Employee Wellbeing? Lessons from Rangpur](https://amitabhroy.bd/blogs/workplace-wellbeing-architecture-bangladesh-rangpur) (3,032 words)
+- [Designing Better Workplaces for Bangladesh's Climate: Five Passive Design Strategies](https://amitabhroy.bd/blogs/passive-design-strategies-bangladesh) (2,617 words)
+- [Why Office Buildings in Bangladesh Need More Than Air Conditioning](https://amitabhroy.bd/blogs/climate-responsive-office-design-bangladesh) (2,706 words)
+
+## Key Facts & Academic Identifiers
 
 - Full name: Amitabh Chondro Roy (also known as Amitabh Roy, Ar. Amitabh Roy)
-- Profession: Architect; Urban Planning Professional
+- Profession: Architect (IAB Associate Member `AR-260`); Urban Planning Professional
 - Location: Bogra, Bangladesh
-- Education: Bachelor of Architecture, Hajee Mohammad Danesh Science and Technology University
-- Focus: climate-responsive design, human-centred and evidence-based design, biophilic urbanism, environmental and spatial analysis
+- Education: Bachelor of Architecture (B.Arch), Hajee Mohammad Danesh Science and Technology University (HSTU), Dinajpur, Bangladesh
+- Primary Publication Citation: Roy, A. C. (2021; rev. 2026). *Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park*. Bachelor of Architecture Thesis, HSTU. https://doi.org/10.5281/zenodo.23915357
 - Email: arc.mit07@gmail.com
 - ORCID: https://orcid.org/0009-0004-6847-0225
 - ResearchGate: https://www.researchgate.net/profile/Amitabh-Chondro-Roy
 - Zenodo DOI: https://doi.org/10.5281/zenodo.23915357
 - LinkedIn: https://linkedin.com/in/aramitabh
 - GitHub: https://github.com/ar-amitabh
-
-## Notes for automated agents
-
-- Public pages are server-rendered as a single-page app; all routes are linked
-  from the navigation above and listed in https://amitabhroy.bd/sitemap.xml.
-- `/admin` and `/admin/*` redirect to `/blogs`; there is no private area.
-- Images are illustrative project renderings and photographs; captions and alt
-  text describe each one.
+- Academic CV (PDF): https://amitabhroy.bd/cv/Amitabh_Chondro_Roy_Academic_CV.pdf

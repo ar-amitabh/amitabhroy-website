@@ -73,6 +73,7 @@ function Layout() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/work" element={<WorkPage />} />
+              <Route path="/work/:slug" element={<WorkPage />} />
               <Route path="/research" element={<ResearchPage />} />
               {/* Retired standalone pages: keep old links working. */}
               <Route path="/photography" element={<Navigate to="/work#photography" replace />} />

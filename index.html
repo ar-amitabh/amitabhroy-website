@@ -59,43 +59,89 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "@id": "https://amitabhroy.bd/#person",
-        "name": "Amitabh Chondro Roy",
-        "alternateName": [
-          "Amitabh Roy",
-          "Ar. Amitabh Roy",
-          "Ar. Amitabh Chondro Roy"
-        ],
-        "givenName": "Amitabh",
-        "additionalName": "Chondro",
-        "familyName": "Roy",
-        "jobTitle": ["Architect", "Urban Planning Professional"],
-        "description": "Amitabh Chondro Roy (Amitabh Roy) is an architect and urban planning professional exploring human-centred, climate-responsive architecture and sustainable urban development in Bangladesh.",
-        "url": "https://amitabhroy.bd/",
-        "image": "https://amitabhroy.bd/amitabh-chondro-roy-architect-profile.jpg",
-        "email": "mailto:arc.mit07@gmail.com",
-        "address": { "@type": "PostalAddress", "addressLocality": "Bogra", "addressCountry": "BD" },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "Hajee Mohammad Danesh Science and Technology University"
-        },
-        "knowsAbout": [
-          "Architecture",
-          "Urban and regional planning",
-          "Human-centred design",
-          "Climate-responsive architecture",
-          "Biophilic design",
-          "Sustainable urban development"
-        ],
-        "sameAs": [
-          "https://orcid.org/0009-0004-6847-0225",
-          "https://www.researchgate.net/profile/Amitabh-Chondro-Roy",
-          "https://doi.org/10.5281/zenodo.23915357",
-          "https://linkedin.com/in/aramitabh",
-          "https://github.com/ar-amitabh",
-          "https://www.facebook.com/aramitabh",
-          "https://x.com/ArAmitabh"
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://amitabhroy.bd/#person",
+            "name": "Amitabh Chondro Roy",
+            "alternateName": [
+              "Amitabh Roy",
+              "Ar. Amitabh Roy",
+              "Ar. Amitabh Chondro Roy"
+            ],
+            "givenName": "Amitabh",
+            "additionalName": "Chondro",
+            "familyName": "Roy",
+            "jobTitle": ["Architect", "Urban Planning Professional"],
+            "description": "Amitabh Chondro Roy (Amitabh Roy) is an architect and urban planning professional exploring human-centred, climate-responsive architecture and sustainable urban development in Bangladesh.",
+            "url": "https://amitabhroy.bd/",
+            "image": "https://amitabhroy.bd/amitabh-chondro-roy-architect-profile.jpg",
+            "email": "mailto:arc.mit07@gmail.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bogra",
+              "addressCountry": "BD"
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Hajee Mohammad Danesh Science and Technology University"
+            },
+            "memberOf": {
+              "@type": "ProfessionalService",
+              "name": "Institute of Architects Bangladesh (IAB)",
+              "identifier": "AR-260"
+            },
+            "award": [
+              "Open Doors Russian Scholarship Project — Diploma of High Achievement in Urbanism & Civil Engineering (2026)",
+              "National Freelancer Recognition Award — ICT Division, Bangladesh"
+            ],
+            "knowsAbout": [
+              "Architecture",
+              "Urban and regional planning",
+              "Human-centred design",
+              "Climate-responsive architecture",
+              "Biophilic design",
+              "Sustainable urban development",
+              "Indoor environmental quality"
+            ],
+            "sameAs": [
+              "https://orcid.org/0009-0004-6847-0225",
+              "https://www.researchgate.net/profile/Amitabh-Chondro-Roy",
+              "https://doi.org/10.5281/zenodo.23915357",
+              "https://linkedin.com/in/aramitabh",
+              "https://github.com/ar-amitabh",
+              "https://www.facebook.com/aramitabh",
+              "https://x.com/ArAmitabh"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://amitabhroy.bd/#website",
+            "url": "https://amitabhroy.bd/",
+            "name": "Amitabh Chondro Roy — Architecture, Urban Planning & Research",
+            "description": "Portfolio, architectural case studies, and empirical workplace design research by Amitabh Chondro Roy.",
+            "inLanguage": "en-US",
+            "publisher": {
+              "@id": "https://amitabhroy.bd/#person"
+            }
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://amitabhroy.bd/#practice",
+            "name": "Amitabh Chondro Roy — Architectural & Urban Design Studio",
+            "url": "https://amitabhroy.bd/",
+            "image": "https://amitabhroy.bd/og-image.jpg",
+            "email": "arc.mit07@gmail.com",
+            "founder": {
+              "@id": "https://amitabhroy.bd/#person"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bogra",
+              "addressCountry": "BD"
+            },
+            "areaServed": "Bangladesh"
+          }
         ]
       }
     </script>

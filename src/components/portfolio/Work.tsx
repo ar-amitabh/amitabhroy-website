@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   ArrowLeft,
   ArrowRight,
@@ -49,29 +49,19 @@ const logos = clients.map((client, i) => ({
   client,
 }));
 
-export default function Work() {
-  const [searchParams, setSearchParams] = useSearchParams();
+interface WorkProps {
+  activeProject?: PortfolioProject | null;
+}
+
+export default function Work({ activeProject = null }: WorkProps) {
   const [activeFilter, setActiveFilter] = useState<'All' | ProjectCategory>('All');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [selectedLogo, setSelectedLogo] = useState<number | null>(null);
-
-  const projectSlug = searchParams.get('project');
-  const activeProject: PortfolioProject | null =
-    portfolioProjects.find((p) => p.slug === projectSlug) ?? null;
 
   const visibleProjects =
     activeFilter === 'All'
       ? portfolioProjects
       : portfolioProjects.filter((p) => p.categories.includes(activeFilter));
-
-  const openProject = (project: PortfolioProject) => {
-    setSearchParams({ project: project.slug });
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const closeProject = () => {
-    setSearchParams({});
-  };
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -96,14 +86,13 @@ export default function Work() {
     return (
       <article className="bg-paper pb-20 pt-12 text-graphite lg:pt-16">
         <div className="brand-container">
-          <button
-            type="button"
-            onClick={closeProject}
+          <Link
+            to="/work"
             className="type-label mb-8 inline-flex min-h-[44px] items-center gap-2 text-graphite-soft transition-colors hover:text-graphite"
           >
             <ArrowLeft size={15} strokeWidth={1.5} />
             Back to all work
-          </button>
+          </Link>
 
           {/* 1. Hero title + metadata strip (Section 8.3 #1) */}
           <header className="border-b border-stone pb-10">
@@ -234,9 +223,8 @@ export default function Work() {
           {nextProject && (
             <div className="mt-20 border-t border-stone pt-14">
               <p className="type-label mb-4 text-graphite-soft">Next Case Study</p>
-              <button
-                type="button"
-                onClick={() => openProject(nextProject)}
+              <Link
+                to={`/work/${nextProject.slug}`}
                 data-cursor="view"
                 className="group grid w-full grid-cols-1 items-center gap-8 border border-stone bg-paper-raised p-6 text-left transition-colors hover:border-graphite sm:p-10 lg:grid-cols-12"
               >
@@ -263,7 +251,7 @@ export default function Work() {
                     className="aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                   />
                 </div>
-              </button>
+              </Link>
             </div>
           )}
         </div>
@@ -349,12 +337,12 @@ export default function Work() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.12 }}
                 transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                className="group cursor-pointer"
-                onClick={() => openProject(project)}
+                className="group"
               >
-                <div
+                <Link
+                  to={`/work/${project.slug}`}
                   data-cursor="view"
-                  className="render-image-wrap overflow-hidden border border-stone bg-paper-raised"
+                  className="render-image-wrap block overflow-hidden border border-stone bg-paper-raised"
                 >
                   <img
                     src={project.image}
@@ -364,7 +352,7 @@ export default function Work() {
                     loading="lazy"
                     className="aspect-[3/2] w-full object-cover transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                   />
-                </div>
+                </Link>
 
                 <div className="mt-5">
                   <div className="flex flex-wrap items-center justify-between gap-2">
@@ -375,7 +363,7 @@ export default function Work() {
                   </div>
 
                   <h2 className="mt-3 font-serif text-3xl leading-tight text-graphite transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2">
-                    {project.title}
+                    <Link to={`/work/${project.slug}`}>{project.title}</Link>
                   </h2>
 
                   <div className="mt-2.5 h-px w-10 bg-terracotta transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:w-28" />
@@ -390,10 +378,10 @@ export default function Work() {
         ) : (
           <div className="mt-10 divide-y divide-stone border-b border-stone">
             {visibleProjects.map((project) => (
-              <article
+              <Link
                 key={project.slug}
-                onClick={() => openProject(project)}
-                className="group grid cursor-pointer grid-cols-1 items-center gap-6 py-7 transition-colors hover:bg-paper-raised/70 md:grid-cols-12"
+                to={`/work/${project.slug}`}
+                className="group grid grid-cols-1 items-center gap-6 py-7 transition-colors hover:bg-paper-raised/70 md:grid-cols-12"
               >
                 <div className="md:col-span-5">
                   <h2 className="font-serif text-2xl text-graphite transition-transform duration-300 group-hover:translate-x-2 sm:text-3xl">
@@ -414,7 +402,7 @@ export default function Work() {
                     className="ml-3 text-forest transition-transform group-hover:translate-x-1"
                   />
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         )}

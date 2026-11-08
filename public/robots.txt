@@ -2,15 +2,20 @@ User-agent: *
 Allow: /
 Allow: /about
 Allow: /work
+Allow: /work/
 Allow: /research
 Allow: /blogs
+Allow: /blogs/
 Allow: /contact
 Allow: /assets/
 Allow: /cv/
 Allow: /photography/
 Allow: /journal/
+Allow: /research/
+Allow: /hero-courtyard-poster.webp
+Allow: /hero-courtyard-poster.jpg
 Allow: /amitabh-chondro-roy-architect-profile.jpg
-Allow: /amitabh-chondro-roy-architect-portrait.png
+Allow: /amitabh-chondro-roy-architect-portrait.jpg
 Allow: /favicon-amitabh-roy.png
 Allow: /research-rangpur-hitech-park-conceptual-visual.jpg
 Allow: /brand-logo-*
@@ -24,5 +29,39 @@ Disallow: /*.json$
 Disallow: /*?*sort=
 Disallow: /*?*filter=
 
-# Sitemap
+# Explicit AI Search & Answer Engine Crawler Access (GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Sitemap & AI Context
 Sitemap: https://amitabhroy.bd/sitemap.xml

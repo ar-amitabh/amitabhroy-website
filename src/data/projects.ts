@@ -131,7 +131,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Perspective of the Sundar Bari climate-resilient housing design featuring raised plinth, deep verandahs and local bamboo-brick construction',
     aspectRatio: '3/2',
     overview:
-      'A competition entry reimagining the rural Bangladeshi homestead for flood-prone and monsoon-intensive regions. The scheme combines an elevated, erosion-resistant plinth with breathable стены, deep verandahs and a productive domestic courtyard.',
+      'A competition entry reimagining the rural Bangladeshi homestead for flood-prone and monsoon-intensive regions. The scheme combines an elevated, erosion-resistant plinth with breathable walls, deep verandahs and a productive domestic courtyard.',
     keyFacts: [
       { label: 'Typology', value: 'Climate-Resilient Housing' },
       { label: 'Format', value: 'Design Competition' },

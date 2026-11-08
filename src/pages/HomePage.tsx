@@ -117,7 +117,7 @@ export default function HomePage() {
                 >
                   <div className={imageCols}>
                     <Link
-                      to={`/work?project=${encodeURIComponent(project.slug)}`}
+                      to={`/work/${encodeURIComponent(project.slug)}`}
                       data-cursor="view"
                       className="render-image-wrap block overflow-hidden border border-stone bg-paper-raised"
                     >
@@ -141,7 +141,7 @@ export default function HomePage() {
                     </div>
 
                     <h3 className="mt-5 font-serif text-3xl leading-[1.1] text-graphite transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2 sm:text-4xl">
-                      <Link to={`/work?project=${encodeURIComponent(project.slug)}`}>
+                      <Link to={`/work/${encodeURIComponent(project.slug)}`}>
                         {project.title}
                       </Link>
                     </h3>
@@ -166,7 +166,7 @@ export default function HomePage() {
 
                     <div className="mt-7">
                       <Link
-                        to={`/work?project=${encodeURIComponent(project.slug)}`}
+                        to={`/work/${encodeURIComponent(project.slug)}`}
                         className="link-underline text-sm"
                       >
                         View project case study

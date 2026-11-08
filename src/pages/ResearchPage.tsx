@@ -66,13 +66,84 @@ export default function ResearchPage() {
     },
   ];
 
+  const researchSchemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ScholarlyArticle',
+      '@id': 'https://amitabhroy.bd/research#thesis',
+      headline:
+        'Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park',
+      name: 'Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park',
+      description:
+        'Empirical B.Arch thesis study evaluating indoor environmental quality (IEQ), passive cooling, and human-centered workplace architecture for 30 IT/ITES professionals in Bangladesh.',
+      datePublished: '2021-12-01',
+      dateModified: '2026-11-06',
+      inLanguage: 'en-US',
+      url: 'https://amitabhroy.bd/research',
+      sameAs: 'https://doi.org/10.5281/zenodo.23915357',
+      identifier: {
+        '@type': 'PropertyValue',
+        propertyID: 'DOI',
+        value: '10.5281/zenodo.23915357',
+      },
+      image: 'https://amitabhroy.bd/research-rangpur-hitech-park-conceptual-visual.jpg',
+      author: {
+        '@type': 'Person',
+        '@id': 'https://amitabhroy.bd/#person',
+        name: 'Amitabh Chondro Roy',
+        url: 'https://amitabhroy.bd/',
+      },
+      publisher: {
+        '@type': 'CollegeOrUniversity',
+        name: 'Hajee Mohammad Danesh Science and Technology University (HSTU)',
+      },
+      about: [
+        'Human-Centered Design',
+        'Climate-Responsive Architecture',
+        'Indoor Environmental Quality',
+        'Biophilic Workplace Design',
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      '@id': 'https://amitabhroy.bd/research#dataset',
+      name: 'Rangpur Hi-Tech Park Employee Workplace Wellbeing & IEQ Survey Dataset (n = 30)',
+      description:
+        'Structured questionnaire dataset of 30 IT/ITES professionals across 9 firms in Bangladesh measuring 6 workplace environmental dimensions (baseline mean IEQ 3.12/5.00 vs. proposed 4.07/5.00, +30.4% improvement).',
+      url: 'https://amitabhroy.bd/research#field-evidence',
+      sameAs: 'https://doi.org/10.5281/zenodo.23915357',
+      license: 'https://creativecommons.org/licenses/by/4.0/',
+      isAccessibleForFree: true,
+      creator: {
+        '@type': 'Person',
+        '@id': 'https://amitabhroy.bd/#person',
+        name: 'Amitabh Chondro Roy',
+      },
+      spatialCoverage: {
+        '@type': 'Place',
+        name: 'Rangpur, Bangladesh',
+      },
+      variableMeasured: [
+        'Indoor Environmental Quality (IEQ)',
+        'Daylight & Natural Ventilation Satisfaction',
+        'Thermal Comfort',
+        'Ergonomic Comfort',
+        'Perceived Productivity Impact',
+      ],
+    },
+  ];
+
   return (
     <>
       <SEO
-        title="Research | Amitabh Chondro Roy"
+        title="Workplace Wellbeing & Climate-Responsive Design Research"
         path="/research"
+        image="/research-rangpur-hitech-park-conceptual-visual.jpg"
+        imageAlt="Conceptual visualization of a shaded, landscaped technology campus courtyard at Rangpur Hi-Tech Park"
         description="Research in human-centered, climate-responsive and sustainable architecture, including a 30-respondent workplace well-being study at Rangpur Hi-Tech Park and its design outcomes."
         keywords="architectural research, human-centered design, sustainable architecture, workplace design, indoor environmental quality, Rangpur Hi-Tech Park, Bangladesh architecture"
+        jsonLd={researchSchemas}
       />
 
       <div className="min-h-screen bg-paper text-graphite pt-20">
@@ -226,6 +297,8 @@ export default function ResearchPage() {
                   <img
                     src="/research-rangpur-hitech-park-conceptual-visual.jpg"
                     alt="Conceptual visualization of a shaded, landscaped technology campus courtyard with connected academic and workplace spaces"
+                    width={1280}
+                    height={853}
                     className="h-full w-full object-cover"
                     loading="lazy"
                     decoding="async"
@@ -275,7 +348,7 @@ export default function ResearchPage() {
                       ))}
                     </div>
                     <Link
-                      to="/work?project=rangpur-hi-tech-park"
+                      to="/work/rangpur-hi-tech-park"
                       className="link-underline font-medium text-sm text-forest-deep"
                     >
                       View architectural case study →
