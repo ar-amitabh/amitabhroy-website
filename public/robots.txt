@@ -65,3 +65,6 @@ Allow: /
 
 # Sitemap & AI Context
 Sitemap: https://amitabhroy.bd/sitemap.xml
+
+# IndexNow
+Allow: /ywU1a-8G6qyNoTsQpUFURaFtBKvOalbDktFYUCiuZTs.txt
