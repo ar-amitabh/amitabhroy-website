@@ -145,6 +145,15 @@ export default function CVSection() {
                   arc.mit07@gmail.com
                 </a>
                 <a
+                  href="https://scholar.google.com/citations?user=Ab1Q_FAAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-graphite-soft transition-colors hover:text-graphite"
+                >
+                  <ExternalLink size={16} strokeWidth={1.5} className="text-forest" />
+                  Google Scholar
+                </a>
+                <a
                   href="https://orcid.org/0009-0004-6847-0225"
                   target="_blank"
                   rel="noopener noreferrer"

@@ -7,6 +7,7 @@ export default function Footer() {
   };
 
   const academicLinks = [
+    { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=Ab1Q_FAAAAAJ&hl=en' },
     { label: 'ORCID · 0009-0004-6847-0225', href: 'https://orcid.org/0009-0004-6847-0225' },
     { label: 'ResearchGate', href: 'https://www.researchgate.net/profile/Amitabh-Chondro-Roy' },
     { label: 'Zenodo DOI · 10.5281/zenodo.23915357', href: 'https://doi.org/10.5281/zenodo.23915357' },

@@ -243,6 +243,15 @@ export default function ResearchPage() {
                   )}
                 </button>
                 <a
+                  href="https://scholar.google.com/citations?user=Ab1Q_FAAAAAJ&hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary text-sm"
+                >
+                  Google Scholar
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
+                <a
                   href="https://orcid.org/0009-0004-6847-0225"
                   target="_blank"
                   rel="noopener noreferrer"

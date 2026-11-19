@@ -121,6 +121,12 @@ export default function Contact() {
       value: '0009-0004-6847-0225',
       href: 'https://orcid.org/0009-0004-6847-0225',
     },
+    {
+      icon: Globe,
+      label: 'Google Scholar',
+      value: 'Amitabh Chondro Roy',
+      href: 'https://scholar.google.com/citations?user=Ab1Q_FAAAAAJ&hl=en',
+    },
   ];
 
   return (

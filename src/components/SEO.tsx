@@ -77,6 +77,7 @@ export default function SEO({
             'Environmental analysis',
           ],
           sameAs: [
+            'https://scholar.google.com/citations?user=Ab1Q_FAAAAAJ&hl=en',
             'https://orcid.org/0009-0004-6847-0225',
             'https://www.researchgate.net/profile/Amitabh-Chondro-Roy',
             'https://doi.org/10.5281/zenodo.23915357',
