@@ -7,7 +7,7 @@ subtitle: A dome roof, a shaded uthan, a rooftop garden and a restored dighi can
 category: Healthy Cities
 date: 2026-11-25
 slug: courtyard-cooling-healthy-cities-bangladesh
-image: /journal/media-generation-a-hopeful-photorealistic-wide-0-982fd729-7bf8-47ad-9176-17630aa2a9e0.webp
+image: /journal/media-generation-a-hopeful-photorealistic-wide-0-982fd729-7bf8-47ad-9176-17630aa2a9e0-optimized-1200.webp
 imageAlt: A green healthy city in Bangladesh with a courtyard house, rooftop
   gardens, a restored pond and a shaded street
 draft: false
@@ -48,7 +48,7 @@ Another study, by Aloshan and Aldali in Scientific Reports in 2025, ran nearly 2
 
 That tells us something practical. A courtyard helps, but only if the rest of the design is right. The size of windows, the shading, and the insulation matter more than making the courtyard a little bigger or smaller.
 
-![A shaded Bangladeshi courtyard with a dome roof, a tree in the centre and a family sitting in the shade.](/journal/media-generation-courtyard-dome-roof-bangladesh-0-4f2cfd31-799f-437d-809c-602bb0fdcadf.webp)
+![A shaded Bangladeshi courtyard with a dome roof, a tree in the centre and a family sitting in the shade.](/journal/media-generation-courtyard-dome-roof-bangladesh-0-4f2cfd31-799f-437d-809c-602bb0fdcadf-optimized-1200.webp)
 
 ## What This Means for Dhaka
 
@@ -58,7 +58,7 @@ A dighi, a pond, is not only a water body. It cools the air around it, holds rai
 
 These are not luxury ideas. They are low cost, local and proven in our climate.
 
-![A green Dhaka street with rooftop gardens, vertical greenery, a restored pond and people walking and cycling.](/journal/media-generation-rooftop-garden-dhaka-dighi-0-b49dd415-3bda-47f7-8861-d2b9bb6962fa.webp)
+![A green Dhaka street with rooftop gardens, vertical greenery, a restored pond and people walking and cycling.](/journal/media-generation-rooftop-garden-dhaka-dighi-0-b49dd415-3bda-47f7-8861-d2b9bb6962fa-optimized-1200.webp)
 
 ## Five Practical Steps
 
