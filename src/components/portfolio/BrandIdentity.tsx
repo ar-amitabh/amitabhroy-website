@@ -3,7 +3,7 @@ export default function BrandIdentity() {
     'Finance59 LLC',
     'HBCU',
     'Affordable Smart Homes',
-    'Stremline Bookeeping',
+    'Streamline Bookkeeping',
     'Benjamin Franklin',
     'My Biz Answers',
     'Opulence Radio',

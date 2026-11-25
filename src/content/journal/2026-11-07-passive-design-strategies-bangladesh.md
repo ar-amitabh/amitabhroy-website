@@ -1,9 +1,10 @@
 ---
-title: "Designing Better Workplaces for Bangladesh's Climate"
+title: "5 Passive Design Strategies for Bangladesh Workplaces"
 seoTitle: "5 Passive Design Strategies for Bangladesh Workplaces"
-subtitle: "Five passive design strategies for cooler, brighter and more human-centred offices"
+subtitle: "Designing better workplaces for Bangladesh's climate — cooler, brighter and more human-centred offices"
 description: "Explore five passive design strategies in Bangladesh for cooler, brighter, healthier workplaces, from building orientation to shaded courtyards."
 category: "Climate-Responsive Architecture"
+tags: "Passive Design, Climate-Responsive Architecture, Natural Ventilation, Solar Shading, Courtyard Design"
 keywords: "passive design strategies in Bangladesh, climate-responsive architecture Bangladesh, passive cooling in Bangladesh, natural ventilation office design, solar shading, biophilic workplace design, Bangladesh Architecture, Workplace Design, Passive Design, Rangpur Hi-Tech Park, Amitabh Chondro Roy, Amitabh Roy"
 date: 2026-11-07
 order: 2
@@ -79,7 +80,7 @@ A verandah does not need to be copied as a nostalgic feature. Its depth, materia
 
 ### 4. Make the courtyard part of everyday work life
 
-The *uthon*, or courtyard, has long been part of homes and settlements across Bengal. It gives daylight and air access to the spaces around it. It is also a shared place where people meet, pause and carry out everyday activities.
+The *uthan*, or courtyard, has long been part of homes and settlements across Bengal. It gives daylight and air access to the spaces around it. It is also a shared place where people meet, pause and carry out everyday activities.
 
 A courtyard can play a similar role in a workplace. It can bring light into the centre of a building, create views from work areas and provide a sheltered outdoor place for a short break. When surrounded by narrower building wings, it can also help connect rooms to air and landscape.
 
@@ -151,4 +152,4 @@ Trees and planting can shade outdoor surfaces and reduce heat absorbed by paving
 
 ## Author's related research
 
-Roy, Amitabh Chondro. [*Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park*](https://doi.org/10.5281/zenodo.23915357). Undergraduate thesis, Hajee Mohammad Danesh Science and Technology University. Original research completed in 2021; revised edition 2026.
+Roy, Amitabh Chondro. [*Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park*](https://doi.org/10.5281/zenodo.23915357). Undergraduate thesis, Hajee Mohammad Danesh Science and Technology University. Original research completed in 2021; revised edition 2026.

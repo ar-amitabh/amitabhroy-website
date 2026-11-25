@@ -9,6 +9,7 @@ export interface JournalPost {
   description: string;
   keywords: string;
   category: string;
+  tags: string[];
   date: string;
   image: string;
   imageAlt: string;
@@ -60,6 +61,13 @@ function toPost(path: string, raw: string): (JournalPost & { order: number }) | 
     return null;
   }
 
+  const rawTags = data.tags
+    ? data.tags
+        .split(',')
+        .map((t) => t.trim())
+        .filter(Boolean)
+    : [];
+
   return {
     slug,
     title,
@@ -68,6 +76,7 @@ function toPost(path: string, raw: string): (JournalPost & { order: number }) | 
     description: data.description?.trim() ?? '',
     keywords: data.keywords?.trim() ?? '',
     category: data.category?.trim() ?? '',
+    tags: rawTags,
     date,
     image: data.image?.trim() ?? '',
     imageAlt: data.imagealt?.trim() || title,
@@ -90,4 +99,55 @@ export function getJournalPosts(): JournalPost[] {
 
 export function getJournalPost(slug: string): JournalPost | undefined {
   return postsBySlug.get(slug);
+}
+
+export function getRelatedPosts(currentSlug: string, limit = 3): JournalPost[] {
+  const current = postsBySlug.get(currentSlug);
+  const candidates = posts.filter((p) => p.slug !== currentSlug);
+  if (!current) return candidates.slice(0, limit);
+
+  const currentTags = new Set(current.tags.map((t) => t.toLowerCase()));
+  return [...candidates]
+    .sort((a, b) => {
+      const score = (post: JournalPost) => {
+        let s = post.category === current.category ? 3 : 0;
+        for (const t of post.tags) {
+          if (currentTags.has(t.toLowerCase())) s += 1;
+        }
+        return s;
+      };
+      const diff = score(b) - score(a);
+      if (diff !== 0) return diff;
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    })
+    .slice(0, limit);
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export function extractFaqItems(markdown: string): FaqItem[] {
+  const normalized = markdown.replace(/\r\n?/g, '\n');
+  const faqMatch = normalized.match(/^##\s+Frequently\s+Asked\s+Questions\s*$/im);
+  if (!faqMatch || faqMatch.index === undefined) return [];
+
+  const afterHeading = normalized.slice(faqMatch.index + faqMatch[0].length);
+  const nextSectionMatch = afterHeading.match(/\n(?:##\s+[^\n]+|---\s*\n)/);
+  const faqSection = nextSectionMatch && nextSectionMatch.index !== undefined
+    ? afterHeading.slice(0, nextSectionMatch.index)
+    : afterHeading;
+
+  const items: FaqItem[] = [];
+  const blocks = faqSection.split(/\n###\s+/).slice(1);
+  for (const block of blocks) {
+    const lines = block.trim().split('\n');
+    const question = lines[0]?.replace(/^\d+\.\s*/, '').trim();
+    const answer = markdownToPlainText(lines.slice(1).join('\n')).trim();
+    if (question && answer) {
+      items.push({ question, answer });
+    }
+  }
+  return items;
 }

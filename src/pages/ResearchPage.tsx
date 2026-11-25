@@ -6,7 +6,7 @@ import SEO from '../components/SEO';
 import ResearchDashboard from '../components/research/ResearchDashboard';
 
 const CITATION_TEXT =
-  'Roy, A. C. (2021; rev. 2026). Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park. Bachelor of Architecture Thesis, Hajee Mohammad Danesh Science and Technology University (HSTU). https://doi.org/10.5281/zenodo.23915357';
+  'Roy, A. C. (2021; rev. 2026). Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park. Bachelor of Architecture Thesis, Hajee Mohammad Danesh Science and Technology University (HSTU). https://doi.org/10.5281/zenodo.23915357';
 
 export default function ResearchPage() {
   const [copiedCitation, setCopiedCitation] = useState(false);
@@ -22,14 +22,14 @@ export default function ResearchPage() {
   };
 
   const featuredResearch = {
-    title: 'Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park',
+    title: 'Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park',
     description:
-      'A B.Arch thesis project and empirical study exploring the intersection of human-centered design principles, indoor environmental quality (IEQ), and climate-responsive workplace architecture in Bangladesh’s growing technology sector.',
+      'A B.Arch thesis project and empirical study exploring the intersection of human-centred design principles, indoor environmental quality (IEQ), and climate-responsive workplace architecture in Bangladesh’s growing technology sector.',
     year: '2021 · Rev. 2026',
     location: 'Rangpur, Bangladesh',
     status: 'Published · Open Access',
     image: '/research-rangpur-hitech-park-conceptual-visual.jpg',
-    tags: ['Human-Centered Design', 'Sustainable Architecture', 'Workplace Design', 'Urban Planning'],
+    tags: ['Human-Centred Design', 'Sustainable Architecture', 'Workplace Design', 'Urban Planning'],
     highlights: [
       'Conducted a structured field survey with 30 IT / ITES professionals to evaluate workplace comfort',
       'Developed climate-responsive passive design strategies for composite sub-tropical conditions',
@@ -42,7 +42,7 @@ export default function ResearchPage() {
   const researchAreas = [
     {
       number: '01',
-      title: 'Human-Centered Design',
+      title: 'Human-Centred Design',
       description:
         'Exploring how spatial configuration, daylight, and acoustics respond to human psychological, social, and physiological needs in everyday work settings.',
     },
@@ -56,7 +56,7 @@ export default function ResearchPage() {
       number: '03',
       title: 'Sustainable Urban Development',
       description:
-        'Researching urban heat island mitigation, green infrastructure, and GIS-informed spatial planning in rapidly urbanizing Bangladeshi cities.',
+        'Researching urban heat island mitigation, green infrastructure, and GIS-informed spatial planning in rapidly urbanising Bangladeshi cities.',
     },
     {
       number: '04',
@@ -72,10 +72,10 @@ export default function ResearchPage() {
       '@type': 'ScholarlyArticle',
       '@id': 'https://amitabhroy.bd/research#thesis',
       headline:
-        'Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park',
-      name: 'Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park',
+        'Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park',
+      name: 'Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park',
       description:
-        'Empirical B.Arch thesis study evaluating indoor environmental quality (IEQ), passive cooling, and human-centered workplace architecture for 30 IT/ITES professionals in Bangladesh.',
+        'Empirical B.Arch thesis study evaluating indoor environmental quality (IEQ), passive cooling, and human-centred workplace architecture for 30 IT/ITES professionals in Bangladesh.',
       datePublished: '2021-12-01',
       dateModified: '2026-11-06',
       inLanguage: 'en-US',
@@ -98,7 +98,7 @@ export default function ResearchPage() {
         name: 'Hajee Mohammad Danesh Science and Technology University (HSTU)',
       },
       about: [
-        'Human-Centered Design',
+        'Human-Centred Design',
         'Climate-Responsive Architecture',
         'Indoor Environmental Quality',
         'Biophilic Workplace Design',
@@ -140,9 +140,9 @@ export default function ResearchPage() {
         title="Workplace Wellbeing & Climate-Responsive Design Research"
         path="/research"
         image="/research-rangpur-hitech-park-conceptual-visual.jpg"
-        imageAlt="Conceptual visualization of a shaded, landscaped technology campus courtyard at Rangpur Hi-Tech Park"
-        description="Research in human-centered, climate-responsive and sustainable architecture, including a 30-respondent workplace well-being study at Rangpur Hi-Tech Park and its design outcomes."
-        keywords="architectural research, human-centered design, sustainable architecture, workplace design, indoor environmental quality, Rangpur Hi-Tech Park, Bangladesh architecture"
+        imageAlt="Conceptual visualisation of a shaded, landscaped technology campus courtyard at Rangpur Hi-Tech Park"
+        description="Research in human-centred, climate-responsive and sustainable architecture, including a 30-respondent workplace well-being study at Rangpur Hi-Tech Park and its design outcomes."
+        keywords="architectural research, human-centred design, sustainable architecture, workplace design, indoor environmental quality, Rangpur Hi-Tech Park, Bangladesh architecture"
         jsonLd={researchSchemas}
       />
 

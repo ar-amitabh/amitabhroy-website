@@ -111,6 +111,7 @@ export default function BlogsPage() {
                     </p>
                   )}
                   <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 type-meta text-graphite-soft">
+                    <span className="text-graphite">By Amitabh Chondro Roy</span>
                     <span className="inline-flex items-center gap-1.5">
                       <Clock size={14} className="text-forest-deep" />
                       {featured.readingMinutes} min read
@@ -122,6 +123,15 @@ export default function BlogsPage() {
                       Read essay <ArrowUpRight size={15} />
                     </Link>
                   </div>
+                  {featured.tags.length > 0 && (
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {featured.tags.slice(0, 4).map((tag) => (
+                        <span key={tag} className="tag-pill">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <Link
@@ -179,10 +189,23 @@ export default function BlogsPage() {
                           {blog.subtitle}
                         </p>
                       )}
-                      <p className="mt-4 inline-flex items-center gap-1.5 type-meta text-graphite-soft">
-                        <Clock size={13} className="text-forest-deep" />
-                        {blog.readingMinutes} min read
-                      </p>
+                      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 type-meta text-graphite-soft">
+                        <span className="text-graphite">By Amitabh Chondro Roy</span>
+                        <span aria-hidden="true">·</span>
+                        <span className="inline-flex items-center gap-1.5">
+                          <Clock size={13} className="text-forest-deep" />
+                          {blog.readingMinutes} min read
+                        </span>
+                      </div>
+                      {blog.tags.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                          {blog.tags.slice(0, 3).map((tag) => (
+                            <span key={tag} className="tag-pill text-[11px]">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     <Link
                       to={`/blogs/${encodeURIComponent(blog.slug)}`}

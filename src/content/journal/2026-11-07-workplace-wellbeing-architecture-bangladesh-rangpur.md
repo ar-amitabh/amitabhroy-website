@@ -1,9 +1,10 @@
 ---
 title: "Can Workplace Design Influence Employee Wellbeing? Lessons from Rangpur"
-seoTitle: "Workplace Wellbeing in Bangladesh: Lessons from Rangpur"
+seoTitle: "Can Workplace Design Influence Employee Wellbeing? Lessons from Rangpur"
 subtitle: "What 30 IT professionals told me about their work environments, and how their responses shaped a human-centred workplace proposal for Rangpur Hi-Tech Park."
 description: "Can office design support employee wellbeing? Explore findings from a Rangpur Hi-Tech Park study and practical lessons for healthier workplaces in Bangladesh."
 category: "Human-Centred Architecture"
+tags: "Workplace Wellbeing, Biophilic Design, Rangpur Hi-Tech Park, Indoor Environmental Quality, Human-Centred Architecture"
 keywords: "workplace wellbeing architecture in Bangladesh, human-centred workplace design Bangladesh, employee wellbeing office design, Rangpur Hi-Tech Park thesis, biophilic workplace design Bangladesh, healthy office architecture, Workplace Design, Employee Wellbeing, Bangladesh Architecture, Rangpur Hi-Tech Park, Biophilic Design, Indoor Environmental Quality, Architectural Research, Amitabh Chondro Roy, Amitabh Roy"
 date: 2026-11-07
 order: 3
@@ -33,7 +34,7 @@ This is why workplace wellbeing architecture in Bangladesh needs to consider the
 
 ## What I wanted to learn from IT professionals
 
-The study was part of my undergraduate thesis, [*Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park*](https://doi.org/10.5281/zenodo.23915357). I completed the original research in 2021. The 2026 revised edition updates the industry context and rechecks the calculations, while retaining the original survey data.
+The study was part of my undergraduate thesis, [*Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park*](https://doi.org/10.5281/zenodo.23915357). I completed the original research in 2021. The 2026 revised edition updates the industry context and rechecks the calculations, while retaining the original survey data.
 
 The survey was conducted remotely during the COVID-19 lockdown in 2020. I shared a short questionnaire through WhatsApp and received 30 complete responses from IT and IT-enabled services employees across nine companies. The participants worked in different roles, including software development, systems analysis, quality assurance, project management, UX design and web development.
 

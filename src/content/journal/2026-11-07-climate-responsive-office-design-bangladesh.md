@@ -3,6 +3,7 @@ title: "Why Office Buildings in Bangladesh Need More Than Air Conditioning"
 subtitle: "Rethinking workplace comfort through climate-responsive architecture, passive cooling and human-centred design."
 description: "Explore climate-responsive office design in Bangladesh, from solar shading and natural ventilation to indoor air quality and employee wellbeing."
 category: "Climate-Responsive Architecture"
+tags: "Climate-Responsive Design, Office Architecture, Passive Cooling, Window-to-Wall Ratio, Urban Heat Island"
 keywords: "climate-responsive office design in Bangladesh, energy-efficient office buildings Bangladesh, passive cooling strategies Bangladesh, indoor air quality in office buildings, biophilic workplace design, Amitabh Chondro Roy, Amitabh Roy"
 date: 2026-11-07
 order: 1
@@ -276,6 +277,6 @@ Indoor air quality is influenced by ventilation, filtration, pollutant sources, 
 4. Allen, J. G., MacNaughton, P., Satish, U., et al. (2016). Associations of Cognitive Function Scores with Carbon Dioxide, Ventilation, and Volatile Organic Compound Exposures in Office Workers. *Environmental Health Perspectives*, 124(6), 805–812. [https://doi.org/10.1289/ehp.1510037](https://doi.org/10.1289/ehp.1510037).
 5. World Health Organization. *Ventilation and air conditioning*. [Read guidance](https://www.who.int/news-room/questions-and-answers/item/coronavirus-disease-covid-19-ventilation-and-air-conditioning).
 6. Sustainable and Renewable Energy Development Authority (SREDA). (2023). *Building Energy Efficiency & Environment Rating: Guideline for New Constructions & Existing Buildings, Version II*. [Visit SREDA portal](https://sreda.gov.bd/).
-7. Roy, A. C. (2021; revised edition 2026). *Designing a Human-Centered Work Environment for the Employee of Rangpur Hi-Tech Park*. Undergraduate thesis, Department of Architecture, Hajee Mohammad Danesh Science and Technology University, Bangladesh. [https://doi.org/10.5281/zenodo.23915357](https://doi.org/10.5281/zenodo.23915357).
+7. Roy, A. C. (2021; revised edition 2026). *Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park*. Undergraduate thesis, Department of Architecture, Hajee Mohammad Danesh Science and Technology University, Bangladesh. [https://doi.org/10.5281/zenodo.23915357](https://doi.org/10.5281/zenodo.23915357).
 
 *The author's thesis survey was conducted in 2020. The revised 2026 edition retains the original research data and design work, with editorial revisions.*

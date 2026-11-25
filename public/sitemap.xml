@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://amitabhroy.bd/</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-25</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/hero-courtyard-poster.jpg</image:loc>
             <image:title>Climate-responsive courtyard architecture by Amitabh Chondro Roy</image:title>
@@ -15,7 +15,7 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/about</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-19</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/amitabh-chondro-roy-architect-portrait.jpg</image:loc>
             <image:title>Amitabh Chondro Roy (Amitabh Roy) - Architect &amp; Urban Planning Researcher</image:title>
@@ -39,10 +39,10 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/work/rangpur-hi-tech-park</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-25</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/hi-tech-park-rangpur-biophilic-architecture.jpg</image:loc>
-            <image:title>Human-Centered Hi-Tech Park, Rangpur — Architectural Case Study</image:title>
+            <image:title>Human-Centred Hi-Tech Park, Rangpur — Architectural Case Study</image:title>
         </image:image>
     </url>
     <url>
@@ -87,7 +87,7 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/research</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-25</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/research-rangpur-hitech-park-conceptual-visual.jpg</image:loc>
             <image:title>Conceptual visualization of a biophilic, climate-responsive technology campus</image:title>
@@ -111,7 +111,7 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/blogs</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-25</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/journal/rail-connectivity-decentralisation-dhaka-bangladesh.jpg</image:loc>
             <image:title>Journal — Architecture, Urban Planning &amp; Research essays by Amitabh Chondro Roy</image:title>
@@ -119,7 +119,7 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/blogs/workplace-wellbeing-architecture-bangladesh-rangpur</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-25</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/journal/workplace-wellbeing-architecture-bangladesh-rangpur.jpg</image:loc>
             <image:title>Can Workplace Design Influence Employee Wellbeing? Lessons from Rangpur</image:title>
@@ -127,15 +127,15 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/blogs/passive-design-strategies-bangladesh</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-25</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/journal/passive-design-strategies-bangladesh.jpg</image:loc>
-            <image:title>Designing Better Workplaces for Bangladesh&#39;s Climate - Five Passive Design Strategies</image:title>
+            <image:title>5 Passive Design Strategies for Bangladesh Workplaces</image:title>
         </image:image>
     </url>
     <url>
         <loc>https://amitabhroy.bd/blogs/climate-responsive-office-design-bangladesh</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-07</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/journal/climate-responsive-office-design-bangladesh.jpg</image:loc>
             <image:title>Why Office Buildings in Bangladesh Need More Than Air Conditioning - Conceptual section diagram</image:title>
@@ -143,7 +143,7 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/blogs/rail-connectivity-decentralisation-dhaka-bangladesh</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-25</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/journal/rail-connectivity-decentralisation-dhaka-bangladesh.jpg</image:loc>
             <image:title>Could Better Rail Connections Help Decentralise Dhaka? - Bogura-Sirajganj rail link and commuter passes</image:title>
@@ -151,6 +151,6 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/contact</loc>
-        <lastmod>2026-11-08</lastmod>
+        <lastmod>2026-11-25</lastmod>
     </url>
 </urlset>

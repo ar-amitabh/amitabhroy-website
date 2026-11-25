@@ -55,7 +55,7 @@ export const spatialFigures: ThesisFigure[] = [
     figure: 'Figure 5-30',
     title: 'Biophilic environment',
     caption:
-      'Interior planting and daylight deliver the views of greenery that 26.7% named as their first priority, supporting the 76.6% who report work stress at least sometimes.',
+      'Interior planting and daylight deliver the views of greenery that 26.7% named as their first priority, supporting the 76.7% who report work stress at least sometimes.',
     alt: 'Exterior render of a biophilic office building with planted terraces, cascading greenery and deep shaded balconies overlooking a landscaped courtyard.',
     image: '/research/figures/biophilic-environment',
     width: 1672,

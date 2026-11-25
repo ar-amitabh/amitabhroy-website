@@ -235,7 +235,7 @@ export default function Work({ activeProject = null }: WorkProps) {
                     beforeLabel="Proposed Masterplan · 8.59 Acres"
                     beforeAlt="Masterplan view of Rangpur Hi-Tech Park showing four blocks around a central courtyard"
                     afterImage="/research/figures/courtyard-gathering-space-1536.webp"
-                    afterLabel="Courtyard Experience · Shaded Uthon"
+                    afterLabel="Courtyard Experience · Shaded Uthan"
                     afterAlt="Human-level view of the shaded courtyard gathering space and water edge"
                     caption="Rangpur Hi-Tech Park · B.Arch Thesis by Amitabh Chondro Roy (2021; rev. 2026)"
                   />

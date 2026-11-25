@@ -39,7 +39,7 @@ const principles = [
 
 export default function HomePage() {
   const featuredProjects = portfolioProjects.slice(0, 3);
-  const recentPosts = getJournalPosts().slice(0, 3);
+  const recentPosts = getJournalPosts().slice(0, 4);
 
   return (
     <div className="bg-paper text-graphite">
@@ -188,7 +188,7 @@ export default function HomePage() {
                 <span className="type-label text-graphite-soft">DOI 10.5281/zenodo.23915357</span>
               </div>
               <h3 className="mt-4 font-serif text-3xl leading-tight text-graphite sm:text-4xl">
-                Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park
+                Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park
               </h3>
               <p className="mt-4 text-base leading-[1.65] text-graphite-soft">
                 A survey of 30 IT/ITES professionals found light, ventilation and greenery scored

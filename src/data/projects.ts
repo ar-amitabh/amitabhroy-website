@@ -31,7 +31,7 @@ export interface PortfolioProject {
 export const portfolioProjects: PortfolioProject[] = [
   {
     slug: 'rangpur-hi-tech-park',
-    title: 'Human-Centered Hi-Tech Park, Rangpur',
+    title: 'Human-Centred Hi-Tech Park, Rangpur',
     category: 'Architecture',
     categories: ['Architecture', 'Landscape', 'Research'],
     year: '2021 · Rev. 2026',
@@ -43,7 +43,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Aerial architectural rendering of the proposed Rangpur Hi-Tech Park organized around a central planted courtyard and water retention pond',
     aspectRatio: '16/9',
     overview:
-      'An 8.59-acre technology campus proposal in northern Bangladesh that replaces the conventional deep-plan glass office tower with four narrower, climate-responsive building blocks arranged around a shaded central courtyard (uthon) and rainwater retention pond.',
+      'An 8.59-acre technology campus proposal in northern Bangladesh that replaces the conventional deep-plan glass office tower with four narrower, climate-responsive building blocks arranged around a shaded central courtyard (uthan) and rainwater retention pond.',
     keyFacts: [
       { label: 'Site area', value: '8.59 Acres' },
       { label: 'Survey sample', value: 'n = 30 IT/ITES' },
@@ -139,7 +139,7 @@ export const portfolioProjects: PortfolioProject[] = [
       { label: 'Year', value: '2020' },
     ],
     context:
-      'Rural families across Bangladesh face seasonal flooding, cyclone winds and rising heat while needing affordable, locally buildable housing that respects the traditional uthon (courtyard) lifestyle.',
+      'Rural families across Bangladesh face seasonal flooding, cyclone winds and rising heat while needing affordable, locally buildable housing that respects the traditional uthan (courtyard) lifestyle.',
     concept:
       'Pairs a durable masonry plinth and rainwater harvesting core with lightweight, cross-ventilated upper enclosures and deep overhanging roofs.',
     process:

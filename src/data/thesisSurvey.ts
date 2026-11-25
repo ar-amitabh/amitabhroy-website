@@ -15,7 +15,7 @@ export const surveyMeta = {
   studyTitle: 'Human-centred workplace assessment',
   site: 'Rangpur Hi-Tech Park',
   location: 'Rangpur, Bangladesh',
-  year: '2024',
+  year: '2020',
   chapter: 'Chapter 5',
   sampleSize: 30,
   scaleMax: 5,
@@ -98,17 +98,18 @@ export type HealthSymptom = {
   label: string;
   short: string;
   values: number[];
+  /** Exact rounded percentage of respondents reporting sometimes, often or daily (n = 30). */
+  atLeastSometimesPct: number;
 };
 
 export const healthSymptoms: HealthSymptom[] = [
-  { label: 'Back & neck discomfort', short: 'Back / neck', values: [6.7, 6.7, 40, 33.3, 13.3] },
-  { label: 'Eye strain', short: 'Eye strain', values: [0, 20, 36.7, 20, 23.3] },
-  { label: 'Work stress', short: 'Stress', values: [3.3, 20, 33.3, 40, 3.3] },
+  { label: 'Back & neck discomfort', short: 'Back / neck', values: [6.7, 6.7, 40, 33.3, 13.3], atLeastSometimesPct: 86.7 },
+  { label: 'Eye strain', short: 'Eye strain', values: [0, 20, 36.7, 20, 23.3], atLeastSometimesPct: 80.0 },
+  { label: 'Work stress', short: 'Stress', values: [3.3, 20, 33.3, 40, 3.3], atLeastSometimesPct: 76.7 },
 ];
 
 /** Share reporting the symptom "sometimes", "often" or "daily". */
-export const atLeastSometimes = (symptom: HealthSymptom) =>
-  symptom.values.slice(2).reduce((sum, value) => sum + value, 0);
+export const atLeastSometimes = (symptom: HealthSymptom) => symptom.atLeastSometimesPct;
 
 /** Share reporting the symptom "often" or "daily". */
 export const atLeastOften = (symptom: HealthSymptom) =>

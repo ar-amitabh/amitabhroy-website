@@ -4,6 +4,7 @@ seoTitle: "Could Better Rail Connections Help Decentralise Dhaka?"
 subtitle: "An architect's view on the Bogura–Sirajganj rail link, affordable commuter passes and why regional cities need more than a faster train."
 description: "Could better rail links support the decentralisation of Dhaka? An architect explores the Bogura–Sirajganj line, commuter passes, train design and stronger regional cities."
 category: "Urban Planning and Mobility"
+tags: "Urban Decentralisation, Bogura-Sirajganj Rail, Public Transport, Regional Development, Rangpur Hi-Tech Park"
 keywords: "decentralisation of Dhaka, Bogura–Sirajganj railway line, Dhaka to Dinajpur train journey, monthly commuter pass Bangladesh, regional development in Bangladesh, Rangpur Hi-Tech Park connectivity, Amitabh Chondro Roy, Amitabh Roy"
 date: "2026-11-08"
 order: 4
@@ -33,7 +34,7 @@ The route has real potential. The final travel time will depend on the completed
 
 ## What Rangpur taught me about the cost of distance
 
-In my Bachelor of Architecture thesis, *Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park*, I studied how a technology workplace might support the growth of Rangpur as a regional employment centre.
+In my Bachelor of Architecture thesis, *Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park*, I studied how a technology workplace might support the growth of Rangpur as a regional employment centre.
 
 One practical problem appeared early in the site and context analysis: travel between Dhaka and the north made short visits difficult. A company considering a regional office might need to bring managers, trainers or specialists from the capital. If the journey takes most of a day, even a meeting or a short training session becomes expensive in time.
 

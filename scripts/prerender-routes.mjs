@@ -69,6 +69,38 @@ function markdownToSimpleHtml(markdown) {
   return out.join('\n');
 }
 
+function extractFaqItems(markdown) {
+  const normalized = markdown.replace(/\r\n?/g, '\n');
+  const faqMatch = normalized.match(/^##\s+Frequently\s+Asked\s+Questions\s*$/im);
+  if (!faqMatch || faqMatch.index === undefined) return [];
+
+  const afterHeading = normalized.slice(faqMatch.index + faqMatch[0].length);
+  const nextSectionMatch = afterHeading.match(/\n(?:##\s+[^\n]+|---\s*\n)/);
+  const faqSection =
+    nextSectionMatch && nextSectionMatch.index !== undefined
+      ? afterHeading.slice(0, nextSectionMatch.index)
+      : afterHeading;
+
+  const items = [];
+  const blocks = faqSection.split(/\n###\s+/).slice(1);
+  for (const block of blocks) {
+    const lines = block.trim().split('\n');
+    const question = lines[0]?.replace(/^\d+\.\s*/, '').trim();
+    const answer = lines
+      .slice(1)
+      .join(' ')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+      .replace(/\*\*([^*]+)\*\*/g, '$1')
+      .replace(/\*([^*]+)\*/g, '$1')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (question && answer) {
+      items.push({ question, answer });
+    }
+  }
+  return items;
+}
+
 const SECTION_LABELS = {
   about: 'About',
   work: 'Work & Case Studies',
@@ -190,6 +222,10 @@ function buildRouteHtml(template, route) {
 
   if (route.noscriptHtml) {
     html = html.replace(
+      '<div id="root"></div>',
+      `<div id="root"><main style="max-width:56rem;margin:0 auto;padding:5.5rem 1.5rem 3rem;font-family:Georgia,serif;color:#343638;background:#F6F4EF;line-height:1.7">${route.noscriptHtml}</main></div>`,
+    );
+    html = html.replace(
       /<noscript>\s*<div[\s\S]*?<\/div>\s*<\/noscript>/i,
       `<noscript>\n      <div style="max-width:48rem;margin:4rem auto;padding:0 1.5rem;font-family:Georgia,serif;color:#343638;background:#F6F4EF;line-height:1.7">\n${route.noscriptHtml}\n      </div>\n    </noscript>`,
     );
@@ -230,7 +266,7 @@ for (const file of mdFiles) {
 const caseStudies = [
   {
     slug: 'rangpur-hi-tech-park',
-    title: 'Human-Centered Hi-Tech Park, Rangpur',
+    title: 'Human-Centred Hi-Tech Park, Rangpur',
     year: '2021',
     location: 'Khalishakuri, Rangpur',
     categories: ['Architecture', 'Landscape', 'Research'],
@@ -239,7 +275,7 @@ const caseStudies = [
     imageAlt:
       'Aerial architectural rendering of the proposed Rangpur Hi-Tech Park organized around a central planted courtyard and water retention pond',
     overview:
-      'An 8.59-acre technology campus proposal in northern Bangladesh that replaces the conventional deep-plan glass office tower with four narrower, climate-responsive building blocks arranged around a shaded central courtyard (uthon) and rainwater retention pond.',
+      'An 8.59-acre technology campus proposal in northern Bangladesh that replaces the conventional deep-plan glass office tower with four narrower, climate-responsive building blocks arranged around a shaded central courtyard (uthan) and rainwater retention pond.',
   },
   {
     slug: '500-bed-hospital-design',
@@ -265,7 +301,7 @@ const caseStudies = [
     imageAlt:
       'Perspective of the Sundar Bari climate-resilient housing design featuring raised plinth, deep verandahs and local bamboo-brick construction',
     overview:
-      'A competition entry reimagining the rural Bangladeshi homestead for flood-prone and monsoon-intensive regions. The scheme combines an elevated, erosion-resistant plinth with breathable walls, deep verandahs and a productive domestic courtyard.',
+      'A competition entry reimagining the rural Bangladeshi homestead for flood-prone and monsoon-intensive regions. The scheme combines an elevated, erosion-resistant plinth with breathable walls, deep verandahs and a productive domestic courtyard (uthan).',
   },
   {
     slug: 'renewal-of-public-realm-dinajpur',
@@ -318,6 +354,7 @@ const routes = [
       'Amitabh Chondro Roy (Amitabh Roy) is an architect and urban planning professional in Bangladesh, exploring human-centred, climate-responsive architecture and sustainable urban development.',
     image: '/og-image.jpg',
     type: 'profile',
+    noscriptHtml: `<h1>Amitabh Chondro Roy</h1><p>Architecture, urban planning and sustainable design in Bangladesh.</p><p>Human-centred, climate-responsive and sustainable design, informed by architecture, urban planning and empirical workplace research.</p>`,
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'ProfilePage',
@@ -381,10 +418,10 @@ const routes = [
         '@type': 'ScholarlyArticle',
         '@id': `${SITE_URL}/research#thesis`,
         headline:
-          'Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park',
-        name: 'Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park',
+          'Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park',
+        name: 'Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park',
         description:
-          'Empirical B.Arch thesis study evaluating indoor environmental quality (IEQ), passive cooling, and human-centered workplace architecture for 30 IT/ITES professionals in Bangladesh.',
+          'Empirical B.Arch thesis study evaluating indoor environmental quality (IEQ), passive cooling, and human-centred workplace architecture for 30 IT/ITES professionals in Bangladesh.',
         datePublished: '2021-12-01',
         dateModified: '2026-11-06',
         inLanguage: 'en-US',
@@ -425,7 +462,7 @@ const routes = [
         },
       },
     ],
-    noscriptHtml: `<h1>Workplace Wellbeing &amp; Climate-Responsive Design Research — Amitabh Chondro Roy</h1><p>Designing a Human-Centered Work Environment for the Employees of Rangpur Hi-Tech Park (Zenodo DOI: 10.5281/zenodo.23915357, ORCID: 0009-0004-6847-0225).</p>`,
+    noscriptHtml: `<h1>Workplace Wellbeing &amp; Climate-Responsive Design Research — Amitabh Chondro Roy</h1><p>Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park (Zenodo DOI: 10.5281/zenodo.23915357, ORCID: 0009-0004-6847-0225).</p><p>Sample size: 30 IT/ITES professionals · Baseline IEQ mean: 3.12 / 5.00 · Proposed IEQ mean: 4.07 / 5.00 (+30.4%) · Perceived productivity: +21.9%.</p>`,
   },
   {
     path: '/blogs',
@@ -524,6 +561,50 @@ for (const project of caseStudies) {
 for (const post of journalPosts) {
   const postPath = `/blogs/${post.slug}`;
   const coverUrl = post.image.startsWith('http') ? post.image : `${SITE_URL}${post.image}`;
+  const faqItems = extractFaqItems(post.body);
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: 'en-US',
+    wordCount: post.wordCount,
+    articleSection: post.category,
+    image: coverUrl,
+    mainEntityOfPage: `${SITE_URL}${postPath}`,
+    author: {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: SITE_NAME,
+      alternateName: 'Amitabh Roy',
+      url: `${SITE_URL}/`,
+    },
+    publisher: {
+      '@type': 'Person',
+      '@id': `${SITE_URL}/#person`,
+      name: SITE_NAME,
+    },
+  };
+  const postSchemas =
+    faqItems.length > 0
+      ? [
+          articleSchema,
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqItems.map((item) => ({
+              '@type': 'Question',
+              name: item.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.answer,
+              },
+            })),
+          },
+        ]
+      : articleSchema;
   routes.push({
     path: postPath,
     outFile: `blogs/${post.slug}/index.html`,
@@ -533,31 +614,7 @@ for (const post of journalPosts) {
     image: post.image,
     imageAlt: post.imageAlt,
     type: 'article',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'BlogPosting',
-      headline: post.title,
-      description: post.description,
-      datePublished: post.date,
-      dateModified: post.date,
-      inLanguage: 'en-US',
-      wordCount: post.wordCount,
-      articleSection: post.category,
-      image: coverUrl,
-      mainEntityOfPage: `${SITE_URL}${postPath}`,
-      author: {
-        '@type': 'Person',
-        '@id': `${SITE_URL}/#person`,
-        name: SITE_NAME,
-        alternateName: 'Amitabh Roy',
-        url: `${SITE_URL}/`,
-      },
-      publisher: {
-        '@type': 'Person',
-        '@id': `${SITE_URL}/#person`,
-        name: SITE_NAME,
-      },
-    },
+    jsonLd: postSchemas,
     noscriptHtml: `<article><h1>${escapeHtml(post.title)}</h1>${post.subtitle ? `<p><em>${escapeHtml(post.subtitle)}</em></p>` : ''}<p>By Amitabh Chondro Roy · ${escapeHtml(post.date)}</p>${markdownToSimpleHtml(post.body)}</article>`,
   });
 }

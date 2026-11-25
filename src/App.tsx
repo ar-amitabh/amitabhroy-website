@@ -1,17 +1,16 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useEffect, lazy, Suspense } from 'react';
-import { motion } from 'framer-motion';
 import Header from './components/portfolio/Header';
 import Footer from './components/portfolio/Footer';
 import CustomCursor from './components/brand/CustomCursor';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import WorkPage from './pages/WorkPage';
+import ResearchPage from './pages/ResearchPage';
+import ContactPage from './pages/ContactPage';
+import BlogsPage from './pages/BlogsPage';
+import BlogArticlePage from './pages/BlogArticlePage';
 
-const HomePage = lazy(() => import('./pages/HomePage'));
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const WorkPage = lazy(() => import('./pages/WorkPage'));
-const ResearchPage = lazy(() => import('./pages/ResearchPage'));
-const ContactPage = lazy(() => import('./pages/ContactPage'));
-const BlogsPage = lazy(() => import('./pages/BlogsPage'));
-const BlogArticlePage = lazy(() => import('./pages/BlogArticlePage'));
 const AdminStudioPage = lazy(() => import('./pages/AdminStudioPage'));
 
 function ScrollToTop() {
@@ -58,33 +57,24 @@ function Layout() {
         </a>
         <Suspense
           fallback={
-            <div className="min-h-screen flex items-center justify-center bg-paper">
-              <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-forest" />
-            </div>
+            <div className="min-h-screen bg-paper" aria-hidden="true" />
           }
         >
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Routes location={location}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/work" element={<WorkPage />} />
-              <Route path="/work/:slug" element={<WorkPage />} />
-              <Route path="/research" element={<ResearchPage />} />
-              {/* Retired standalone pages: keep old links working. */}
-              <Route path="/photography" element={<Navigate to="/work#photography" replace />} />
-              <Route path="/cv" element={<Navigate to="/about#cv" replace />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/blogs" element={<BlogsPage />} />
-              <Route path="/blogs/:slug" element={<BlogArticlePage />} />
-              <Route path="/admin" element={<AdminStudioPage />} />
-              <Route path="/admin/*" element={<AdminStudioPage />} />
-            </Routes>
-          </motion.div>
+          <Routes location={location}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/work" element={<WorkPage />} />
+            <Route path="/work/:slug" element={<WorkPage />} />
+            <Route path="/research" element={<ResearchPage />} />
+            {/* Retired standalone pages: keep old links working. */}
+            <Route path="/photography" element={<Navigate to="/work#photography" replace />} />
+            <Route path="/cv" element={<Navigate to="/about#cv" replace />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/blogs" element={<BlogsPage />} />
+            <Route path="/blogs/:slug" element={<BlogArticlePage />} />
+            <Route path="/admin" element={<AdminStudioPage />} />
+            <Route path="/admin/*" element={<AdminStudioPage />} />
+          </Routes>
         </Suspense>
       </main>
       {!isAdminRoute && <Footer />}

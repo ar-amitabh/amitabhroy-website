@@ -14,6 +14,7 @@ export default function Contact() {
     purpose: 'Admissions or academic' as (typeof PURPOSE_OPTIONS)[number],
     message: '',
     website: '', // Honeypot field
+    captchaAnswer: '',
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error' | 'ratelimit' | 'mailto'>('idle');
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
@@ -40,7 +41,16 @@ export default function Contact() {
             errors[err.path[0].toString()] = err.message;
           }
         });
+        if (formData.captchaAnswer.trim() !== '7') {
+          errors.captchaAnswer = 'Please answer 4 + 3 to verify you are human.';
+        }
         setValidationErrors(errors);
+        setStatus('idle');
+        return;
+      }
+
+      if (formData.captchaAnswer.trim() !== '7') {
+        setValidationErrors({ captchaAnswer: 'Please answer 4 + 3 to verify you are human.' });
         setStatus('idle');
         return;
       }
@@ -79,6 +89,7 @@ export default function Contact() {
         purpose: 'Admissions or academic',
         message: '',
         website: '',
+        captchaAnswer: '',
       });
       setTimeout(() => setStatus('idle'), 6000);
     } catch {
@@ -365,6 +376,37 @@ export default function Contact() {
                   <span>Too many requests. Please wait a few minutes before sending another message.</span>
                 </div>
               )}
+
+              <div>
+                <label htmlFor="captchaAnswer" className="block text-sm font-medium mb-2 text-graphite">
+                  Spam check: What is 4 + 3? <span className="text-terracotta-deep">*</span>
+                </label>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  id="captchaAnswer"
+                  name="captchaAnswer"
+                  value={formData.captchaAnswer}
+                  onChange={handleChange}
+                  required
+                  aria-invalid={Boolean(validationErrors.captchaAnswer)}
+                  aria-describedby={validationErrors.captchaAnswer ? 'captcha-error' : undefined}
+                  className={`w-full sm:w-44 h-11 px-4 bg-paper border rounded-card text-graphite placeholder:text-graphite-soft/60 focus:outline-none focus:border-forest focus:ring-2 focus:ring-sage/35 transition-colors ${
+                    validationErrors.captchaAnswer ? 'border-terracotta-deep' : 'border-stone'
+                  }`}
+                  placeholder="Enter sum"
+                />
+                {validationErrors.captchaAnswer && (
+                  <p id="captcha-error" className="mt-2 flex items-center gap-1.5 text-xs font-medium text-terracotta-deep">
+                    <AlertCircle size={14} aria-hidden="true" />
+                    <span>{validationErrors.captchaAnswer}</span>
+                  </p>
+                )}
+              </div>
+
+              <p className="type-caption text-graphite-soft">
+                Privacy notice: Your name, email and message are used solely to respond to your enquiry and are never shared with third parties or used for marketing.
+              </p>
 
               <div className="pt-2">
                 <button
