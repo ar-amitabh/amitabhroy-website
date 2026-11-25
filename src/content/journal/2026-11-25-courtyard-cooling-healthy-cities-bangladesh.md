@@ -1,9 +1,6 @@
 ---
-title: Can a Courtyard Cool a Bangladeshi Home by 2 Degrees? What New Research
-  Says About Healthy Cities
-subtitle: A dome roof, a shaded uthan, a rooftop garden and a restored dighi can
-  do more than an air conditioner alone. New research from 2025 shows how, and
-  why it matters for Bangladesh.
+title: Can a Courtyard Cool a Bangladeshi Home by 2 Degrees?
+subtitle: A dome roof, a shaded uthan and a restored dighi can cool a home.
 category: Healthy Cities
 date: 2026-11-25
 slug: courtyard-cooling-healthy-cities-bangladesh
