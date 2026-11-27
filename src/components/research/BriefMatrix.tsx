@@ -20,12 +20,8 @@ export default function BriefMatrix() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <motion.section
+    <section
       aria-labelledby={headingId}
-      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5 }}
       className="mt-8 overflow-hidden rounded-card border border-stone bg-paper-raised p-6 sm:p-8"
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -151,6 +147,6 @@ export default function BriefMatrix() {
           );
         })}
       </div>
-    </motion.section>
+    </section>
   );
 }

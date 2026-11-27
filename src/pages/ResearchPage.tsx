@@ -141,19 +141,14 @@ export default function ResearchPage() {
         path="/research"
         image="/research-rangpur-hitech-park-conceptual-visual.jpg"
         imageAlt="Conceptual visualisation of a shaded, landscaped technology campus courtyard at Rangpur Hi-Tech Park"
-        description="Research in human-centred, climate-responsive and sustainable architecture, including a 30-respondent workplace well-being study at Rangpur Hi-Tech Park and its design outcomes."
+        description="Empirical workplace wellbeing and climate-responsive architecture research by Amitabh Chondro Roy, featuring the 30-respondent Rangpur Hi-Tech Park study."
         keywords="architectural research, human-centred design, sustainable architecture, workplace design, indoor environmental quality, Rangpur Hi-Tech Park, Bangladesh architecture"
         jsonLd={researchSchemas}
       />
 
       <div className="min-h-screen bg-paper text-graphite pt-20">
         <div className="brand-container brand-section">
-          <motion.header
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
-            className="mb-14 max-w-4xl border-b border-stone pb-12"
-          >
+          <header className="mb-14 max-w-4xl border-b border-stone pb-12">
             <p className="type-meta text-forest-deep mb-3">
               02 / Research &amp; Publications
             </p>
@@ -271,7 +266,7 @@ export default function ResearchPage() {
                 </a>
               </div>
             </div>
-          </motion.header>
+          </header>
 
           <ResearchDashboard />
 

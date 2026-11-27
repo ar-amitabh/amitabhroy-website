@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Compass, Download, Heart, Mail, Wind } from 'lucide-react';
 import SEO from '../components/SEO';
 import HeroVideoSection from '../components/brand/HeroVideoSection';
@@ -39,13 +38,13 @@ const principles = [
 
 export default function HomePage() {
   const featuredProjects = portfolioProjects.slice(0, 3);
-  const recentPosts = getJournalPosts().slice(0, 4);
+  const recentPosts = getJournalPosts().slice(0, 5);
 
   return (
     <div className="bg-paper text-graphite">
       <SEO
         title="Home"
-        description="Amitabh Chondro Roy (Amitabh Roy) is an architect and urban planning professional in Bangladesh, exploring human-centred, climate-responsive architecture and sustainable urban development."
+        description="Amitabh Chondro Roy is an architect and urban planning researcher in Bangladesh focused on human-centred, climate-responsive design and healthy cities."
         path="/"
         profilePage
       />
@@ -87,12 +86,8 @@ export default function HomePage() {
               const imageCols = isEven ? 'lg:col-span-7' : 'lg:col-span-7 lg:order-2';
               const textCols = isEven ? 'lg:col-span-5' : 'lg:col-span-5 lg:order-1';
               return (
-                <motion.article
+                <article
                   key={project.slug}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   className="group grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12"
                 >
                   <div className={imageCols}>
@@ -131,7 +126,7 @@ export default function HomePage() {
                       <ArrowRight size={15} strokeWidth={1.5} />
                     </Link>
                   </div>
-                </motion.article>
+                </article>
               );
             })}
           </div>
@@ -148,13 +143,9 @@ export default function HomePage() {
             </h2>
           </div>
           <div className="mt-14 grid grid-cols-1 gap-8 md:grid-cols-3">
-            {principles.map((item, idx) => (
-              <motion.div
+            {principles.map((item) => (
+              <div
                 key={item.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: idx * 0.08 }}
                 className="rounded-card border border-stone bg-paper p-8"
               >
                 <div className="flex items-center justify-between">
@@ -165,7 +156,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="mt-6 font-serif text-3xl leading-tight text-graphite">{item.title}</h3>
                 <p className="mt-4 text-base leading-[1.65] text-graphite-soft">{item.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

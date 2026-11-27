@@ -22,7 +22,7 @@ export default function ContactPage() {
     <div className="pt-20 bg-paper">
       <SEO
         title="Contact for Architecture & Research Collaborations"
-        description="Contact Amitabh Chondro Roy for architectural consultations, graduate research collaborations, studio roles, or sustainable design projects in Bangladesh."
+        description="Contact Amitabh Chondro Roy for MSc/PhD urban planning research, sustainable architecture roles, and climate-responsive design commissions in Bangladesh."
         path="/contact"
         jsonLd={contactPageSchema}
       />

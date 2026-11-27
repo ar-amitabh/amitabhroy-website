@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://amitabhroy.bd/</loc>
-        <lastmod>2026-11-25</lastmod>
+        <lastmod>2026-11-27</lastmod>
         <image:image>
             <image:loc>https://amitabhroy.bd/hero-courtyard-poster.jpg</image:loc>
             <image:title>Climate-responsive courtyard architecture by Amitabh Chondro Roy</image:title>
@@ -111,10 +111,26 @@
     </url>
     <url>
         <loc>https://amitabhroy.bd/blogs</loc>
-        <lastmod>2026-11-25</lastmod>
+        <lastmod>2026-11-27</lastmod>
         <image:image>
-            <image:loc>https://amitabhroy.bd/journal/rail-connectivity-decentralisation-dhaka-bangladesh.jpg</image:loc>
-            <image:title>Journal — Architecture, Urban Planning &amp; Research essays by Amitabh Chondro Roy</image:title>
+            <image:loc>https://amitabhroy.bd/journal/media-generation-rooftop-garden-dhaka-dighi-0-b49dd415-3bda-47f7-8861-d2b9bb6962fa-optimized-1200-1.webp</image:loc>
+            <image:title>Journal — Architecture, Urban Planning &amp; Healthy Cities essays by Amitabh Chondro Roy</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://amitabhroy.bd/blogs/dighi-cooling-dhaka-water</loc>
+        <lastmod>2026-11-27</lastmod>
+        <image:image>
+            <image:loc>https://amitabhroy.bd/journal/media-generation-rooftop-garden-dhaka-dighi-0-b49dd415-3bda-47f7-8861-d2b9bb6962fa-optimized-1200-1.webp</image:loc>
+            <image:title>Can a Dighi Cool Dhaka? The Answer Is Smaller Than We Think</image:title>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://amitabhroy.bd/blogs/courtyard-cooling-healthy-cities-bangladesh</loc>
+        <lastmod>2026-11-27</lastmod>
+        <image:image>
+            <image:loc>https://amitabhroy.bd/journal/media-generation-a-hopeful-photorealistic-wide-0-982fd729-7bf8-47ad-9176-17630aa2a9e0-optimized-1200.webp</image:loc>
+            <image:title>Can a Courtyard Cool a Bangladeshi Home by 2 Degrees?</image:title>
         </image:image>
     </url>
     <url>

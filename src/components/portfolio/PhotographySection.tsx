@@ -14,17 +14,9 @@ function srcSet(photo: GalleryPhoto) {
     .join(', ');
 }
 
-function PhotographyCard({ photo, index }: { photo: GalleryPhoto; index: number }) {
-  const reduceMotion = useReducedMotion();
-
+function PhotographyCard({ photo }: { photo: GalleryPhoto; index: number }) {
   return (
-    <motion.figure
-      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.55, delay: Math.min(index * 0.06, 0.24), ease: [0.16, 1, 0.3, 1] }}
-      className="group mb-6 break-inside-avoid overflow-hidden border border-stone bg-paper-raised"
-    >
+    <figure className="group mb-6 break-inside-avoid overflow-hidden border border-stone bg-paper-raised">
       <div className="relative overflow-hidden bg-paper">
         <img
           src={`${photo.image}-1024.webp`}
@@ -45,7 +37,7 @@ function PhotographyCard({ photo, index }: { photo: GalleryPhoto; index: number 
         <h3 className="font-serif text-2xl text-graphite">{photo.title}</h3>
         <p className="mt-1.5 text-sm leading-relaxed text-graphite-soft">{photo.caption}</p>
       </figcaption>
-    </motion.figure>
+    </figure>
   );
 }
 

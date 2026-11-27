@@ -84,7 +84,7 @@ export default function WorkPage() {
       ) : (
         <SEO
           title="Architecture & Urban Design Case Studies"
-          description="Selected architectural, urban planning, and climate-responsive design case studies, visual identity systems, and architectural photography in Bangladesh."
+          description="Explore architectural, urban design, and climate-responsive case studies by Amitabh Chondro Roy across Rangpur, Dinajpur, Dhaka, and rural Bangladesh."
           path="/work"
           jsonLd={workCollectionSchema}
         />

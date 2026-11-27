@@ -140,13 +140,29 @@ export function extractFaqItems(markdown: string): FaqItem[] {
     : afterHeading;
 
   const items: FaqItem[] = [];
-  const blocks = faqSection.split(/\n###\s+/).slice(1);
-  for (const block of blocks) {
-    const lines = block.trim().split('\n');
-    const question = lines[0]?.replace(/^\d+\.\s*/, '').trim();
-    const answer = markdownToPlainText(lines.slice(1).join('\n')).trim();
-    if (question && answer) {
-      items.push({ question, answer });
+  const h3Blocks = faqSection.split(/\n###\s+/).slice(1);
+  if (h3Blocks.length > 0) {
+    for (const block of h3Blocks) {
+      const lines = block.trim().split('\n');
+      const question = lines[0]?.replace(/^\d+\.\s*/, '').trim();
+      const answer = markdownToPlainText(lines.slice(1).join('\n')).trim();
+      if (question && answer) {
+        items.push({ question, answer });
+      }
+    }
+    return items;
+  }
+
+  // Fallback: plain-text Q&A pairs (question line ending with '?' followed by answer line)
+  const rawLines = faqSection.split('\n').map((l) => l.trim()).filter(Boolean);
+  for (let i = 0; i < rawLines.length - 1; i++) {
+    if (rawLines[i].endsWith('?')) {
+      const question = markdownToPlainText(rawLines[i]).trim();
+      const answer = markdownToPlainText(rawLines[i + 1]).trim();
+      if (question && answer && !answer.endsWith('?')) {
+        items.push({ question, answer });
+        i += 1;
+      }
     }
   }
   return items;

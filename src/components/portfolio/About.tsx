@@ -1,6 +1,5 @@
 import { Code, Search, Globe, Download, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 export default function About() {
   const skills = [
@@ -24,33 +23,21 @@ export default function About() {
   return (
     <section id="about" className="brand-section border-b border-stone bg-paper text-graphite">
       <div className="brand-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-12 border-b border-stone pb-10 lg:mb-16"
-        >
-          <p className="type-label mb-3 text-forest-deep">About the Researcher</p>
-          <h2 className="type-h1 max-w-4xl text-graphite">
+        <div className="mb-12 border-b border-stone pb-10 lg:mb-14">
+          <p className="type-label mb-3 text-forest-deep">About Amitabh Chondro Roy</p>
+          <h1 className="type-h1 max-w-4xl text-graphite">
             Designing with <span className="accent-italic">evidence</span>, climate, and human
             wellbeing in view.
-          </h2>
-        </motion.div>
+          </h1>
+        </div>
 
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5"
-          >
+          <div className="lg:col-span-5">
             {/* Section 4: 0px radius on images, 4:5 aspect ratio for portrait */}
             <figure className="overflow-hidden border border-stone bg-paper-raised">
               <img
                 src="/amitabh-chondro-roy-architect-portrait.jpg"
-                alt="Amitabh Chondro Roy (Amitabh Roy) — Architect and Urban Planning Researcher specializing in human-centered, climate-responsive and sustainable design"
+                alt="Amitabh Chondro Roy — Architect and Urban Planning Researcher specialising in healthy cities, climate-responsive architecture, and urban planning in Bangladesh"
                 width={847}
                 height={1024}
                 fetchPriority="high"
@@ -61,20 +48,14 @@ export default function About() {
                 <span>B.Arch · HSTU</span>
               </figcaption>
             </figure>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.75, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7"
-          >
+          <div className="lg:col-span-7">
             <div className="max-w-[65ch] space-y-5 text-lg leading-[1.65] text-graphite">
               <p>
-                I am an architect and urban-planning researcher working at the intersection of
-                human-centred design, climate-responsive architecture, and environmental analysis in
-                Bangladesh.
+                I am <strong>Amitabh Chondro Roy</strong>, an architect and urban-planning
+                researcher working on healthy cities, climate-responsive architecture, urban
+                planning, and human-centred design in Bangladesh.
               </p>
               <p className="text-graphite-soft">
                 My academic work asks how daylight, natural ventilation, open courtyard space, and
@@ -107,20 +88,16 @@ export default function About() {
             </div>
 
             <div className="mt-12 space-y-4 border-t border-stone pt-10">
-              {skills.map((skillGroup, index) => (
-                <motion.div
+              {skills.map((skillGroup) => (
+                <div
                   key={skillGroup.category}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
                   className="rounded-card border border-stone bg-paper-raised p-5"
                 >
                   <div className="mb-3 flex items-center gap-3">
                     <span className="flex h-9 w-9 items-center justify-center rounded-full border border-stone text-forest">
                       <skillGroup.icon size={17} strokeWidth={1.5} />
                     </span>
-                    <h3 className="font-serif text-2xl text-graphite">{skillGroup.category}</h3>
+                    <h2 className="font-serif text-2xl text-graphite">{skillGroup.category}</h2>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {skillGroup.items.map((item) => (
@@ -129,10 +106,10 @@ export default function About() {
                       </span>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

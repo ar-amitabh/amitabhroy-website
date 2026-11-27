@@ -40,12 +40,8 @@ export default function ChartCard({
   const reduceMotion = useReducedMotion();
 
   return (
-    <motion.section
+    <section
       aria-labelledby={headingId}
-      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.08 }}
-      transition={{ duration: 0.5 }}
       className={`relative flex flex-col overflow-hidden rounded-card border border-stone bg-paper-raised p-5 sm:p-6 ${className}`}
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -77,6 +73,6 @@ export default function ChartCard({
         <span aria-hidden="true" className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-forest" />
         <p>{insight}</p>
       </footer>
-    </motion.section>
+    </section>
   );
 }

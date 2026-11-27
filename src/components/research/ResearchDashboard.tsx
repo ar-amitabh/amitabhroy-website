@@ -76,12 +76,7 @@ const preferenceMax = Math.max(...preferences.map((preference) => preference.cou
 export default function ResearchDashboard() {
   return (
     <section id="field-evidence" aria-labelledby="field-evidence-heading" className="scroll-mt-24">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55 }}
-        className="relative overflow-hidden rounded-card border border-stone bg-paper-raised p-6 sm:p-8"
-      >
+      <div className="relative overflow-hidden rounded-card border border-stone bg-paper-raised p-6 sm:p-8">
         <div className="relative">
           <p className="type-meta text-forest-deep">Empirical Field Evidence</p>
           <h2
@@ -112,18 +107,14 @@ export default function ResearchDashboard() {
             </span>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       <div className="mt-5 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {kpis.map((kpi, index) => {
+        {kpis.map((kpi) => {
           const Icon = kpi.icon;
           return (
-            <motion.div
+            <div
               key={kpi.label}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.4, delay: 0.06 * index }}
               className="rounded-card border border-stone bg-paper-raised p-5"
             >
               <div className="flex items-start justify-between gap-2">
@@ -144,7 +135,7 @@ export default function ResearchDashboard() {
                 )}
               </p>
               <p className="mt-1 type-caption text-graphite-soft">{kpi.sub}</p>
-            </motion.div>
+            </div>
           );
         })}
       </div>

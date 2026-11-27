@@ -14,12 +14,8 @@ export default function SpatialTranslation() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <motion.section
+    <section
       aria-labelledby={headingId}
-      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5 }}
       className="mt-8 overflow-hidden rounded-card border border-stone bg-paper-raised p-6 sm:p-8"
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -40,13 +36,9 @@ export default function SpatialTranslation() {
       </div>
 
       <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {spatialFigures.map((figure, index) => (
-          <motion.figure
+        {spatialFigures.map((figure) => (
+          <figure
             key={figure.id}
-            initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.4, delay: Math.min(index * 0.06, 0.24) }}
             className="group overflow-hidden rounded-card border border-stone bg-paper"
           >
             <div className="relative overflow-hidden bg-stone/20">
@@ -66,9 +58,9 @@ export default function SpatialTranslation() {
               <h4 className="font-serif text-lg text-graphite">{figure.title}</h4>
               <p className="mt-1.5 type-caption text-graphite-soft">{figure.caption}</p>
             </figcaption>
-          </motion.figure>
+          </figure>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -5,9 +5,10 @@ description: Dhaka has lost 61 percent of its waterbodies since 1980. Research
   shows a small pond cools the air by only 0.2 to 0.6 degrees, but shade, size
   and clean water change that.
 category: Healthy Cities
+tags: Blue Space, Dhaka Waterbodies, Urban Heat Island, Healthy Cities, Climate Adaptation
 keywords: dighi Dhaka, urban pond cooling, blue space Bangladesh, healthy cities
   Bangladesh, urban heat island, climate responsive design, waterbody
-  restoration
+  restoration, Amitabh Chondro Roy
 date: 2026-11-27
 slug: dighi-cooling-dhaka-water
 image: /journal/media-generation-rooftop-garden-dhaka-dighi-0-b49dd415-3bda-47f7-8861-d2b9bb6962fa-optimized-1200-1.webp
@@ -98,17 +99,19 @@ Clean water, a good view, calm sound, easy access and a place to walk and sit. L
 
 ## Sources
 
-Change Initiative, "Dhaka Without Nature? Rethinking Natural Rights-Led Urban Sustainability", 2026, reported by The Climate Watch, 61 percent of waterbodies lost 1980 to 2024, 1.43 square metres per person against 4.5 recommended, land surface temperature up 3 to 5 degrees Celsius.
-Jacobs et al., Urban Climate 32 (2020) 100607, "Are urban water bodies really cooling?", typical afternoon cooling 0.2 degrees Celsius, maximum 0.6 degrees, PET reduction typically 0.6 degrees, maximum 1.9 degrees.
-Syafii et al., Sustainable Cities and Society 34 (2017) 79 to 89, pond size and orientation in an urban canyon, larger surface and wind parallel orientation best, humidity rises.
-Syafii et al., International Journal of Technology 12(3) (2021) 461 to 471, parametric study of pond cooling, larger ponds and spread out ponds cool a wider area.
-Lu et al., Frontiers in Psychology 16 (2025), urban blue space and wellbeing, survey of 532 visitors in Hengshui, China, sight, sound and touch significant, smell not significant.
-Wang et al., Frontiers in Public Health 13 (2025) 1621437, urban inland blue spaces in Xian, China, survey of 429 people in five parks, quality matters through pollution reduction and exercise.
-Smith et al., Public Health in Practice 10 (2025) 100665, leveraging blue spaces for public health, four mechanisms: physical activity, social interaction, healthy environment, lower stress.
-Dialogue Earth, "The disappearing wetlands of Dhaka", 56 canals down to 12, CEGIS 2012 study, 75 percent of perennial wetlands lost.
+- Change Initiative. (2026). [*Dhaka Without Nature? Rethinking Natural Rights-Led Urban Sustainability*](https://www.thedailystar.net/environment/climate-crisis/news/dhaka-lost-60pc-waterbodies-44-years-study-3812636) (reported by The Daily Star / The Climate Watch: 44 years of satellite data, 1980–2024).
+- Jacobs, C., Klok, L., Bruse, M., Cortesão, J., Lenzholzer, S., & Kluck, J. (2020). [Are urban water bodies really cooling?](https://doi.org/10.1016/j.uclim.2020.100607). *Urban Climate*, 32, 100607.
+- Syafii, N. I., Ichinose, M., Kumakura, E., Jusuf, S. K., Chigusa, K., & Wong, N. H. (2017). [Thermal environment assessment around bodies of water in urban canyons: A scale model study](https://scholar.google.com/scholar?q=Syafii+2017+Sustainable+Cities+and+Society+34+79+bodies+of+water+urban+canyons). *Sustainable Cities and Society*, 34, 79–89.
+- Syafii, N. I., et al. (2021). [Parametric study of pond cooling in urban environments](https://scholar.google.com/scholar?q=Syafii+2021+International+Journal+of+Technology+12+461+pond+cooling). *International Journal of Technology*, 12(3), 461–471.
+- Lu, Y., et al. (2025). [Urban freshwater blue space and human wellbeing in Hengshui, China](https://scholar.google.com/scholar?q=Lu+2025+Frontiers+in+Psychology+blue+space+Hengshui+532). *Frontiers in Psychology*, 16 (n = 532).
+- Wang, L., Sani, N. M., Wang, Y., et al. (2025). [Subjective experience and perception of urban-inland blue spaces in urban parks and individual well-being: evidence from Xi'an, China](https://doi.org/10.3389/fpubh.2025.1621437). *Frontiers in Public Health*, 13, 1621437 (n = 429).
+- Smith, N., Georgiou, M., Irving, D., & Chastin, S. (2025). [Leveraging blue spaces for public health: Co-creating a whole-system action plan](https://doi.org/10.1016/j.puhip.2025.100665). *Public Health in Practice*, 10, 100665.
+- Dialogue Earth. [The disappearing wetlands of Dhaka](https://dialogue.earth/en/cities/the-disappearing-wetlands-of-dhaka/) (56 canals down to 12; CEGIS 2012 wetland study).
 
 ---
 
-Written by Amitabh Chondro Roy, Architect and Urban Planning Researcher
-Read more: amitabhroy.bd
-Green Health Urbana by Amitabh Chondro Roy
+Written by **Amitabh Chondro Roy**, Architect and Urban Planning Researcher ([About &amp; CV](/about) · [Research](/research))
+
+Read more: [amitabhroy.bd](https://amitabhroy.bd/)
+
+*Green Health Urbana* by Amitabh Chondro Roy

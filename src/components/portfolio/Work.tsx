@@ -355,13 +355,9 @@ export default function Work({ activeProject = null }: WorkProps) {
         {/* Projects Grid / List */}
         {viewMode === 'grid' ? (
           <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2">
-            {visibleProjects.map((project, index) => (
-              <motion.article
+            {visibleProjects.map((project) => (
+              <article
                 key={project.slug}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.12 }}
-                transition={{ duration: 0.65, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
                 className="group"
               >
                 <Link
@@ -397,7 +393,7 @@ export default function Work({ activeProject = null }: WorkProps) {
                     {project.overview}
                   </p>
                 </div>
-              </motion.article>
+              </article>
             ))}
           </div>
         ) : (

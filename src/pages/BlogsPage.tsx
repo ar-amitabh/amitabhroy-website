@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Clock } from 'lucide-react';
-import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import { getJournalPosts } from '../data/journal';
 import { sanitizeUrl } from '../lib/sanitizeHtml';
@@ -44,36 +43,21 @@ export default function BlogsPage() {
     <div className="min-h-screen bg-paper pt-20 text-graphite">
       <SEO
         title="Architecture, Climate & Urban Design Journal"
-        description="Long-form essays and field notes on human-centered architecture, passive cooling strategies, courtyard systems, and workplace wellbeing in Bangladesh."
+        description="Journal essays by Amitabh Chondro Roy on courtyard cooling, dighi waterbodies, passive office design, workplace wellbeing, and urban planning in Bangladesh."
         path="/blogs"
         jsonLd={blogCollectionSchema}
       />
       <section className="brand-container brand-section">
         <header className="relative border-b border-stone pb-10 sm:pb-12">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="type-meta text-forest-deep mb-3"
-          >
+          <p className="type-meta text-forest-deep mb-3">
             04 / Field Notes &amp; Essays
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.06 }}
-            className="max-w-3xl type-display-l text-graphite"
-          >
+          </p>
+          <h1 className="max-w-3xl type-display-l text-graphite">
             Ideas shaped by <span className="accent-italic">place</span>.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.12 }}
-            className="mt-5 max-w-xl type-body-lg text-graphite-soft"
-          >
+          </h1>
+          <p className="mt-5 max-w-xl type-body-lg text-graphite-soft">
             Writing on architecture, climate-responsive design, and the spatial details that make buildings feel human.
-          </motion.p>
+          </p>
         </header>
 
         {blogs.length === 0 ? (
@@ -85,12 +69,7 @@ export default function BlogsPage() {
         ) : (
           <>
             {featured && (
-              <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.16 }}
-                className="grid gap-8 border-b border-stone py-10 sm:py-14 lg:grid-cols-12 lg:items-center lg:gap-12"
-              >
+              <article className="grid gap-8 border-b border-stone py-10 sm:py-14 lg:grid-cols-12 lg:items-center lg:gap-12">
                 <div className="order-2 lg:order-1 lg:col-span-6">
                   <p className="mb-4 type-meta text-graphite-soft">
                     <span className="text-terracotta-deep">Featured Essay</span>
@@ -152,18 +131,14 @@ export default function BlogsPage() {
                     <div className="flex aspect-[16/10] items-center justify-center font-serif text-2xl text-graphite-soft">A field note</div>
                   )}
                 </Link>
-              </motion.article>
+              </article>
             )}
 
             {rest.length > 0 && (
               <div className="grid gap-x-10 sm:grid-cols-2">
-                {rest.map((blog, index) => (
-                  <motion.article
+                {rest.map((blog) => (
+                  <article
                     key={blog.slug}
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="group grid grid-cols-[1fr_112px] gap-6 border-b border-stone py-8 transition-colors hover:border-forest sm:grid-cols-[1fr_144px]"
                   >
                     <div>
@@ -226,7 +201,7 @@ export default function BlogsPage() {
                         <span className="flex aspect-square h-full items-center justify-center font-serif text-xs text-graphite-soft">Journal</span>
                       )}
                     </Link>
-                  </motion.article>
+                  </article>
                 ))}
               </div>
             )}

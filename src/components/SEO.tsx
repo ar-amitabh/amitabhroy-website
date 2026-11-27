@@ -36,7 +36,7 @@ export default function SEO({
   const siteName = 'Amitabh Chondro Roy';
   const fullTitle =
     title === 'Home'
-      ? 'Amitabh Chondro Roy | Architect & Urban Planning Professional'
+      ? 'Amitabh Chondro Roy | Architect & Urban Planning Researcher, Bangladesh'
       : title.includes(siteName)
         ? title
         : `${title} | ${siteName}`;

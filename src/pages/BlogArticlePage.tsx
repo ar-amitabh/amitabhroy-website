@@ -169,25 +169,16 @@ export default function BlogArticlePage() {
       {/* Unified Medium-style single column container */}
       <article className="mx-auto max-w-3xl px-5 sm:px-8">
         <header className="pb-9 pt-10 sm:pt-14">
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
-          >
+          <div>
             <Link
               to="/blogs"
               className="mb-10 inline-flex items-center gap-2 type-meta text-graphite-soft transition-colors hover:text-forest-deep"
             >
               <ArrowLeft size={15} /> Back to Journal
             </Link>
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.04 }}
-            className="mb-4 type-meta text-graphite-soft"
-          >
+          <p className="mb-4 type-meta text-graphite-soft">
             {blog.category && (
               <>
                 <span className="text-forest-deep">{blog.category}</span>
@@ -195,34 +186,19 @@ export default function BlogArticlePage() {
               </>
             )}
             {publishedDate(blog.date)}
-          </motion.p>
+          </p>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.08 }}
-            className="type-h1 text-graphite"
-          >
+          <h1 className="type-h1 text-graphite">
             {blog.title}
-          </motion.h1>
+          </h1>
 
           {blog.subtitle && (
-            <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.14 }}
-              className="mt-5 font-serif text-xl leading-relaxed text-graphite-soft sm:text-2xl"
-            >
+            <p className="mt-5 font-serif text-xl leading-relaxed text-graphite-soft sm:text-2xl">
               {blog.subtitle}
-            </motion.p>
+            </p>
           )}
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.2 }}
-            className="mt-6 flex flex-wrap items-center gap-2.5 border-y border-stone py-4 type-caption text-graphite-soft"
-          >
+          <div className="mt-6 flex flex-wrap items-center gap-2.5 border-y border-stone py-4 type-caption text-graphite-soft">
             <span className="font-medium text-graphite">By Amitabh Chondro Roy</span>
             <span aria-hidden="true">·</span>
             <span>Architect &amp; Urban Planning Researcher</span>
@@ -231,16 +207,11 @@ export default function BlogArticlePage() {
               <Clock size={14} />
               {blog.readingMinutes} min read
             </span>
-          </motion.div>
+          </div>
         </header>
 
         {coverImage && (
-          <motion.figure
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.18 }}
-            className="mb-12"
-          >
+          <figure className="mb-12">
             <div className="overflow-hidden border border-stone bg-paper-raised">
               <img
                 src={coverImage}
@@ -253,7 +224,7 @@ export default function BlogArticlePage() {
             <figcaption className="pt-3 text-center type-caption text-graphite-soft">
               {blog.imageAlt}
             </figcaption>
-          </motion.figure>
+          </figure>
         )}
 
         <div>
@@ -384,6 +355,12 @@ export default function BlogArticlePage() {
               className="link-underline inline-flex items-center gap-2 font-medium text-graphite-soft hover:text-graphite"
             >
               Explore Rangpur thesis research →
+            </Link>
+            <Link
+              to="/about"
+              className="link-underline inline-flex items-center gap-2 font-medium text-graphite-soft hover:text-graphite"
+            >
+              About Amitabh Chondro Roy →
             </Link>
           </footer>
         </div>

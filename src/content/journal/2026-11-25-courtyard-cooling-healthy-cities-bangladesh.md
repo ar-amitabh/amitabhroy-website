@@ -1,7 +1,10 @@
 ---
 title: Can a Courtyard Cool a Bangladeshi Home by 2 Degrees?
 subtitle: A dome roof, a shaded uthan and a restored dighi can cool a home.
+description: Research shows a dome-roof courtyard can boost indoor wind speed by 80% and cut temperatures by 2.1°C. Practical lessons for healthy Bangladeshi cities.
 category: Healthy Cities
+tags: Courtyard Cooling, Healthy Cities, Passive Cooling, Biophilic Design, Urban Heat Island
+keywords: courtyard cooling Bangladesh, dome roof passive cooling, healthy cities Bangladesh, biophilic design Bangladesh, urban heat island Dhaka, uthan architecture, Amitabh Chondro Roy
 date: 2026-11-25
 slug: courtyard-cooling-healthy-cities-bangladesh
 image: /journal/media-generation-a-hopeful-photorealistic-wide-0-982fd729-7bf8-47ad-9176-17630aa2a9e0-optimized-1200.webp
@@ -92,14 +95,18 @@ In my thesis survey of 30 employees, 80 percent reported eye strain, 86.7 percen
 
 ## Sources
 
-Xing et al., PLOS ONE, 4 March 2025, biophilic building designs and wellbeing.
-Humanise Global Evidence Review, September 2025, synthesis of over 80 studies on building exteriors and health.
-Jinan City study, City and Built Environment, 2026, 512 residents in high density housing and biophilic neighbourhood design.
-Sun et al., Journal of Building Engineering 111 (2025) 113331, courtyard roof shape, dome roof 80 percent higher wind speed and up to 2.1 degrees Celsius lower temperature.
-Aloshan and Aldali, Scientific Reports, 2025, courtyard design, nearly 29,000 simulations, window to wall ratio and insulation over 40 percent of variance.
-Roy, A. C. (2021). Designing a Human-Centered Work Environment for the Employee of Rangpur Hi-Tech Park. Zenodo, DOI 10.5281/zenodo.23915357.
-The Business Standard, Dhaka rooftop and vertical gardening, RAJUK Climate Resilient Green Action Plan, Detailed Area Plan 2022 to 2035.
+- Xing, Y., Stevenson, N., Thomas, C., et al. (2025). [Exploring biophilic building designs to promote wellbeing and stimulate inspiration](https://doi.org/10.1371/journal.pone.0317372). *PLOS ONE*, 20(3), e0317372.
+- Kim, A. / Humanise Campaign. (September 2025). [Why the outsides of buildings matter to human health: A global evidence review](https://humanise.org/). Synthesis of over 80 studies on building exteriors and health.
+- Jinan City Residential Study. (2026). [Enhancing psychological well-being in high-density residential areas through biophilic environment: pathways and factors](https://scholar.google.com/scholar?q=Enhancing+psychological+well-being+in+high-density+residential+areas+through+biophilic+environment+Jinan). *City and Built Environment* (512 residents).
+- Sun, H., et al. (2025). [Courtyard roof shape, natural ventilation and passive cooling](https://scholar.google.com/scholar?q=Journal+of+Building+Engineering+111+2025+113331+courtyard+roof). *Journal of Building Engineering*, 111, 113331 (dome roof: 80% higher wind speed and up to 2.1 °C lower temperature).
+- Aloshan, M. A., & Aldali, K. M. (2025). [Courtyard design for energy efficiency and thermal comfort: machine learning insights across hot and warm climates](https://scholar.google.com/scholar?q=Aloshan+Aldali+Scientific+Reports+2025+Courtyard+design+for+energy+efficiency). *Scientific Reports*, 15, 43660 (~29,000 parametric simulations).
+- Roy, A. C. (2021; rev. 2026). [Designing a Human-Centred Work Environment for the Employee of Rangpur Hi-Tech Park](https://doi.org/10.5281/zenodo.23915357). B.Arch Thesis, HSTU / Zenodo. Also explore the [Rangpur survey dashboard](/research).
+- The Business Standard. [Dhaka rooftop and vertical gardening, RAJUK Climate Resilient Green Action Plan & Detailed Area Plan 2022–2035](https://www.tbsnews.net/bangladesh/infrastructure/rajuk-takes-green-action-plan-reduce-heat-dhaka).
 
-Written by Amitabh Chondro Roy, Architect and Urban Planning Researcher
-Read more: amitabhroy.bd
-Green Health Urbana by Amitabh Chondro Roy
+---
+
+Written by **Amitabh Chondro Roy**, Architect and Urban Planning Researcher ([About &amp; CV](/about) · [Research](/research))
+
+Read more: [amitabhroy.bd](https://amitabhroy.bd/)
+
+*Green Health Urbana* by Amitabh Chondro Roy

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Mail, Phone, Linkedin, Globe, Send, AlertCircle, CheckCircle2, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { isContactFormConfigured, sendContactMessage } from '../../lib/contact';
 import { contactFormSchema, PURPOSE_OPTIONS } from '../../lib/validation';
 import { contactFormLimiter } from '../../lib/rateLimiter';
@@ -143,13 +142,7 @@ export default function Contact() {
   return (
     <section id="contact" className="brand-section bg-paper text-graphite">
       <div className="brand-container">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55 }}
-          className="max-w-3xl mb-14"
-        >
+        <div className="max-w-3xl mb-12">
           <p className="type-meta text-forest-deep mb-3">05 / Contact &amp; Inquiries</p>
           <h1 className="type-h1 text-graphite mb-4">
             Let’s start a <span className="accent-italic">conversation</span>.
@@ -157,17 +150,11 @@ export default function Contact() {
           <p className="type-body-lg text-graphite-soft">
             Available for postgraduate research supervision, architectural studio roles, urban planning collaborations, and design commissions.
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Direct Details & Availability */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="lg:col-span-5 space-y-6"
-          >
+          <div className="lg:col-span-5 space-y-6">
             {/* Availability Notice */}
             <div className="bg-paper-raised border border-stone rounded-card p-6">
               <div className="flex items-center gap-2.5 mb-3">
@@ -208,16 +195,10 @@ export default function Contact() {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Accessible Editorial Form (Section 8.7 & Section 9) */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.1 }}
-            className="lg:col-span-7 bg-paper-raised border border-stone rounded-card p-6 sm:p-10"
-          >
+          <div className="lg:col-span-7 bg-paper-raised border border-stone rounded-card p-6 sm:p-10">
             <form onSubmit={handleSubmit} noValidate className="space-y-6">
               {/* Honeypot spam protection field */}
               <div className="sr-only" aria-hidden="true">
@@ -425,7 +406,7 @@ export default function Contact() {
                 </button>
               </div>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

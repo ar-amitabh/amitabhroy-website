@@ -12,7 +12,7 @@ export default function CustomCursor() {
 
   useEffect(() => {
     if (prefersReducedMotion) return;
-    const media = window.matchMedia('(pointer: fine) and (min-width: 1024px)');
+    const media = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)');
     const updateMedia = () => setEnabled(media.matches);
     updateMedia();
     media.addEventListener('change', updateMedia);
@@ -24,7 +24,9 @@ export default function CustomCursor() {
 
     const onPointerMove = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
-      const nextIsView = Boolean(target?.closest?.('[data-cursor="view"]'));
+      const inViewTarget = Boolean(target?.closest?.('[data-cursor="view"]'));
+      const overText = Boolean(target?.closest?.('h1, h2, h3, h4, p, figcaption'));
+      const nextIsView = inViewTarget && !overText;
       if (nextIsView !== viewTargetRef.current) {
         viewTargetRef.current = nextIsView;
         setIsViewTarget(nextIsView);

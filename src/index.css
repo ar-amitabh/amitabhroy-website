@@ -344,16 +344,16 @@
     }
   }
 
-  /* Section spacing: 128px to 160px vertical on desktop, 80px to 96px on mobile */
+  /* Section spacing: balanced editorial rhythm without oversized gaps */
   .brand-section {
-    padding-top: 88px;
-    padding-bottom: 88px;
+    padding-top: 56px;
+    padding-bottom: 56px;
   }
 
   @media (min-width: 1024px) {
     .brand-section {
-      padding-top: 144px;
-      padding-bottom: 144px;
+      padding-top: 84px;
+      padding-bottom: 84px;
     }
   }
 }
@@ -386,17 +386,15 @@
   animation-play-state: paused;
 }
 
-/* Smooth Medium-style scroll reveal for blog article blocks */
+/* Keep prose fully opaque and readable on first paint */
 .prose-reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity var(--dur-reveal) var(--ease-out),
-    transform var(--dur-reveal) var(--ease-out);
+  opacity: 1;
+  transform: none;
 }
 
 .prose-reveal.prose-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* Dark theme subtle 4% darkening overlay on bright renders (Section 2.4) */

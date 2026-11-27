@@ -8,11 +8,10 @@ export default function AboutPage() {
   return (
     <div className="pt-20 bg-paper">
       <SEO
-        title="About Amitabh Chondro Roy (Amitabh Roy) | Architect"
-        description="Learn about Amitabh Chondro Roy (Amitabh Roy) — architect and urban planning professional focused on healthier, climate-responsive, and sustainable spaces through human-centered design."
+        title="About Amitabh Chondro Roy | Architect & Urban Planning Researcher"
+        description="About Amitabh Chondro Roy, B.Arch (HSTU) and IAB AR-260 architect researching healthy cities, climate-responsive architecture, and urban planning in Bangladesh."
         path="/about"
       />
-      <h1 className="sr-only">About Amitabh Chondro Roy (Amitabh Roy)</h1>
       <About />
       <CVSection />
       <Experience />

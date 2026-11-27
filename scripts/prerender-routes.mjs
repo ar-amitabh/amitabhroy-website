@@ -83,19 +83,38 @@ function extractFaqItems(markdown) {
 
   const items = [];
   const blocks = faqSection.split(/\n###\s+/).slice(1);
-  for (const block of blocks) {
-    const lines = block.trim().split('\n');
-    const question = lines[0]?.replace(/^\d+\.\s*/, '').trim();
-    const answer = lines
-      .slice(1)
-      .join(' ')
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
-      .replace(/\*\*([^*]+)\*\*/g, '$1')
-      .replace(/\*([^*]+)\*/g, '$1')
-      .replace(/\s+/g, ' ')
-      .trim();
-    if (question && answer) {
-      items.push({ question, answer });
+  if (blocks.length > 0) {
+    for (const block of blocks) {
+      const lines = block.trim().split('\n');
+      const question = lines[0]?.replace(/^\d+\.\s*/, '').trim();
+      const answer = lines
+        .slice(1)
+        .join(' ')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+        .replace(/\*\*([^*]+)\*\*/g, '$1')
+        .replace(/\*([^*]+)\*/g, '$1')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (question && answer) {
+        items.push({ question, answer });
+      }
+    }
+    return items;
+  }
+
+  const rawLines = faqSection.split('\n').map((l) => l.trim()).filter(Boolean);
+  for (let i = 0; i < rawLines.length - 1; i++) {
+    if (rawLines[i].endsWith('?')) {
+      const question = rawLines[i].replace(/\*\*([^*]+)\*\*/g, '$1').trim();
+      const answer = rawLines[i + 1]
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+        .replace(/\*\*([^*]+)\*\*/g, '$1')
+        .replace(/\*([^*]+)\*/g, '$1')
+        .trim();
+      if (question && answer && !answer.endsWith('?')) {
+        items.push({ question, answer });
+        i += 1;
+      }
     }
   }
   return items;
@@ -142,7 +161,7 @@ function buildBreadcrumbSchema(routePath, routeTitle) {
 function buildRouteHtml(template, route) {
   const fullTitle =
     route.title === 'Home'
-      ? 'Amitabh Chondro Roy | Architect & Urban Planning Professional'
+      ? 'Amitabh Chondro Roy | Architect & Urban Planning Researcher, Bangladesh'
       : route.title.includes(SITE_NAME)
         ? route.title
         : `${route.title} | ${SITE_NAME}`;
@@ -351,7 +370,7 @@ const routes = [
     outFile: 'index.html',
     title: 'Home',
     description:
-      'Amitabh Chondro Roy (Amitabh Roy) is an architect and urban planning professional in Bangladesh, exploring human-centred, climate-responsive architecture and sustainable urban development.',
+      'Amitabh Chondro Roy is an architect and urban planning researcher in Bangladesh focused on human-centred, climate-responsive design and healthy cities.',
     image: '/og-image.jpg',
     type: 'profile',
     noscriptHtml: `<h1>Amitabh Chondro Roy</h1><p>Architecture, urban planning and sustainable design in Bangladesh.</p><p>Human-centred, climate-responsive and sustainable design, informed by architecture, urban planning and empirical workplace research.</p>`,
@@ -367,9 +386,9 @@ const routes = [
   {
     path: '/about',
     outFile: 'about/index.html',
-    title: 'About Amitabh Chondro Roy (Amitabh Roy) | Architect',
+    title: 'About Amitabh Chondro Roy | Architect & Urban Planning Researcher',
     description:
-      'Learn about Amitabh Chondro Roy (Amitabh Roy) — architect and urban planning professional focused on healthier, climate-responsive, and sustainable spaces through human-centered design.',
+      'About Amitabh Chondro Roy, B.Arch (HSTU) and IAB AR-260 architect researching healthy cities, climate-responsive architecture, and urban planning in Bangladesh.',
     image: '/amitabh-chondro-roy-architect-portrait.jpg',
     noscriptHtml: `<h1>About Amitabh Chondro Roy (Amitabh Roy)</h1><p>Designing with evidence, climate, and human wellbeing in view. Architect (IAB Associate Member AR-260) and urban-planning researcher based in Bangladesh.</p>`,
   },
@@ -378,7 +397,7 @@ const routes = [
     outFile: 'work/index.html',
     title: 'Architecture & Urban Design Case Studies',
     description:
-      'Selected architectural, urban planning, and climate-responsive design case studies, visual identity systems, and architectural photography in Bangladesh.',
+      'Explore architectural, urban design, and climate-responsive case studies by Amitabh Chondro Roy across Rangpur, Dinajpur, Dhaka, and rural Bangladesh.',
     image: '/og-image.jpg',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -410,7 +429,7 @@ const routes = [
     outFile: 'research/index.html',
     title: 'Workplace Wellbeing & Climate-Responsive Design Research',
     description:
-      'Research in human-centered, climate-responsive and sustainable architecture, including a 30-respondent workplace well-being study at Rangpur Hi-Tech Park and its design outcomes.',
+      'Empirical workplace wellbeing and climate-responsive architecture research by Amitabh Chondro Roy, featuring the 30-respondent Rangpur Hi-Tech Park study.',
     image: '/research-rangpur-hitech-park-conceptual-visual.jpg',
     jsonLd: [
       {
@@ -469,7 +488,7 @@ const routes = [
     outFile: 'blogs/index.html',
     title: 'Architecture, Climate & Urban Design Journal',
     description:
-      'Long-form essays and field notes on human-centered architecture, passive cooling strategies, courtyard systems, and workplace wellbeing in Bangladesh.',
+      'Journal essays by Amitabh Chondro Roy on courtyard cooling, dighi waterbodies, passive office design, workplace wellbeing, and urban planning in Bangladesh.',
     image: '/og-image.jpg',
     jsonLd: {
       '@context': 'https://schema.org',
@@ -503,7 +522,7 @@ const routes = [
     outFile: 'contact/index.html',
     title: 'Contact for Architecture & Research Collaborations',
     description:
-      'Contact Amitabh Chondro Roy for architectural consultations, graduate research collaborations, studio roles, or sustainable design projects in Bangladesh.',
+      'Contact Amitabh Chondro Roy for MSc/PhD urban planning research, sustainable architecture roles, and climate-responsive design commissions in Bangladesh.',
     image: '/og-image.jpg',
     jsonLd: {
       '@context': 'https://schema.org',
