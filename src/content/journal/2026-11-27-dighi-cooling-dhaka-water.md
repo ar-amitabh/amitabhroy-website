@@ -66,13 +66,9 @@ The burden is not shared equally. The report notes that central areas such as Wa
 ## Five Practical Steps
 
 1. Stop filling what is left. Every remaining dighi, canal and wetland is now scarce infrastructure, not empty land. Protect it first, and argue about the plot later.
-
 2. Keep the trees with the water. A dighi without shade cools the air by less than one degree. The same dighi under trees can feel several degrees cooler to a person standing there.
-
 3. Make the water reachable. A path, a bench, steps down to the water and clean water matter as much as the pond itself. If people cannot sit by it, walk by it or touch it, most of the health benefit is lost.
-
 4. Spread small water across the neighbourhood. One large pond in one place helps one place. Several ponds, rain gardens and restored canal edges, spread across a neighbourhood and set along the wind, cool a wider area.
-
 5. Clean the water before counting the benefit. A polluted pond is a health risk, not a health asset. Cleaning, and keeping sewage and waste out, has to come before any claim about cooling or wellbeing.
 
 ## A Healthy City Needs Its Water Back
